@@ -26,16 +26,13 @@ export function AttireSection({
 }: AttireSectionProps) {
   if (!attireDressCode) return null;
 
-  // Complete cut-off intro text if present
-  let displayIntro = attireDressCode.sectionIntro || "";
-  if (displayIntro.trim().endsWith("reserved for")) {
-    displayIntro = `${displayIntro.trim()} the bride.`;
-  }
-
-  // Retrieve client-local attire configuration
+  // 1. Retrieve client-local attire configuration
   const attireConfig = (
     clientConfig.sections as {
       attire?: {
+        sectionIntro?: string;
+        dressCodeNote?: string;
+        colorMotifNote?: string;
         illustration?: {
           src: string;
           alt: string;
@@ -54,15 +51,35 @@ export function AttireSection({
       ? configuredPalette
       : undefined;
 
-  // Clean up trailing truncated text if present
-  let displayDressCodeNote = attireDressCode.dressCodeNote?.trim() || "";
+  // 2. Section Intro (data.sectionIntro)
+  let displayIntro =
+    attireDressCode?.sectionIntro?.trim() ||
+    attireConfig?.sectionIntro?.trim() ||
+    "We would love to see you dressed up in our wedding colors!";
+
+  if (displayIntro.endsWith("reserved for")) {
+    displayIntro = `${displayIntro} the bride.`;
+  }
+
+  // 3. Guest Dress Code Note (data.dressCodeNote)
+  let displayDressCodeNote =
+    attireDressCode?.dressCodeNote?.trim() ||
+    attireConfig?.dressCodeNote?.trim() ||
+    "Formal attire is preferred.\nLadies: Long gowns or formal dresses (strictly no pants).\nGentlemen: Black suit or Barong Tagalog.\nReminder: Strictly no shorts or t-shirts for all guests.";
+
   if (displayDressCodeNote.endsWith("for all g")) {
     displayDressCodeNote = displayDressCodeNote.replace(/for all g$/, "for all guests.");
   }
 
+  // 4. Color Motif & Sponsor Note (data.colorMotifNote)
+  const displayColorMotifNote =
+    attireDressCode?.colorMotifNote?.trim() ||
+    attireConfig?.colorMotifNote?.trim() ||
+    "Ninong: Black suit or Barong Tagalog.\nNinang: Champagne gold long gown with sleeves.";
+
   const hasPalette = Boolean(palette && palette.length > 0);
   const hasDressCodeNote = Boolean(displayDressCodeNote);
-  const hasColorMotifNote = Boolean(attireDressCode.colorMotifNote?.trim());
+  const hasColorMotifNote = Boolean(displayColorMotifNote);
   const shouldRenderCard = hasDressCodeNote || hasPalette || hasColorMotifNote;
 
   return (
@@ -113,17 +130,29 @@ export function AttireSection({
                     <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-[#3D604C] mb-2">
                       GUEST DRESS CODE
                     </h4>
-                    <div className="text-sm sm:text-[15px] leading-relaxed text-[#1F2421] font-medium space-y-2">
-                      <p>Formal attire is preferred.</p>
-                      <p>
-                        <strong className="font-semibold text-[#1B2B22]">Ladies:</strong> Long gowns or formal dresses (strictly no pants).
-                      </p>
-                      <p>
-                        <strong className="font-semibold text-[#1B2B22]">Gentlemen:</strong> Black suit or Barong Tagalog.
-                      </p>
-                      <p className="text-xs sm:text-sm text-[#8A3A35] font-semibold mt-2 pt-1 border-t border-[#B8C7BD]/40">
-                        Reminder: Strictly no shorts or t-shirts for all guests.
-                      </p>
+                    <div className="text-sm sm:text-[15px] leading-relaxed text-[#1F2421] font-medium space-y-2 whitespace-pre-line">
+                      {displayDressCodeNote.split("\n").map((line, idx) => {
+                        const trimmed = line.trim();
+                        if (!trimmed) return null;
+                        const match = trimmed.match(/^([^:]+):\s*(.*)$/);
+                        if (match) {
+                          const isReminder = /^(reminder|please note|note)/i.test(match[1]);
+                          return (
+                            <p
+                              key={idx}
+                              className={
+                                isReminder
+                                  ? "text-xs sm:text-sm text-[#8A3A35] font-semibold mt-2 pt-1 border-t border-[#B8C7BD]/40"
+                                  : ""
+                              }
+                            >
+                              <strong className="font-semibold text-[#1B2B22]">{match[1]}:</strong>{" "}
+                              {match[2]}
+                            </p>
+                          );
+                        }
+                        return <p key={idx}>{trimmed}</p>;
+                      })}
                     </div>
                   </div>
 
@@ -132,13 +161,21 @@ export function AttireSection({
                     <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-[#3D604C] mb-2">
                       PRINCIPAL SPONSORS
                     </h4>
-                    <div className="text-sm sm:text-[15px] leading-relaxed text-[#1F2421] font-medium space-y-1.5">
-                      <p>
-                        <strong className="font-semibold text-[#1B2B22]">Ninong:</strong> Black suit or Barong Tagalog.
-                      </p>
-                      <p>
-                        <strong className="font-semibold text-[#1B2B22]">Ninang:</strong> Champagne gold long gown with sleeves.
-                      </p>
+                    <div className="text-sm sm:text-[15px] leading-relaxed text-[#1F2421] font-medium space-y-1.5 whitespace-pre-line">
+                      {displayColorMotifNote.split("\n").map((line, idx) => {
+                        const trimmed = line.trim();
+                        if (!trimmed) return null;
+                        const match = trimmed.match(/^([^:]+):\s*(.*)$/);
+                        if (match) {
+                          return (
+                            <p key={idx}>
+                              <strong className="font-semibold text-[#1B2B22]">{match[1]}:</strong>{" "}
+                              {match[2]}
+                            </p>
+                          );
+                        }
+                        return <p key={idx}>{trimmed}</p>;
+                      })}
                     </div>
 
                     {/* Subhead: SUGGESTED GUEST COLORS & Swatches Block */}

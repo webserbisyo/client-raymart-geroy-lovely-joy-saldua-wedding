@@ -222,6 +222,11 @@ export const clientConfig = {
   },
   sections: {
     attire: {
+      sectionIntro: "We would love to see you dressed up in our wedding colors!",
+      dressCodeNote:
+        "Formal attire is preferred.\nLadies: Long gowns or formal dresses (strictly no pants).\nGentlemen: Black suit or Barong Tagalog.\nPlease note: Strictly no shorts or t-shirts for all guests.",
+      colorMotifNote:
+        "Ninong: Black suit or Barong Tagalog.\nNinang: Champagne gold long gown with sleeves.",
       illustration: PRINCESS_ANNE_ATTIRE_ILLUSTRATION,
       palette: PRINCESS_ANNE_ATTIRE_PALETTE,
     },
