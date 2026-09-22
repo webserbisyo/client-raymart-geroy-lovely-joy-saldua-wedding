@@ -69,12 +69,12 @@ export function ContactSection({
             <div className="flex flex-col gap-4 items-center md:items-start text-sm">
               {/* Email Row */}
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#FAF4E8] border border-[#C5A059]/40 flex items-center justify-center text-[#3D604C] shrink-0">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/25 flex items-center justify-center text-[#E5C158] shrink-0">
                   <Mail className="w-4 h-4" />
                 </div>
                 <a
                   href={`mailto:${email}`}
-                  className="text-[#1B2B22] hover:text-[#3D604C] transition-colors font-medium break-all text-center md:text-left"
+                  className="text-[#FAF7F2] hover:text-[#E5C158] transition-colors font-medium text-base sm:text-lg break-all text-center md:text-left"
                 >
                   {email}
                 </a>
@@ -82,12 +82,12 @@ export function ContactSection({
 
               {/* Phone Row */}
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#FAF4E8] border border-[#C5A059]/40 flex items-center justify-center text-[#3D604C] shrink-0">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/25 flex items-center justify-center text-[#E5C158] shrink-0">
                   <Phone className="w-4 h-4" />
                 </div>
                 <a
                   href={`tel:${phone}`}
-                  className="text-[#1B2B22] hover:text-[#3D604C] transition-colors font-medium"
+                  className="text-[#FAF7F2] hover:text-[#E5C158] transition-colors font-medium text-base sm:text-lg"
                 >
                   {phone}
                 </a>

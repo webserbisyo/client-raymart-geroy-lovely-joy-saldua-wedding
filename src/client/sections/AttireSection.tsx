@@ -82,10 +82,10 @@ export function AttireSection({
 
         {/* Four-Model Fashion Illustration */}
         {illustration && illustration.src && (
-          <div className="w-full max-w-[760px] md:max-w-[900px] mt-4 mb-6 sm:mt-6 sm:mb-8 px-2 flex justify-center">
+          <div className="w-full max-w-[850px] mx-auto mt-4 mb-6 sm:mt-6 sm:mb-8 px-2 flex justify-center">
             <Image
               alt={illustration.alt}
-              className="h-auto w-full object-contain select-none pointer-events-none"
+              className="h-auto w-full object-contain pointer-events-none select-none"
               height={illustration.height}
               priority
               src={illustration.src}
@@ -97,58 +97,70 @@ export function AttireSection({
 
         {/* Standalone Guideline Paragraph */}
         {displayIntro && (
-          <p className="text-[#34483B] text-center text-sm md:text-base leading-relaxed max-w-2xl mt-0 mb-8 sm:mb-10 px-4 relative z-10 transition-opacity duration-300 font-medium">
+          <p className="text-[#34483B] text-center text-sm md:text-base leading-relaxed max-w-2xl mt-0 mb-6 sm:mb-8 px-4 relative z-10 transition-opacity duration-300 font-medium">
             {displayIntro}
           </p>
         )}
 
         {/* Compact Warm Ivory Dress Code Card */}
         {shouldRenderCard && (
-          <AnimatedContent className="w-full max-w-2xl mx-auto">
+          <AnimatedContent className="w-full max-w-4xl mx-auto">
             <div className="relative overflow-visible">
-              <div className="w-full relative z-10 overflow-hidden wedding-paper-card bg-white border border-[#B8C7BD] p-5 sm:p-8 rounded-3xl text-center">
-                {/* Dress Code Title / Note */}
-                {hasDressCodeNote && (
-                  <h3 className="relative z-20 font-serif text-xl sm:text-2xl md:text-3xl text-[#1B2B22] font-bold mb-2 whitespace-pre-line leading-snug">
-                    {displayDressCodeNote}
-                  </h3>
-                )}
-
-                {/* Color Motif & Ninong / Ninang Guidance Note */}
-                {hasColorMotifNote && (
-                  <div className="relative z-20 my-4 px-4 py-4 rounded-2xl bg-[#FAF7F2] border border-[#B8C7BD]/50 text-center">
-                    <p className="text-[#C5A059] text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold mb-2">
-                      SPONSORS &amp; ATTIRE GUIDELINES
-                    </p>
-                    <p className="text-xs sm:text-sm md:text-base text-[#1B2B22] whitespace-pre-line leading-[1.7] max-w-lg mx-auto font-sans font-medium">
-                      {attireDressCode.colorMotifNote}
-                    </p>
-                  </div>
-                )}
-
-                {/* Swatches Block */}
-                {hasPalette && palette && (
-                  <>
-                    {/* Clean Category Subtitle */}
-                    <p className="relative z-20 text-[#C5A059] text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.2em] font-bold mb-3 mt-2">
-                      SUGGESTED GUEST COLORS
-                    </p>
-
-                    {/* Subtle Divider */}
-                    <div className="h-px w-16 sm:w-20 bg-[#B8C7BD]/60 mx-auto mb-4" />
-
-                    {/* Color Palette Swatches (One horizontal row of equal columns) */}
-                    <div className="relative z-20 grid grid-cols-5 gap-1 sm:gap-3 w-full max-w-xl mx-auto items-start">
-                      {palette.map((item) => (
-                        <AttireColorSwatch
-                          key={item.label}
-                          label={item.label}
-                          color={item.color}
-                        />
-                      ))}
+              <div className="w-full relative z-10 overflow-hidden wedding-paper-card bg-white border border-[#B8C7BD] p-6 sm:p-8 rounded-3xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto text-left">
+                  {/* Column 1 — Guest Dress Code */}
+                  <div className="flex flex-col">
+                    <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-[#3D604C] mb-2">
+                      GUEST DRESS CODE
+                    </h4>
+                    <div className="text-sm sm:text-[15px] leading-relaxed text-[#1F2421] font-medium space-y-2">
+                      <p>Formal attire is preferred.</p>
+                      <p>
+                        <strong className="font-semibold text-[#1B2B22]">Ladies:</strong> Long gowns or formal dresses (strictly no pants).
+                      </p>
+                      <p>
+                        <strong className="font-semibold text-[#1B2B22]">Gentlemen:</strong> Black suit or Barong Tagalog.
+                      </p>
+                      <p className="text-xs sm:text-sm text-[#8A3A35] font-semibold mt-2 pt-1 border-t border-[#B8C7BD]/40">
+                        Reminder: Strictly no shorts or t-shirts for all guests.
+                      </p>
                     </div>
-                  </>
-                )}
+                  </div>
+
+                  {/* Column 2 — Principal Sponsors & Color Palette */}
+                  <div className="flex flex-col">
+                    <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-[#3D604C] mb-2">
+                      PRINCIPAL SPONSORS
+                    </h4>
+                    <div className="text-sm sm:text-[15px] leading-relaxed text-[#1F2421] font-medium space-y-1.5">
+                      <p>
+                        <strong className="font-semibold text-[#1B2B22]">Ninong:</strong> Black suit or Barong Tagalog.
+                      </p>
+                      <p>
+                        <strong className="font-semibold text-[#1B2B22]">Ninang:</strong> Champagne gold long gown with sleeves.
+                      </p>
+                    </div>
+
+                    {/* Subhead: SUGGESTED GUEST COLORS & Swatches Block */}
+                    {hasPalette && palette && (
+                      <div className="mt-4 pt-3 border-t border-[#B8C7BD]/40">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-[#3D604C] mt-1 mb-2.5">
+                          SUGGESTED GUEST COLORS
+                        </p>
+                        {/* Color Palette Swatches (One horizontal row of equal columns) */}
+                        <div className="relative z-20 grid grid-cols-5 gap-1 sm:gap-2 w-full items-start">
+                          {palette.map((item) => (
+                            <AttireColorSwatch
+                              key={item.label}
+                              label={item.label}
+                              color={item.color}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* Paired top-corner framing: top-left sprig + top-right sprig */}

@@ -238,10 +238,50 @@ export function getVisibleClientSectionKeys(
     }
   }
 
-  return [
-    ...visible,
-    ...Array.from(keys).filter((key) => !visible.includes(key)),
-  ];
+  // Rescue guestbook when enabled in layout or present in sectionsByKey
+  // (WebSerbisyo backend omits guestbook from published event.sections when messages are empty)
+  const raw = (event.raw ?? {}) as Record<string, unknown>;
+  const content = (raw.content ?? {}) as Record<string, unknown>;
+  const layout = (content.layout ?? {}) as Record<string, unknown>;
+  const enabledSections = (layout.enabledSections ?? {}) as Record<string, unknown>;
+  const sectionsByKey = (raw.sectionsByKey ?? {}) as Record<string, unknown>;
+
+  const isGuestbookExplicitlyDisabled = event.sections.some(
+    (section) => section.key === "guestbook" && section.enabled === false,
+  );
+
+  const isGuestbookEnabled =
+    !isGuestbookExplicitlyDisabled &&
+    (enabledSections.guestbook === true ||
+      Boolean(sectionsByKey.guestbook) ||
+      Boolean(raw.guestbook));
+
+  if (isGuestbookEnabled && clientSectionRegistry.guestbook) {
+    keys.add("guestbook");
+  }
+
+  const result: ClientSectionKey[] = [];
+  const addedKeys = new Set<ClientSectionKey>();
+
+  for (const key of visible) {
+    result.push(key);
+    addedKeys.add(key);
+    // If guestbook should be visible and was not in visible, insert it canonically after gift_details
+    if (key === "gift_details" && keys.has("guestbook") && !visible.includes("guestbook")) {
+      result.push("guestbook");
+      addedKeys.add("guestbook");
+    }
+  }
+
+  // Any remaining keys in keys (e.g. required sections or guestbook if gift_details was not in visible)
+  for (const key of keys) {
+    if (!addedKeys.has(key)) {
+      result.push(key);
+      addedKeys.add(key);
+    }
+  }
+
+  return result;
 }
 
 export function getVisibleClientSections(event: EventWebsiteRenderModel) {

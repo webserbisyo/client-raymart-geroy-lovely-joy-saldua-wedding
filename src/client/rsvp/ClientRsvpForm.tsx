@@ -160,7 +160,7 @@ export function ClientRsvpForm({
 
         {/* Guest Name */}
         <div className="grid gap-2">
-          <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+          <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
             Guest Name *
           </Label>
           <Input
@@ -181,7 +181,7 @@ export function ClientRsvpForm({
         {/* Email Address */}
         {(showFullForm || showCompactFields) && rsvpConfig.emailEnabled ? (
           <div className="grid gap-2">
-            <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+            <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
               Email{rsvpConfig.emailRequired ? " *" : ""}
             </Label>
             <Input
@@ -204,7 +204,7 @@ export function ClientRsvpForm({
         {/* Phone Number */}
         {showFullForm && rsvpConfig.phoneEnabled ? (
           <div className="grid gap-2">
-            <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+            <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
               Phone Number{rsvpConfig.phoneRequired ? " *" : ""}
             </Label>
             <Input
@@ -227,7 +227,7 @@ export function ClientRsvpForm({
         {/* Attendance Toggles */}
         {showFullForm ? (
           <div className="grid gap-2">
-            <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+            <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
               Will you attend? *
             </Label>
             <div className="grid grid-cols-2 gap-4">
@@ -237,7 +237,7 @@ export function ClientRsvpForm({
                 disabled={isSubmitting}
                 aria-pressed={attendanceStatus === "attending"}
                 data-selected={attendanceStatus === "attending"}
-                className="wedding-choice w-full py-3.5 text-xs font-bold uppercase tracking-wider"
+                className="wedding-choice w-full min-h-[48px] py-3.5 text-xs font-bold uppercase tracking-wider"
               >
                 Yes, Attending
               </button>
@@ -247,7 +247,7 @@ export function ClientRsvpForm({
                 disabled={isSubmitting}
                 aria-pressed={attendanceStatus === "not_attending"}
                 data-selected={attendanceStatus === "not_attending"}
-                className="wedding-choice w-full py-3.5 text-xs font-bold uppercase tracking-wider"
+                className="wedding-choice w-full min-h-[48px] py-3.5 text-xs font-bold uppercase tracking-wider"
               >
                 Declining
               </button>
@@ -260,12 +260,12 @@ export function ClientRsvpForm({
 
         {/* Companions (Conditional) */}
         {showFullForm && rsvpConfig.plusOneEnabled && attendanceStatus === "attending" ? (
-          <div className="wedding-rsvp-companion-card grid gap-4 p-5 rounded-2xl border transition-colors duration-300 animate-fadeIn">
+          <div className="wedding-rsvp-companion-card grid gap-4 p-5 rounded-2xl border border-[#B8C7BD] bg-[#FAF7F2] transition-colors duration-300 animate-fadeIn">
             <div className="grid gap-2">
-              <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+              <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
                 Companions
               </Label>
-              <p className="text-xs text-[color:var(--wedding-rsvp-muted,var(--wedding-text-secondary))] mb-1">
+              <p className="text-xs text-[#34483B] mb-1 font-medium">
                 You may bring up to {rsvpConfig.companionLimit} companion{rsvpConfig.companionLimit === 1 ? "" : "s"}.
               </p>
               <div className="flex flex-wrap gap-2">
@@ -277,7 +277,7 @@ export function ClientRsvpForm({
                     disabled={isSubmitting}
                     aria-pressed={companionCount === index}
                     data-selected={companionCount === index}
-                    className="wedding-choice flex-1 py-2.5 text-xs font-bold"
+                    className="wedding-choice flex-1 min-h-[44px] py-2.5 text-xs font-bold"
                   >
                     {index === 0 ? "Just me" : `Me + ${index}`}
                   </button>
@@ -288,9 +288,9 @@ export function ClientRsvpForm({
             {rsvpConfig.companionNameEnabled && companionCount > 0 ? (
               <div className="grid gap-4 mt-2">
                 {Array.from({ length: companionCount }, (_, index) => (
-                  <div key={index} className="grid gap-3 p-4 bg-white/80 border border-[color:var(--wedding-divider)] rounded-xl">
+                  <div key={index} className="grid gap-3 p-4 bg-white border border-[#B8C7BD] rounded-xl">
                     <div className="grid gap-2">
-                      <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+                      <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
                         Companion {index + 1} Name
                       </Label>
                       <Input
@@ -303,7 +303,7 @@ export function ClientRsvpForm({
                     </div>
                     {rsvpConfig.companionAgeEnabled ? (
                       <div className="grid gap-2">
-                        <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+                        <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
                           Companion {index + 1} Age
                         </Label>
                         <Input
@@ -325,7 +325,7 @@ export function ClientRsvpForm({
         {/* Food Allergies */}
         {showFullForm && rsvpConfig.foodAllergiesEnabled ? (
           <div className="grid gap-2">
-            <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+            <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
               Food Allergies / Dietary Restrictions
             </Label>
             <Textarea
@@ -341,7 +341,7 @@ export function ClientRsvpForm({
         {/* Message to Host */}
         {(showFullForm || showCompactFields) && rsvpConfig.messageToHostEnabled ? (
           <div className="grid gap-2">
-            <Label className="wedding-rsvp-label text-xs font-semibold uppercase tracking-wider">
+            <Label className="wedding-rsvp-label text-xs font-bold uppercase tracking-wider text-[#1B2B22]">
               Message to the Couple
             </Label>
             <Textarea
