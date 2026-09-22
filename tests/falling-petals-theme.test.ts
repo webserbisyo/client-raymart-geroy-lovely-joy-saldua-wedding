@@ -61,11 +61,11 @@ test("client-theme.css defines rules for all 5 semantic petal color roles and ca
 test("resolvePetalTheme returns typed fallback when element or computed style is unavailable", () => {
   const resolved = resolvePetalTheme(null);
   assert.deepEqual(resolved, DEFAULT_PETAL_THEME);
-  assert.equal(resolved.primary.base, "#b98282");
-  assert.equal(resolved.secondary.base, "#d6a6a0");
-  assert.equal(resolved.light.base, "#d8c8a9");
-  assert.equal(resolved.metallic.base, "#9a7b45");
-  assert.equal(resolved.botanical.base, "#7a836b");
+  assert.equal(resolved.primary.base, "#6B8E7B");
+  assert.equal(resolved.secondary.base, "#F7EBE8");
+  assert.equal(resolved.light.base, "#FAF7F2");
+  assert.equal(resolved.metallic.base, "#C5A059");
+  assert.equal(resolved.botanical.base, "#3D604C");
 });
 
 test("FallingPetals.tsx no longer contains hardcoded tropical coral or salmon colors", () => {

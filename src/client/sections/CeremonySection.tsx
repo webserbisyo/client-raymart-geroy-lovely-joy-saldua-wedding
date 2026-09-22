@@ -8,6 +8,7 @@
  * Framed beautifully with ambient plumeria floral and candle lantern assets.
  */
 
+import Image from "next/image";
 import { useState } from "react";
 import { SectionHeading } from "@/client/components/SectionHeading";
 import { SpotlightCard } from "@/client/components/SpotlightCard";
@@ -216,6 +217,17 @@ export function CeremonySection({
                   spotlightColor="rgba(61, 96, 76, 0.08)"
                 >
                   <div className="space-y-6 relative z-20">
+                    {/* Ceremony Church Photo in Native 4:3 */}
+                    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-[#B8C7BD]/50 shadow-sm">
+                      <Image
+                        src="/template-assets/photos/venue/ceremony-church.webp"
+                        alt="Iglesia Ni Cristo, Lokal ng Taal"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 420px"
+                        className="object-cover object-center"
+                      />
+                    </div>
+
                     {/* Title & Kicker */}
                     <div>
                       <h3 className="font-serif text-2xl text-[color:var(--wedding-text-primary)] font-semibold mb-1">

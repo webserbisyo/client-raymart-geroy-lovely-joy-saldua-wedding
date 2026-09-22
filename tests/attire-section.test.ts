@@ -6,31 +6,31 @@ import {
   clientConfig,
 } from "../src/client/client.config";
 
-test("Client-local active attire configuration for Princess Anne", () => {
+test("Client-local active attire configuration for Raymart & Lovely Joy", () => {
   const configAttire = clientConfig.sections?.attire as {
     illustration?: { src: string };
     palette?: Array<{ label: string; color: string }>;
   };
 
-  // Active config must specify Princess Anne starter palette
+  // Active config must specify starter palette
   assert.ok(configAttire?.palette, "clientConfig.sections.attire must configure palette");
   assert.strictEqual(configAttire.palette.length, 5, "Palette must contain 5 colors");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[0].label, "Dusty Blue");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[0].color, "#7498AB");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[1].label, "Blue Slate");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[1].color, "#3F6475");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[2].label, "Mist Blue");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[2].color, "#DCE8ED");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[3].label, "Champagne Sand");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[3].color, "#D6C3A7");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[4].label, "Evening Navy");
-  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[4].color, "#17313D");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[0].label, "Sage Green");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[0].color, "#5B7E68");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[1].label, "Dusty Rose");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[1].color, "#C07C7D");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[2].label, "Baby Pink");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[2].color, "#F4D3D5");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[3].label, "Ivory");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[3].color, "#FFFFF0");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[4].label, "Champagne Gold");
+  assert.strictEqual(PRINCESS_ANNE_ATTIRE_PALETTE[4].color, "#D4AF37");
 
-  // Active config must specify approved Princess Anne attire illustration
+  // Active config must specify approved attire illustration
   assert.strictEqual(
     configAttire?.illustration?.src,
-    "/images/attire/princess-anne-attire-illustration-blue-hour-romance.webp",
-    "Active Princess Anne config must specify approved attire illustration"
+    "/template-assets/decorations/attire-lineup.webp",
+    "Active config must specify approved attire illustration"
   );
 });
 

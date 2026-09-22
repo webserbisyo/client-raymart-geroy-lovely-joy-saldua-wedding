@@ -53,6 +53,7 @@ export type ClientConfig = {
     text: string;
   };
   sections: Record<string, unknown>;
+  venues?: ClientVenuesConfig;
   componentFlorals?: ComponentFloralDecorationsConfig;
   botanicalFlorals?: BotanicalFloralDecorationsConfig;
   assets: Record<string, unknown>;
@@ -140,23 +141,49 @@ export type ClientAttireIllustrationConfig = {
   height: number;
 };
 
+export type ClientVenuePhotoConfig = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+export type ClientVenuesConfig = {
+  ceremony: ClientVenuePhotoConfig;
+  reception: ClientVenuePhotoConfig;
+};
+
+export const RAYMART_LOVELY_JOY_VENUE_PHOTOS: ClientVenuesConfig = {
+  ceremony: {
+    src: "/template-assets/photos/venue/ceremony-church.webp",
+    alt: "Iglesia Ni Cristo, Lokal ng Taal",
+    width: 515,
+    height: 388,
+  },
+  reception: {
+    src: "/template-assets/photos/venue/reception-venue.webp",
+    alt: "The Barn at Grand Terraza",
+    width: 1920,
+    height: 887,
+  },
+};
+
 export const PRINCESS_ANNE_ATTIRE_ILLUSTRATION: ClientAttireIllustrationConfig = {
-  src: "/images/attire/princess-anne-attire-illustration-blue-hour-romance.webp",
-  alt: "Princess Anne wedding attire dress code fashion illustration",
-  width: 2752,
-  height: 1536,
+  src: "/template-assets/decorations/attire-lineup.webp",
+  alt: "Raymart & Lovely Joy wedding attire lineup fashion illustration",
+  width: 669,
+  height: 373,
 };
 
 /**
- * Configurable Princess Anne custom-site starter palette.
- * Note: These are client-configurable Attire palette values, not global website-theme CSS ownership.
+ * Configurable active wedding attire palette.
  */
 export const PRINCESS_ANNE_ATTIRE_PALETTE: ClientAttireConfigItem[] = [
-  { label: "Sage Green", color: "#6B8E7B" },
-  { label: "Deep Forest", color: "#23382D" },
-  { label: "Dusty Rose", color: "#D8A49B" },
+  { label: "Sage Green", color: "#5B7E68" },
+  { label: "Dusty Rose", color: "#C07C7D" },
+  { label: "Baby Pink", color: "#F4D3D5" },
+  { label: "Ivory", color: "#FFFFF0" },
   { label: "Champagne Gold", color: "#D4AF37" },
-  { label: "Warm Linen", color: "#FAF7F2" },
 ];
 
 export const clientConfig = {
@@ -195,7 +222,9 @@ export const clientConfig = {
       illustration: PRINCESS_ANNE_ATTIRE_ILLUSTRATION,
       palette: PRINCESS_ANNE_ATTIRE_PALETTE,
     },
+    venue: RAYMART_LOVELY_JOY_VENUE_PHOTOS,
   },
+  venues: RAYMART_LOVELY_JOY_VENUE_PHOTOS,
   componentFlorals: PRINCESS_ANNE_COMPONENT_FLORAL_DECORATIONS,
   botanicalFlorals: BOTANICAL_COMPONENT_FLORAL_DECORATIONS,
   assets: {},

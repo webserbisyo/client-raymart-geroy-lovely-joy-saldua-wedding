@@ -23,6 +23,7 @@
  *    flawless responsive mobile scaling.
  */
 
+import Image from "next/image";
 import { SectionHeading } from "@/client/components/SectionHeading";
 import { FadeContent } from "@/client/libs/reactbits";
 import { SpotlightCard } from "@/client/components/SpotlightCard";
@@ -83,6 +84,17 @@ export function ReceptionSection({
               spotlightColor="rgba(61, 96, 76, 0.08)"
             >
               <div className="space-y-6 sm:space-y-8 relative z-20">
+                {/* Reception Venue Photo with Watermark Mitigation */}
+                <div className="relative w-full aspect-[16/9] sm:aspect-[2/1] rounded-2xl overflow-hidden border border-[#B8C7BD]/50 shadow-md">
+                  <Image
+                    src="/template-assets/photos/venue/reception-venue.webp"
+                    alt="The Barn at Grand Terraza"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 640px"
+                    className="object-cover object-[center_28%]"
+                  />
+                </div>
+
                 {/* Venue Name & Full Address */}
                 {(reception.venueName || reception.fullAddress) && (
                   <div className="flex gap-4 sm:gap-6 items-start p-2 sm:p-3 -mx-2 sm:-mx-3 rounded-2xl transition-colors hover:bg-[#FAF7F2]/60">

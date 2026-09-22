@@ -16,36 +16,36 @@ export type PetalTheme = {
 
 export const DEFAULT_PETAL_THEME: PetalTheme = {
   primary: {
-    highlight: "#c48e8e",
-    base: "#b98282",
-    shadow: "#9e6c6c",
-    vein: "#825454",
+    highlight: "#A8C5B5",
+    base: "#6B8E7B",
+    shadow: "#4A6D5A",
+    vein: "#3D604C",
   },
   secondary: {
-    highlight: "#dfb3ad",
-    base: "#d6a6a0",
-    shadow: "#bc8d87",
-    vein: "#9f726d",
+    highlight: "#F7EBE8",
+    base: "#F7EBE8",
+    shadow: "#D8A49B",
+    vein: "#D8A49B",
   },
   light: {
-    highlight: "#e4d7bc",
-    base: "#d8c8a9",
-    shadow: "#bdac8d",
-    vein: "#9e8e70",
+    highlight: "#FAF7F2",
+    base: "#FAF7F2",
+    shadow: "#E8E2D8",
+    vein: "#C5A059",
   },
   metallic: {
-    highlight: "#aa8b54",
-    base: "#9a7b45",
-    shadow: "#7e6231",
-    vein: "#634b21",
+    highlight: "#E5C158",
+    base: "#C5A059",
+    shadow: "#A37836",
+    vein: "#76531B",
   },
   botanical: {
-    highlight: "#89927a",
-    base: "#7a836b",
-    shadow: "#616953",
-    vein: "#4a513f",
+    highlight: "#5B7E6B",
+    base: "#3D604C",
+    shadow: "#2A4535",
+    vein: "#23382D",
   },
-  canvasShadow: "rgb(23 21 18 / 12%)",
+  canvasShadow: "rgba(35, 56, 45, 0.12)",
 };
 
 function readTuple(
