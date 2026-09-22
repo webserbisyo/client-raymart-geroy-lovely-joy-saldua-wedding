@@ -171,9 +171,12 @@ export const RAYMART_LOVELY_JOY_VENUE_PHOTOS: ClientVenuesConfig = {
 export const PRINCESS_ANNE_ATTIRE_ILLUSTRATION: ClientAttireIllustrationConfig = {
   src: "/template-assets/decorations/attire-lineup.webp",
   alt: "Raymart & Lovely Joy wedding attire lineup fashion illustration",
-  width: 669,
-  height: 373,
+  width: 2752,
+  height: 1536,
 };
+
+export const RAYMART_LOVELY_JOY_ATTIRE_ILLUSTRATION: ClientAttireIllustrationConfig =
+  PRINCESS_ANNE_ATTIRE_ILLUSTRATION;
 
 /**
  * Configurable active wedding attire palette.

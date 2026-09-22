@@ -8,6 +8,7 @@
  * rendering the Google Maps iframe directly with a decorative pin overlay and a centered CTA below.
  */
 
+import Image from "next/image";
 import { SectionHeading } from "@/client/components/SectionHeading";
 import { FadeContent } from "@/client/libs/reactbits";
 import { SpotlightCard } from "@/client/components/SpotlightCard";
@@ -177,6 +178,18 @@ export function VenueSection({ venue, surface }: VenueSectionProps) {
               spotlightColor="rgba(61, 96, 76, 0.08)"
             >
               <div className="space-y-8">
+                {/* Architectural Photo Frame */}
+                <div className="relative w-full aspect-[16/9] sm:aspect-[4/3] rounded-xl overflow-hidden border border-[#B8C7BD]/50 shadow-sm mb-5">
+                  <Image
+                    alt="Iglesia Ni Cristo, Lokal ng Taal"
+                    className="object-cover object-center"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 480px"
+                    src="/template-assets/photos/venue/ceremony-church.webp"
+                    unoptimized={true}
+                  />
+                </div>
+
                 {/* Row 1: Full Address */}
                 <div className="flex gap-4 sm:gap-6 items-start p-3 -mx-3 rounded-2xl transition-colors hover:bg-[#FAF7F2]/60">
                   <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FAF4E8] flex items-center justify-center border border-[#C5A059]/40 text-[#3D604C] shadow-sm">

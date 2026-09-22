@@ -84,12 +84,13 @@ export function AttireSection({
         {illustration && illustration.src && (
           <div className="w-full max-w-[760px] md:max-w-[900px] mt-4 mb-6 sm:mt-6 sm:mb-8 px-2 flex justify-center">
             <Image
-              src={illustration.src}
               alt={illustration.alt}
-              width={illustration.width}
-              height={illustration.height}
-              sizes="(max-width: 768px) calc(100vw - 32px), 900px"
               className="h-auto w-full object-contain select-none pointer-events-none"
+              height={illustration.height}
+              priority
+              src={illustration.src}
+              unoptimized={true}
+              width={illustration.width}
             />
           </div>
         )}
