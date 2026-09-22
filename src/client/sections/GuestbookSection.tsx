@@ -188,7 +188,7 @@ export function GuestbookSection({
                   return (
                     <div key={msg.id} className="relative overflow-visible">
                       <article
-                        className="bg-white/65 backdrop-blur-md border border-sand/30 rounded-2xl p-6 sm:p-7 shadow-soft hover:border-sand/50 transition-[border-color,box-shadow] duration-300 flex h-[13.75rem] sm:h-[14rem] md:h-[14.5rem] flex-col items-center justify-between overflow-hidden text-center relative z-10"
+                        className="wedding-paper-card bg-white border border-[#B8C7BD] rounded-2xl p-6 sm:p-7 flex h-[13.75rem] sm:h-[14rem] md:h-[14.5rem] flex-col items-center justify-between overflow-hidden text-center relative z-10"
                       >
                       {/* Upper Part: Message & Inline Toggle */}
                       <div className="min-h-0 flex flex-1 flex-col items-center justify-start w-full">
@@ -198,7 +198,7 @@ export function GuestbookSection({
                               ref={scrollContainerRef}
                               onScroll={handleScroll}
                               tabIndex={0}
-                              className="guestbook-scrollarea max-h-[5.5rem] md:max-h-[6rem] overflow-y-scroll pr-4 [scrollbar-gutter:stable] text-cocoa/90 font-serif italic text-sm sm:text-base leading-relaxed text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-sand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded"
+                              className="guestbook-scrollarea max-h-[5.5rem] md:max-h-[6rem] overflow-y-scroll pr-4 [scrollbar-gutter:stable] text-[#1B2B22] font-serif italic text-sm sm:text-base leading-relaxed text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3D604C]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded"
                             >
                               &ldquo;{msg.message}&rdquo;
                             </div>
@@ -217,7 +217,7 @@ export function GuestbookSection({
                           </div>
                         ) : (
                           <p
-                            className="text-cocoa/90 font-serif italic text-sm sm:text-base leading-relaxed line-clamp-3 text-center"
+                            className="text-[#1B2B22] font-serif italic text-sm sm:text-base leading-relaxed line-clamp-3 text-center font-medium"
                             style={{
                               display: "-webkit-box",
                               WebkitLineClamp: 3,
@@ -251,13 +251,13 @@ export function GuestbookSection({
                           className="mb-4 flex w-full items-center justify-center select-none"
                           aria-hidden="true"
                         >
-                          <span className="h-px w-12 sm:w-16 bg-sand/35" />
-                          <span className="mx-3 text-xs text-coral/65">✦</span>
-                          <span className="h-px w-12 sm:w-16 bg-sand/35" />
+                          <span className="h-px w-12 sm:w-16 bg-[#B8C7BD]" />
+                          <span className="mx-3 text-xs text-[#C5A059]">✦</span>
+                          <span className="h-px w-12 sm:w-16 bg-[#B8C7BD]" />
                         </div>
 
                         {/* Guest Name */}
-                        <span className="text-coral text-xs sm:text-sm font-bold uppercase tracking-wider block">
+                        <span className="text-[#3D604C] text-xs sm:text-sm font-bold uppercase tracking-wider block">
                           {msg.name}
                         </span>
                       </div>
@@ -310,10 +310,10 @@ export function GuestbookSection({
               )}
             </div>
           ) : (
-            /* Polished empty state glass card for production */
+            /* Polished empty state tactile paper card for production */
             <div className="max-w-2xl mx-auto mt-12">
-              <div className="bg-white/65 backdrop-blur-md border border-sand/30 rounded-3xl p-8 sm:p-10 text-center shadow-soft">
-                <p className="text-cocoa/85 font-serif italic text-base sm:text-lg leading-relaxed">
+              <div className="wedding-paper-card bg-white border border-[#B8C7BD] rounded-3xl p-8 sm:p-10 text-center">
+                <p className="text-[#1B2B22] font-serif italic text-base sm:text-lg leading-relaxed font-medium">
                   {guestbook.emptyStateMessage ||
                     "This space will soon be filled with kind words and blessings from loved ones."}
                 </p>

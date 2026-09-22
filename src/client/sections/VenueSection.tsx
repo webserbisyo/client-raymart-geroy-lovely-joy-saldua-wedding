@@ -173,20 +173,20 @@ export function VenueSection({ venue, surface }: VenueSectionProps) {
           <div className="mt-16 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column: Details & Logistics */}
             <SpotlightCard
-              className="bg-white/65 backdrop-blur-md border border-sand/40 p-8 sm:p-10 rounded-3xl shadow-[0_12px_40px_rgba(139,104,58,0.06)] hover:border-sand/60 transition-[border-color,box-shadow] duration-500"
-              spotlightColor="rgba(116, 152, 171, 0.16)"
+              className="wedding-paper-card-elevated bg-white border border-[#A8BDB0] p-8 sm:p-10 rounded-3xl"
+              spotlightColor="rgba(61, 96, 76, 0.08)"
             >
               <div className="space-y-8">
                 {/* Row 1: Full Address */}
-                <div className="flex gap-4 sm:gap-6 items-start p-3 -mx-3 rounded-2xl transition-colors hover:bg-cream/30">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-cream flex items-center justify-center border border-sand/20 text-coral shadow-sm">
+                <div className="flex gap-4 sm:gap-6 items-start p-3 -mx-3 rounded-2xl transition-colors hover:bg-[#FAF7F2]/60">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FAF4E8] flex items-center justify-center border border-[#C5A059]/40 text-[#3D604C] shadow-sm">
                     <MapPin className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-serif text-base font-semibold text-cocoa">
+                    <h4 className="font-serif text-base font-semibold text-[#1B2B22]">
                       Full Address
                     </h4>
-                    <p className="text-[color:var(--wedding-text-secondary)] text-sm md:text-base mt-1.5 leading-relaxed">
+                    <p className="text-[#34483B] text-sm md:text-base mt-1.5 leading-relaxed font-medium">
                       {venue.address}
                     </p>
                   </div>
@@ -194,15 +194,15 @@ export function VenueSection({ venue, surface }: VenueSectionProps) {
 
                 {/* Row 2: Arrival / Landmark Note */}
                 {venue.arrivalNote && (
-                  <div className="flex gap-4 sm:gap-6 items-start p-3 -mx-3 rounded-2xl transition-colors hover:bg-cream/30">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-cream flex items-center justify-center border border-sand/20 text-coral shadow-sm">
+                  <div className="flex gap-4 sm:gap-6 items-start p-3 -mx-3 rounded-2xl transition-colors hover:bg-[#FAF7F2]/60">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FAF4E8] flex items-center justify-center border border-[#C5A059]/40 text-[#3D604C] shadow-sm">
                       <ArrivalIcon className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-serif text-base font-semibold text-cocoa">
+                      <h4 className="font-serif text-base font-semibold text-[#1B2B22]">
                         Arrival / Landmark Note
                       </h4>
-                      <p className="text-[color:var(--wedding-text-secondary)] text-sm md:text-base mt-1.5 leading-relaxed">
+                      <p className="text-[#34483B] text-sm md:text-base mt-1.5 leading-relaxed font-medium">
                         {venue.arrivalNote}
                       </p>
                     </div>
@@ -215,10 +215,10 @@ export function VenueSection({ venue, surface }: VenueSectionProps) {
             <div className="flex flex-col items-center">
               {embedUrl ? (
                 <div className="relative overflow-visible w-full mt-6">
-                  <div className="w-full bg-white border border-sand/20 rounded-[32px] p-3 sm:p-4 pb-5 sm:pb-7 shadow-[0_16px_40px_rgba(139,104,58,0.12)] relative transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(139,104,58,0.18)] overflow-visible">
+                  <div className="w-full bg-white border border-[#B8C7BD] rounded-[32px] p-3 sm:p-4 pb-5 sm:pb-7 shadow-[0_16px_40px_rgba(35,56,45,0.12)] relative transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(35,56,45,0.18)] overflow-visible">
                     {/* Decorative Pin Overlay attached to the border */}
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none select-none">
-                      <Pin className="w-11 h-11 fill-current wedding-venue-pin-shadow" />
+                      <Pin className="w-11 h-11 fill-[#C5A059] text-[#23382D] wedding-venue-pin-shadow" />
                     </div>
 
                     {/* Map Container */}

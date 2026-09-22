@@ -1,38 +1,41 @@
 /* Client values only. Generic and wedding semantic contracts live in
    src/styles/tokens.css and src/styles/theme.css for editor/preset reuse. */
+:root,
+[data-wedding-theme="sage-green-romance"],
 [data-wedding-theme="blue-hour-romance"] {
-  --background: #F8F4EC;
-  --foreground: #172A33;
-  --card: #FFFEFB;
-  --card-foreground: #172A33;
-  --popover: #FFFEFB;
-  --popover-foreground: #172A33;
-  --surface: #FFFEFB;
-  --surface-muted: #DCE8ED;
-  --text: #172A33;
-  --text-muted: #435861;
-  --primary: #3F6475;
-  --primary-foreground: #FFFEFB;
-  --secondary: #DCE8ED;
-  --secondary-foreground: #172A33;
-  --muted: #DCE8ED;
-  --muted-foreground: #435861;
-  --accent: #BC8E4F;
-  --accent-foreground: #17313D;
+  --background: #DCE6E0;
+  --wedding-canvas: #DCE6E0;
+  --foreground: #1B2B22;
+  --card: #FFFFFF;
+  --card-foreground: #1B2B22;
+  --popover: #FFFFFF;
+  --popover-foreground: #1B2B22;
+  --surface: #FFFFFF;
+  --surface-muted: #EBF1EC;
+  --text: #1B2B22;
+  --text-muted: #34483B;
+  --primary: #3D604C;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EBF1EC;
+  --secondary-foreground: #1B2B22;
+  --muted: #EBF1EC;
+  --muted-foreground: #34483B;
+  --accent: #C5A059;
+  --accent-foreground: #1B2B22;
   --destructive: #a84f45;
   --destructive-foreground: #ffffff;
-  --sage: #7498AB;
-  --sage-foreground: #FFFEFB;
-  --gold: #BC8E4F;
-  --border: #D6C3A7;
-  --input: #D6C3A7;
-  --focus: #3F6475;
-  --ring: #3F6475;
+  --sage: #6B8E7B;
+  --sage-foreground: #FFFFFF;
+  --gold: #C5A059;
+  --border: #B8C7BD;
+  --input: #B8C7BD;
+  --focus: #3D604C;
+  --ring: #3D604C;
   --success: #4f7d5a;
-  --warning: #BC8E4F;
-  --warning-foreground: #17313D;
+  --warning: #C5A059;
+  --warning-foreground: #1B2B22;
   --error: #a84f45;
-  --shadow-soft: 0 14px 34px rgb(23 49 61 / 8%);
+  --shadow-soft: 0 14px 34px rgb(35 56 45 / 8%);
 
   /* Component Floral Decorations */
   --wedding-decoration-card-edge-sm: clamp(80px, 10vw, 115px);
@@ -52,77 +55,83 @@
   --wedding-decoration-corner-offset: -6px;
   --wedding-decoration-edge-offset-overlap: -32px;
 
-  /* Legacy aliases retained for existing component utilities. */
-  --color-ivory: #F8F4EC;
-  --color-cream: #FFFEFB;
-  --color-cocoa: #172A33;
-  --color-charcoal: #17313D;
-  --color-terracotta: #3F6475;
-  --color-coral: #3F6475;
-  --color-linen: #DCE8ED;
-  --color-sand: #D6C3A7;
-  --color-blush: #DCE8ED;
-  --color-ocean: #7498AB;
-  --color-driftwood: #435861;
-  --color-shell-pink: #DCE8ED;
+  /* Legacy aliases mapped to botanical palette */
+  --color-ivory: #DCE6E0;
+  --color-cream: #FFFFFF;
+  --color-cocoa: #1B2B22;
+  --color-charcoal: #1B2B22;
+  --color-terracotta: #3D604C;
+  --color-coral: #3D604C;
+  --color-linen: #EBF1EC;
+  --color-sand: #C5A059;
+  --color-blush: #F7EBE8;
+  --color-ocean: #6B8E7B;
+  --color-driftwood: #34483B;
+  --color-shell-pink: #F7EBE8;
 
-  --wedding-page-background: #F8F4EC;
-  --wedding-surface-light: #F8F4EC;        /* Pearl Ivory */
-  --wedding-surface-secondary: #FFFEFB;    /* Cloud White */
-  --wedding-surface-soft: #DCE8ED;         /* Mist Blue */
-  --wedding-surface-accent: #7498AB;       /* Signature Dusty Blue */
-  --wedding-surface-dark: #17313D;         /* Evening Navy */
-  --wedding-surface-ivory: #F8F4EC;
-  --wedding-surface-champagne: #DCE8ED;
-  --wedding-surface-champagne-deep: #7498AB;
-  --wedding-surface-olive: #7498AB;
-  --wedding-surface-olive-deep: #17313D;
+  --wedding-page-background: #DCE6E0;
+  --wedding-surface-light: #DCE6E0;        /* Soft Botanical Sage Canvas */
+  --wedding-surface-secondary: #FFFFFF;    /* Pure White Paper Card */
+  --wedding-surface-soft: #EBF1EC;         /* Pale Sage Wash */
+  --wedding-surface-accent: #6B8E7B;       /* Botanical Sage Green */
+  --wedding-surface-dark: #23382D;         /* Deep Cypress Forest */
+  --wedding-browser-surface: #23382D;
+  --wedding-surface-ivory: #FFFFFF;
+  --wedding-surface-champagne: #EBF1EC;
+  --wedding-surface-champagne-deep: #6B8E7B;
+  --wedding-surface-olive: #6B8E7B;
+  --wedding-surface-olive-deep: #23382D;
 
-  --wedding-pattern-wash-light: rgb(248 244 236 / 91%);
-  --wedding-pattern-wash-secondary: rgb(255 254 251 / 93%);
-  --wedding-pattern-wash-soft: rgb(220 232 237 / 91%);
-  --wedding-pattern-wash-accent: rgb(116 152 171 / 85%);
-  --wedding-pattern-wash-dark: rgb(23 49 61 / 90%);
-  --wedding-pattern-wash-warm: rgb(220 232 237 / 91%);
-  --wedding-pattern-wash-olive: rgb(116 152 171 / 85%);
+  --wedding-pattern-wash-light: rgb(220 230 224 / 91%);
+  --wedding-pattern-wash-secondary: rgb(255 255 255 / 96%);
+  --wedding-pattern-wash-soft: rgb(235 241 236 / 91%);
+  --wedding-pattern-wash-accent: rgb(107 142 123 / 85%);
+  --wedding-pattern-wash-dark: rgb(35 56 45 / 92%);
+  --wedding-pattern-wash-warm: rgb(235 241 236 / 91%);
+  --wedding-pattern-wash-olive: rgb(107 142 123 / 85%);
 
-  --wedding-story-folder-base: #3F6475;      /* Blue Slate */
-  --wedding-story-folder-back: #2E4E5D;      /* Darker Blue Slate */
-  --wedding-story-folder-highlight: #FFFEFB; /* Cloud White */
-  --wedding-story-folder-shadow: #17313D;    /* Evening Navy */
-  --wedding-story-folder-foreground: #FFFEFB;/* Cloud White text */
+  --wedding-story-folder-base: #3D604C;
+  --wedding-story-folder-back: #2A4535;
+  --wedding-story-folder-highlight: #FFFFFF;
+  --wedding-story-folder-shadow: #23382D;
+  --wedding-story-folder-foreground: #FFFFFF;
 
-  --wedding-card-on-dark-bg: rgb(255 254 251 / 10%);
-  --wedding-card-on-dark-border: rgb(220 232 237 / 20%);
-  --wedding-card-on-dark-heading: #FFFEFB;
-  --wedding-card-on-dark-body: #DCE8ED;
-  --wedding-card-on-dark-shadow: 0 14px 34px rgb(23 49 61 / 18%);
+  --wedding-card-on-dark-bg: rgb(255 255 255 / 10%);
+  --wedding-card-on-dark-border: rgb(226 235 229 / 25%);
+  --wedding-card-on-dark-heading: #FAF7F2;
+  --wedding-card-on-dark-body: #E2EBE5;
+  --wedding-card-on-dark-shadow: 0 14px 34px rgb(0 0 0 / 25%);
 
-  --wedding-timeline-badge-bg: rgb(23 49 61 / 92%);
-  --wedding-timeline-badge-text: var(--wedding-label-on-dark);
-  --wedding-timeline-badge-border: rgb(188 142 79 / 45%);
-  --wedding-timeline-badge-shadow: 0 4px 16px rgb(23 49 61 / 35%);
+  --wedding-timeline-badge-bg: #FAF4E8;
+  --wedding-timeline-badge-text: #1B2B22;
+  --wedding-timeline-badge-border: #C5A059;
+  --wedding-timeline-badge-shadow: 0 2px 8px rgb(35 56 45 / 12%);
 
-  --wedding-spotlight-color: rgb(116 152 171 / 16%);
-  --wedding-gradient-rsvp-glow: radial-gradient(circle at center, rgb(116 152 171 / 22%) 0%, rgb(23 49 61 / 8%) 50%, transparent 75%);
+  --wedding-spotlight-color: rgb(107 142 123 / 16%);
+  --wedding-gradient-rsvp-glow: radial-gradient(circle at center, rgb(107 142 123 / 22%) 0%, rgb(35 56 45 / 8%) 50%, transparent 75%);
 
-  --wedding-text-primary: #172A33;
-  --wedding-text-secondary: #435861;
-  --wedding-text-tertiary: #435861;
-  --wedding-text-on-dark: #FFFEFB;
-  --wedding-text-on-dark-secondary: #DCE8ED;
-  --wedding-text-on-dark-tertiary: #D6C3A7;
-  --wedding-label-on-light: #3F6475;
-  --wedding-label-on-dark: #BC8E4F;
-  --wedding-accent-line: #BC8E4F;
-  --wedding-divider: #D6C3A7;
-  --wedding-divider-highlight: rgb(255 255 255 / 32%);
-  --wedding-panel-border: rgb(63 100 117 / 22%);
-  --wedding-control-border: #D6C3A7;
-  --wedding-focus-ring: #3F6475;
-  --wedding-timeline-line: #7498AB;
-  --wedding-timeline-marker: #BC8E4F;
-  --wedding-timeline-marker-foreground: #17313D;
+  /* High-Contrast WCAG AAA Typography */
+  --wedding-text-primary: #1B2B22;          /* 14.89:1 AAA on #FFFFFF */
+  --wedding-text-secondary: #34483B;        /* 9.20:1 AAA on #DCE6E0 */
+  --wedding-text-tertiary: #4A6052;
+  --wedding-text-on-dark: #FAF7F2;          /* 11.73:1 AAA on #23382D */
+  --wedding-text-on-dark-secondary: #E2EBE5;
+  --wedding-text-on-dark-tertiary: #C5A059;
+  --wedding-label-on-light: #324F3E;        /* 8.46:1 AAA on light */
+  --wedding-label-on-dark: #E5C158;         /* 7.22:1 AAA on dark */
+  --wedding-accent-line: #C5A059;
+  --wedding-gold: #C5A059;
+  --wedding-gold-rich: #D4AF37;
+  --wedding-rose: #D8A49B;
+  --wedding-rose-wash: #F7EBE8;
+  --wedding-divider: #B8C7BD;
+  --wedding-divider-highlight: rgb(255 255 255 / 45%);
+  --wedding-panel-border: #B8C7BD;
+  --wedding-control-border: #B8C7BD;
+  --wedding-focus-ring: #3D604C;
+  --wedding-timeline-line: #6B8E7B;
+  --wedding-timeline-marker: #C5A059;
+  --wedding-timeline-marker-foreground: #1B2B22;
   --wedding-monogram-initial-fg: var(--wedding-text-on-dark);
   --wedding-monogram-ampersand-fg: var(--wedding-label-on-dark);
   --wedding-monogram-subtitle-fg: var(--wedding-text-on-dark-secondary);
@@ -133,54 +142,56 @@
   --font-serif: var(--font-wedding-display);
   --font-sans: var(--font-wedding-body);
   --font-poppins: var(--font-wedding-body);
-  --wedding-panel-radius: 10px;
+  --wedding-panel-radius: 1.5rem;
   --wedding-control-radius: 8px;
-  --wedding-button-radius: 6px;
+  --wedding-button-radius: 8px;
   --wedding-pill-radius: 9999px;
   --wedding-icon-radius: 9999px;
-  --wedding-shadow-panel: 0 14px 34px rgb(23 49 61 / 8%);
-  --wedding-shadow-floating: 0 12px 28px rgb(23 49 61 / 14%);
+  --wedding-shadow-panel: 0 14px 34px rgb(35 56 45 / 8%);
+  --wedding-shadow-floating: 0 12px 28px rgb(35 56 45 / 14%);
   --wedding-motion-fast: 160ms;
   --wedding-motion-standard: 260ms;
   --wedding-motion-slow: 500ms;
   --wedding-easing: cubic-bezier(0.22, 1, 0.36, 1);
-  --wedding-hero-base: #17313D;
+  --wedding-hero-base: #23382D;
   --wedding-hero-image-opacity: 0.72;
-  --wedding-hero-overlay-top: rgb(23 49 61 / 45%);
+  --wedding-hero-overlay-top: rgba(35, 56, 45, 0.55);
   --wedding-hero-overlay-middle: rgb(23 49 61 / 38%);
-  --wedding-hero-overlay-bottom: rgb(23 49 61 / 55%);
-  --wedding-nav-background: rgb(23 49 61 / 85%);
-  --wedding-nav-foreground: #FFFEFB;
-  --wedding-nav-muted: #DCE8ED;
-  --wedding-nav-border: rgb(116 152 171 / 24%);
-  --wedding-rsvp-page-background: #7498AB;
+  --wedding-hero-overlay-bottom: rgba(35, 56, 45, 0.65);
+  --wedding-nav-background: rgba(220, 230, 224, 0.88);
+  --wedding-nav-foreground: #1B2B22;
+  --wedding-nav-muted: #34483B;
+  --wedding-nav-border: rgba(184, 199, 189, 0.5);
+  --wedding-drawer-overlay: rgb(23 21 18 / 50%);
+  --wedding-drawer-surface: var(--wedding-surface-ivory);
+  --wedding-rsvp-page-background: #DCE6E0;
   --wedding-rsvp-surface: var(--wedding-surface-ivory);
-  --wedding-rsvp-surface-border: #D6C3A7;
-  --wedding-rsvp-text: #172A33;
-  --wedding-rsvp-muted: #435861;
+  --wedding-rsvp-surface-border: #B8C7BD;
+  --wedding-rsvp-text: #1B2B22;
+  --wedding-rsvp-muted: #34483B;
   --wedding-rsvp-field: #ffffff;
-  --wedding-rsvp-field-border: #D6C3A7;
-  --wedding-rsvp-field-foreground: #172A33;
-  --wedding-rsvp-field-placeholder: #435861;
-  --wedding-rsvp-field-focus: #3F6475;
-  --wedding-rsvp-choice-bg: #DCE8ED;
-  --wedding-rsvp-choice-text: #172A33;
-  --wedding-rsvp-choice-selected-bg: #3F6475;
-  --wedding-rsvp-choice-selected-text: #FFFEFB;
-  --wedding-rsvp-submit: #3F6475;
-  --wedding-rsvp-submit-foreground: #FFFEFB;
-  --wedding-attire-card-surface: #FFFEFB;
-  --wedding-attire-card-border: #D6C3A7;
-  --wedding-attire-card-heading: #172A33;
-  --wedding-attire-card-muted: #435861;
-  --wedding-attire-accent: #3F6475;
-  --wedding-attire-swatch-border: #D6C3A7;
-  --wedding-attire-swatch-label: #435861;
+  --wedding-rsvp-field-border: #B8C7BD;
+  --wedding-rsvp-field-foreground: #1B2B22;
+  --wedding-rsvp-field-placeholder: #4A6052;
+  --wedding-rsvp-field-focus: #3D604C;
+  --wedding-rsvp-choice-bg: #FFFFFF;
+  --wedding-rsvp-choice-text: #1B2B22;
+  --wedding-rsvp-choice-selected-bg: #3D604C;
+  --wedding-rsvp-choice-selected-text: #FFFFFF;
+  --wedding-rsvp-submit: #3D604C;
+  --wedding-rsvp-submit-foreground: #FFFFFF;
+  --wedding-attire-card-surface: #FFFFFF;
+  --wedding-attire-card-border: #B8C7BD;
+  --wedding-attire-card-heading: #1B2B22;
+  --wedding-attire-card-muted: #34483B;
+  --wedding-attire-accent: #324F3E;
+  --wedding-attire-swatch-border: #B8C7BD;
+  --wedding-attire-swatch-label: #34483B;
   /* Central Public Typography Scale */
   --wedding-type-section-title-size: clamp(2.65rem, 5.8vw, 4.75rem);
   --wedding-type-section-title-weight: 700;
-  --wedding-type-section-title-line-height: 0.98;
-  --wedding-type-section-title-tracking: -0.035em;
+  --wedding-type-section-title-line-height: 1.05;
+  --wedding-type-section-title-tracking: 0em;
 
   --wedding-type-section-title-compact-size: clamp(2.15rem, 4.4vw, 3.5rem);
   --wedding-type-section-title-long-size: clamp(2.35rem, 4.8vw, 4rem);
@@ -190,172 +201,264 @@
   --wedding-type-numeric-display-size: clamp(2.4rem, 7.5vw, 5.5rem);
 
   /* Semantic Button System Tokens */
-  --wedding-button-radius: 6px;
+  --wedding-button-radius: 8px;
   --wedding-button-motion-duration: 200ms;
-  --wedding-button-shadow-hover: 0 8px 22px rgb(23 49 61 / 18%);
-  --wedding-button-focus-ring: #3F6475;
+  --wedding-button-shadow-hover: 0 8px 22px rgb(35 56 45 / 18%);
+  --wedding-button-focus-ring: #3D604C;
 
-  /* Primary Button Tokens (Blue Slate Fill) */
-  --wedding-button-primary-bg: #3F6475;
-  --wedding-button-primary-fg: #FFFEFB;
-  --wedding-button-primary-border: #3F6475;
-  --wedding-button-primary-hover-bg: #2E4E5D;
-  --wedding-button-primary-hover-fg: #FFFEFB;
-  --wedding-button-primary-hover-border: #2E4E5D;
+  /* Primary Button Tokens (Deep Botanical Sage Fill) */
+  --wedding-button-primary-bg: #3D604C;
+  --wedding-button-primary-fg: #FFFFFF;
+  --wedding-button-primary-border: #3D604C;
+  --wedding-button-primary-hover-bg: #2A4535;
+  --wedding-button-primary-hover-fg: #FFFFFF;
+  --wedding-button-primary-hover-border: #2A4535;
 
   /* Secondary Button Tokens */
   --wedding-button-secondary-bg: transparent;
-  --wedding-button-secondary-fg: #172A33;
-  --wedding-button-secondary-border: rgb(63 100 117 / 48%);
-  --wedding-button-secondary-hover-bg: rgb(116 152 171 / 16%);
-  --wedding-button-secondary-hover-fg: #172A33;
-  --wedding-button-secondary-hover-border: #3F6475;
+  --wedding-button-secondary-fg: #1B2B22;
+  --wedding-button-secondary-border: rgba(61, 96, 76, 0.48);
+  --wedding-button-secondary-hover-bg: rgba(107, 142, 123, 0.16);
+  --wedding-button-secondary-hover-fg: #1B2B22;
+  --wedding-button-secondary-hover-border: #3D604C;
 
   /* Secondary Button Tokens (Dark / Photo Surface Context) */
-  --wedding-button-secondary-on-dark-bg: rgb(23 49 61 / 40%);
-  --wedding-button-secondary-on-dark-fg: #FFFEFB;
-  --wedding-button-secondary-on-dark-border: rgb(220 232 237 / 35%);
-  --wedding-button-secondary-on-dark-hover-bg: rgb(116 152 171 / 25%);
-  --wedding-button-secondary-on-dark-hover-fg: #FFFEFB;
-  --wedding-button-secondary-on-dark-hover-border: #BC8E4F;
+  --wedding-button-secondary-on-dark-bg: rgba(35, 56, 45, 0.40);
+  --wedding-button-secondary-on-dark-fg: #FAF7F2;
+  --wedding-button-secondary-on-dark-border: rgba(226, 235, 229, 0.35);
+  --wedding-button-secondary-on-dark-hover-bg: rgba(107, 142, 123, 0.25);
+  --wedding-button-secondary-on-dark-hover-fg: #FAF7F2;
+  --wedding-button-secondary-on-dark-hover-border: #C5A059;
 
   /* Ghost Action Tokens */
   --wedding-button-ghost-bg: transparent;
-  --wedding-button-ghost-fg: #3F6475;
-  --wedding-button-ghost-hover-bg: rgb(116 152 171 / 12%);
+  --wedding-button-ghost-fg: #3D604C;
+  --wedding-button-ghost-hover-bg: rgba(107, 142, 123, 0.12);
 
   /* Stateful Form Choice Tokens */
-  --wedding-choice-bg: #DCE8ED;
-  --wedding-choice-fg: #172A33;
-  --wedding-choice-border: rgb(63 100 117 / 28%);
-  --wedding-choice-hover-bg: rgb(116 152 171 / 20%);
-  --wedding-choice-selected-bg: #3F6475;
-  --wedding-choice-selected-fg: #FFFEFB;
-  --wedding-choice-selected-border: #3F6475;
+  --wedding-choice-bg: #FFFFFF;
+  --wedding-choice-fg: #1B2B22;
+  --wedding-choice-border: #B8C7BD;
+  --wedding-choice-hover-bg: rgba(107, 142, 123, 0.15);
+  --wedding-choice-selected-bg: #3D604C;
+  --wedding-choice-selected-fg: #FFFFFF;
+  --wedding-choice-selected-border: #3D604C;
 
   /* Floating Utility Tokens */
-  --wedding-control-primary-bg: #3F6475;
-  --wedding-control-primary-fg: #FFFEFB;
-  --wedding-control-secondary-bg: rgb(23 49 61 / 75%);
-  --wedding-control-secondary-fg: rgb(255 254 251 / 95%);
-  --wedding-control-border: rgb(255 254 251 / 20%);
+  --wedding-control-primary-bg: #3D604C;
+  --wedding-control-primary-fg: #FFFFFF;
+  --wedding-control-secondary-bg: rgba(35, 56, 45, 0.75);
+  --wedding-control-secondary-fg: rgba(250, 247, 242, 0.95);
+  --wedding-control-border: rgba(255, 255, 255, 0.20);
 
-  --wedding-music-disc-center-surface: #DCE8ED;
-  --wedding-music-disc-icon-foreground: #17313D;
+  --wedding-music-disc-center-surface: #EBF1EC;
+  --wedding-music-disc-icon-foreground: #23382D;
 
-  --wedding-drawer-overlay: rgb(23 21 18 / 50%);
-  --wedding-drawer-surface: var(--wedding-surface-ivory);
-  --wedding-drawer-text: #172A33;
-  --wedding-drawer-muted: #435861;
-  --wedding-drawer-border: #D6C3A7;
-  --wedding-drawer-accent: #3F6475;
+  --wedding-drawer-overlay: rgba(23, 35, 28, 0.55);
+  --wedding-drawer-surface: #FAF7F2;
+  --wedding-drawer-text: #1B2B22;
+  --wedding-drawer-muted: #34483B;
+  --wedding-drawer-border: #B8C7BD;
+  --wedding-drawer-accent: #3D604C;
 
-  --wedding-rsvp-selected: #3F6475;
-  --wedding-rsvp-selected-foreground: #FFFEFB;
-  --wedding-rsvp-submit: #3F6475;
-  --wedding-rsvp-submit-foreground: #FFFEFB;
+  --wedding-rsvp-selected: #3D604C;
+  --wedding-rsvp-selected-foreground: #FFFFFF;
+  --wedding-rsvp-submit: #3D604C;
+  --wedding-rsvp-submit-foreground: #FFFFFF;
   --wedding-status-success: #4f7d5a;
   --wedding-status-success-foreground: #ffffff;
   --wedding-status-error: #a84f45;
   --wedding-status-error-foreground: #ffffff;
-  --wedding-status-warning: #BC8E4F;
-  --wedding-status-warning-foreground: #17313D;
-  --wedding-status-disabled: #DCE8ED;
-  --wedding-status-disabled-foreground: #435861;
-
-  --wedding-surface-light: var(--wedding-surface-ivory);
-  --wedding-surface-warm: var(--wedding-surface-champagne);
+  --wedding-status-warning: #C5A059;
+  --wedding-status-warning-foreground: #1B2B22;
+  --wedding-status-disabled: #EBF1EC;
+  --wedding-status-disabled-foreground: #34483B;
 
   --shadow-card: var(--wedding-shadow-panel);
 
-  --wedding-pattern-wash-light: rgb(248 244 236 / 92%);
-  --wedding-pattern-wash-warm: rgb(220 232 237 / 92%);
-  --wedding-pattern-wash-olive: rgb(116 152 171 / 92%);
-  --wedding-pattern-wash-dark: rgb(23 49 61 / 92%);
+  --wedding-petal-primary-highlight: #A8C5B5;
+  --wedding-petal-primary-base: #6B8E7B;
+  --wedding-petal-primary-shadow: #4A6D5A;
+  --wedding-petal-primary-vein: #3D604C;
 
-  --wedding-petal-primary-highlight: #A0C2D4;
-  --wedding-petal-primary-base: #7498AB;
-  --wedding-petal-primary-shadow: #55778A;
-  --wedding-petal-primary-vein: #3F6475;
+  --wedding-petal-secondary-highlight: #FBF0ED;
+  --wedding-petal-secondary-base: #F7EBE8;
+  --wedding-petal-secondary-shadow: #E8D3CE;
+  --wedding-petal-secondary-vein: #D8A49B;
 
-  --wedding-petal-secondary-highlight: #EBF2F5;
-  --wedding-petal-secondary-base: #DCE8ED;
-  --wedding-petal-secondary-shadow: #B8D0DB;
-  --wedding-petal-secondary-vein: #8BAFBF;
+  --wedding-petal-light-highlight: #FFFFFF;
+  --wedding-petal-light-base: #FAF7F2;
+  --wedding-petal-light-shadow: #E8E2D8;
+  --wedding-petal-light-vein: #C5A059;
 
-  --wedding-petal-light-highlight: #FFFDF9;
-  --wedding-petal-light-base: #F8F4EC;
-  --wedding-petal-light-shadow: #E2D9C8;
-  --wedding-petal-light-vein: #C9BBA5;
+  --wedding-petal-metallic-highlight: #E5C158;
+  --wedding-petal-metallic-base: #C5A059;
+  --wedding-petal-metallic-shadow: #A37836;
+  --wedding-petal-metallic-vein: #76531B;
 
-  --wedding-petal-metallic-highlight: #D8B074;
-  --wedding-petal-metallic-base: #BC8E4F;
-  --wedding-petal-metallic-shadow: #946A31;
-  --wedding-petal-metallic-vein: #6F4D1E;
+  --wedding-petal-botanical-highlight: #5B7E6B;
+  --wedding-petal-botanical-base: #3D604C;
+  --wedding-petal-botanical-shadow: #2A4535;
+  --wedding-petal-botanical-vein: #23382D;
 
-  --wedding-petal-botanical-highlight: #5A7E91;
-  --wedding-petal-botanical-base: #3F6475;
-  --wedding-petal-botanical-shadow: #2B4957;
-  --wedding-petal-botanical-vein: #17313D;
-
-  --wedding-petal-canvas-shadow: rgb(23 49 61 / 12%);
+  --wedding-petal-canvas-shadow: rgb(35 56 45 / 12%);
 }
 
-/* Tone ownership is presentation-only and keeps dark surfaces from inheriting
-   the former cocoa/brown utility colors. */
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-section[data-tone="photo"] {
-  background: var(--wedding-surface-dark, #17313D);
-  color: var(--wedding-text-on-dark);
+/* =========================================================
+   GLOBAL CANVAS & TYPOGRAPHY NORMALIZATION
+   ========================================================= */
+body {
+  background-color: var(--wedding-page-background, #dce6e0) !important;
+  color: var(--wedding-text-primary, #1b2b22);
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-section[data-tone="light"] {
-  background: var(--wedding-surface-light, #F8F4EC) !important;
-  color: var(--wedding-text-primary);
+/* Remove glyph crowding on headings */
+h1, h2, h3, .wedding-section-title {
+  letter-spacing: 0em !important;
+  text-wrap: balance;
+}
+
+/* =========================================================
+   TACTILE PAPER CARD SYSTEM & UTILITY PRIMITIVES
+   ========================================================= */
+
+/* 1. Heavy Linen Paper Card */
+.wedding-paper-card,
+[class*="bg-white/65"],
+[class*="bg-white/70"],
+[class*="bg-white/80"] {
+  background-color: #ffffff !important;
+  border: 1.5px solid #b8c7bd !important;
+  border-radius: 1.5rem !important;
+  box-shadow:
+    0 1px 2px rgba(35, 56, 45, 0.04),
+    0 6px 16px -2px rgba(35, 56, 45, 0.06),
+    0 16px 32px -4px rgba(35, 56, 45, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 2. Elevated Milestone Card */
+.wedding-paper-card-elevated {
+  background-color: #ffffff !important;
+  border: 1.5px solid #a8bdb0 !important;
+  border-radius: 1.75rem !important;
+  box-shadow:
+    0 2px 4px rgba(35, 56, 45, 0.04),
+    0 10px 28px -2px rgba(35, 56, 45, 0.08),
+    0 28px 56px -6px rgba(35, 56, 45, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+}
+
+/* 3. Polaroid & Keepsake Collage Frame */
+.wedding-paper-collage {
+  background-color: #ffffff !important;
+  border: 1.5px solid #c8d6cd !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem !important;
+  box-shadow: 0 4px 12px rgba(35, 56, 45, 0.08), 0 12px 28px -4px rgba(35, 56, 45, 0.12) !important;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.wedding-paper-collage:nth-child(odd) { transform: rotate(-1.25deg); }
+.wedding-paper-collage:nth-child(even) { transform: rotate(1.25deg); }
+.wedding-paper-collage:hover {
+  transform: rotate(0deg) scale(1.02) translateY(-4px) !important;
+  z-index: 20;
+}
+
+/* 4. High-Contrast Champagne Gold Badge */
+.wedding-badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background-color: #faf4e8;
+  border: 1px solid #c5a059;
+  color: #1b2b22;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  box-shadow: 0 1px 3px rgba(197, 160, 89, 0.15);
+}
+
+/* 5. Override Whispering Gray Opacity Classes */
+.text-cocoa\/55,
+.text-coral\/65,
+.text-driftwood\/75,
+.text-coral\/70 {
+  color: var(--wedding-text-secondary, #34483b) !important;
+  opacity: 1 !important;
+}
+
+/* Tone ownership */
+:root .wedding-section[data-tone="photo"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-tone="photo"],
+[data-wedding-theme="sage-green-romance"] .wedding-section[data-tone="photo"] {
+  background: var(--wedding-surface-dark, #23382D) !important;
+  color: var(--wedding-text-on-dark, #FAF7F2);
+}
+
+:root .wedding-section[data-tone="light"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-tone="light"],
+[data-wedding-theme="sage-green-romance"] .wedding-section[data-tone="light"] {
+  background: var(--wedding-surface-light, #DCE6E0) !important;
+  color: var(--wedding-text-primary, #1B2B22);
   --wedding-section-pattern-wash: var(--wedding-pattern-wash-light);
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-section[data-tone="secondary"] {
-  background: var(--wedding-surface-secondary, #FFFEFB) !important;
-  color: var(--wedding-text-primary);
+:root .wedding-section[data-tone="secondary"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-tone="secondary"],
+[data-wedding-theme="sage-green-romance"] .wedding-section[data-tone="secondary"] {
+  background: var(--wedding-surface-secondary, #FFFFFF) !important;
+  color: var(--wedding-text-primary, #1B2B22);
   --wedding-section-pattern-wash: var(--wedding-pattern-wash-secondary);
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-section[data-tone="soft"] {
-  background: var(--wedding-surface-soft, #DCE8ED) !important;
-  color: var(--wedding-text-primary);
+:root .wedding-section[data-tone="soft"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-tone="soft"],
+[data-wedding-theme="sage-green-romance"] .wedding-section[data-tone="soft"] {
+  background: var(--wedding-surface-soft, #EBF1EC) !important;
+  color: var(--wedding-text-primary, #1B2B22);
   --wedding-section-pattern-wash: var(--wedding-pattern-wash-soft);
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-section[data-tone="accent"] {
-  background: var(--wedding-surface-accent, #7498AB) !important;
-  color: var(--wedding-text-on-dark);
+:root .wedding-section[data-tone="accent"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-tone="accent"],
+[data-wedding-theme="sage-green-romance"] .wedding-section[data-tone="accent"] {
+  background: var(--wedding-surface-accent, #6B8E7B) !important;
+  color: var(--wedding-text-on-dark, #FAF7F2);
   --wedding-section-pattern-wash: var(--wedding-pattern-wash-accent);
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-section[data-tone="dark"] {
-  background: var(--wedding-surface-dark, #17313D) !important;
-  color: var(--wedding-text-on-dark);
+:root .wedding-section[data-tone="dark"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-tone="dark"],
+[data-wedding-theme="sage-green-romance"] .wedding-section[data-tone="dark"] {
+  background: var(--wedding-surface-dark, #23382D) !important;
+  color: var(--wedding-text-on-dark, #FAF7F2);
   --wedding-section-pattern-wash: var(--wedding-pattern-wash-dark);
 }
 
 /* Backward compatibility mappings for legacy surface attributes */
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-section[data-tone="warm"] {
-  background: var(--wedding-surface-soft, #DCE8ED) !important;
-  color: var(--wedding-text-primary);
+:root .wedding-section[data-tone="warm"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-tone="warm"],
+[data-wedding-theme="sage-green-romance"] .wedding-section[data-tone="warm"] {
+  background: var(--wedding-surface-soft, #EBF1EC) !important;
+  color: var(--wedding-text-primary, #1B2B22);
   --wedding-section-pattern-wash: var(--wedding-pattern-wash-soft);
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-section[data-tone="olive"] {
-  background: var(--wedding-surface-accent, #7498AB) !important;
-  color: var(--wedding-text-on-dark);
+:root .wedding-section[data-tone="olive"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-tone="olive"],
+[data-wedding-theme="sage-green-romance"] .wedding-section[data-tone="olive"] {
+  background: var(--wedding-surface-accent, #6B8E7B) !important;
+  color: var(--wedding-text-on-dark, #FAF7F2);
   --wedding-section-pattern-wash: var(--wedding-pattern-wash-accent);
 }
 
@@ -370,6 +473,19 @@
   .wedding-section-pattern-context[data-floral-pattern="open-framed"]
   .wedding-section[data-tone="warm"] {
   --wedding-section-pattern-wash: rgb(232 221 199 / 90%);
+}
+
+/* Template Assets Background Pattern Mappings */
+[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="dense-allover"] {
+  --wedding-section-pattern-image: url("/template-assets/backgrounds/pattern-01-damask.webp");
+}
+[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="open-framed"] {
+  --wedding-section-pattern-image: url("/template-assets/backgrounds/pattern-02-petals.webp");
+}
+[data-wedding-theme="blue-hour-romance"] .wedding-section[data-pattern-style="foliage"],
+[data-wedding-theme="blue-hour-romance"] #gallery.wedding-section,
+[data-wedding-theme="blue-hour-romance"] #our-story.wedding-section {
+  --wedding-section-pattern-image: url("/template-assets/backgrounds/pattern-03-foliage.webp");
 }
 
 /* Central Alternating Floral Section Trace Overlay System */
@@ -742,51 +858,101 @@
   background: var(--wedding-accent-line);
 }
 
-[data-wedding-theme="blue-hour-romance"] .wedding-nav {
-  color: var(--wedding-nav-foreground);
-  transition:
-    background-color var(--wedding-motion-standard) var(--wedding-easing),
-    border-color var(--wedding-motion-standard) var(--wedding-easing),
-    box-shadow var(--wedding-motion-standard) var(--wedding-easing),
-    backdrop-filter var(--wedding-motion-standard) var(--wedding-easing);
+/* =========================================================
+   TOP NAVBAR DUAL-STATE DYNAMIC CONTRAST ENGINE
+   ========================================================= */
+
+/* Base Nav */
+.wedding-nav {
+  transition: background-color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-nav[data-scrolled="false"] {
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+/* STATE A: Over Dark Hero (Unscrolled - data-scrolled="false") */
+.wedding-nav[data-scrolled="false"] {
+  background: linear-gradient(to bottom, rgba(23, 35, 28, 0.78) 0%, rgba(23, 35, 28, 0.30) 70%, transparent 100%);
+  border-bottom: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-nav[data-scrolled="true"] {
-  background: var(--wedding-nav-background, rgb(23 49 61 / 85%));
-  border-bottom: 1px solid var(--wedding-nav-border);
-  box-shadow: 0 8px 24px rgb(23 49 61 / 15%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* Monogram over Hero */
+.wedding-nav[data-scrolled="false"] .wedding-monogram-initial {
+  color: var(--wedding-text-on-dark, #FAF7F2) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+}
+.wedding-nav[data-scrolled="false"] .wedding-monogram-ampersand {
+  color: var(--wedding-label-on-dark, #E5C158) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
 }
 
-[data-wedding-theme="blue-hour-romance"] .wedding-nav-links,
-[data-wedding-theme="blue-hour-romance"] .wedding-nav-menu,
-[data-wedding-theme="blue-hour-romance"] .wedding-nav-menu > span {
-  color: var(--wedding-nav-muted);
+/* Nav Links & Burger over Hero */
+.wedding-nav[data-scrolled="false"] .wedding-nav-links,
+.wedding-nav[data-scrolled="false"] .wedding-nav-links a,
+.wedding-nav[data-scrolled="false"] .wedding-nav-menu,
+.wedding-nav[data-scrolled="false"] .wedding-nav-menu > span,
+.wedding-nav[data-scrolled="false"] .wedding-nav-menu svg {
+  color: var(--wedding-text-on-dark-secondary, #E2EBE5) !important;
+  stroke: var(--wedding-text-on-dark-secondary, #E2EBE5) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
 }
 
-[data-wedding-theme="blue-hour-romance"]
-  .wedding-nav
-  :is(a:hover, button:hover),
-[data-wedding-theme="blue-hour-romance"] .wedding-nav-menu:hover > span {
-  color: var(--wedding-nav-foreground);
+.wedding-nav[data-scrolled="false"] .wedding-nav-links a:hover,
+.wedding-nav[data-scrolled="false"] .wedding-nav-menu:hover,
+.wedding-nav[data-scrolled="false"] .wedding-nav-menu:hover > span,
+.wedding-nav[data-scrolled="false"] .wedding-nav-menu:hover svg {
+  color: var(--wedding-label-on-dark, #E5C158) !important;
+  stroke: var(--wedding-label-on-dark, #E5C158) !important;
 }
 
-[data-wedding-theme="blue-hour-romance"] .wedding-nav-links a::after {
-  background: var(--wedding-label-on-dark);
+.wedding-nav[data-scrolled="false"] .wedding-nav-links a::after {
+  background: var(--wedding-label-on-dark, #E5C158);
 }
 
-[data-wedding-theme="blue-hour-romance"] .wedding-nav-menu:focus-visible {
+/* STATE B: Scrolled over Light Canvas (data-scrolled="true") */
+.wedding-nav[data-scrolled="true"] {
+  background: var(--wedding-nav-background, rgba(220, 230, 224, 0.94));
+  border-bottom: 1px solid var(--wedding-nav-border, rgba(184, 199, 189, 0.6)) !important;
+  box-shadow: 0 4px 20px rgba(35, 56, 45, 0.08) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Monogram Scrolled */
+.wedding-nav[data-scrolled="true"] .wedding-monogram-initial {
+  color: var(--wedding-text-primary, #1B2B22) !important;
+  text-shadow: none;
+}
+.wedding-nav[data-scrolled="true"] .wedding-monogram-ampersand {
+  color: var(--wedding-accent, #C5A059) !important;
+  text-shadow: none;
+}
+
+/* Nav Links & Burger Scrolled */
+.wedding-nav[data-scrolled="true"] .wedding-nav-links,
+.wedding-nav[data-scrolled="true"] .wedding-nav-links a,
+.wedding-nav[data-scrolled="true"] .wedding-nav-menu,
+.wedding-nav[data-scrolled="true"] .wedding-nav-menu > span,
+.wedding-nav[data-scrolled="true"] .wedding-nav-menu svg {
+  color: var(--wedding-nav-muted, #34483B) !important;
+  stroke: var(--wedding-nav-muted, #34483B) !important;
+  text-shadow: none;
+}
+
+.wedding-nav[data-scrolled="true"] .wedding-nav-links a:hover,
+.wedding-nav[data-scrolled="true"] .wedding-nav-menu:hover,
+.wedding-nav[data-scrolled="true"] .wedding-nav-menu:hover > span,
+.wedding-nav[data-scrolled="true"] .wedding-nav-menu:hover svg {
+  color: var(--wedding-nav-foreground, #1B2B22) !important;
+  stroke: var(--wedding-nav-foreground, #1B2B22) !important;
+}
+
+.wedding-nav[data-scrolled="true"] .wedding-nav-links a::after {
+  background: var(--wedding-accent-line, #C5A059);
+}
+
+.wedding-nav-menu:focus-visible {
   --tw-ring-color: var(--wedding-focus-ring);
 }
 
@@ -1252,7 +1418,7 @@
 }
 
 [data-wedding-theme="blue-hour-romance"] .wedding-guest-dock {
-  background: var(--wedding-nav-background, rgb(23 49 61 / 85%));
+  background: var(--wedding-nav-background, rgba(220, 230, 224, 0.94));
   border-color: var(--wedding-nav-border);
   box-shadow: var(--wedding-shadow-floating);
 }

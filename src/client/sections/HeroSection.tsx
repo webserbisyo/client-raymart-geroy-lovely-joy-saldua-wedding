@@ -31,6 +31,28 @@ export function HeroSection({
 
   const displayAs = coupleInfo?.displayAs?.trim() || "Rafael & Isabella";
 
+  const parsedNames = (() => {
+    const delimiterMatch = displayAs.match(/\s*(❤️|&|\band\b|\+)\s*/i);
+    if (delimiterMatch && delimiterMatch.index !== undefined) {
+      const p1 = displayAs.slice(0, delimiterMatch.index).trim();
+      const p2 = displayAs
+        .slice(delimiterMatch.index + delimiterMatch[0].length)
+        .trim();
+      if (p1 && p2) {
+        return {
+          partner1: p1,
+          delimiter:
+            delimiterMatch[1] === "&" ||
+            delimiterMatch[1].toLowerCase() === "and"
+              ? "❤️"
+              : delimiterMatch[1],
+          partner2: p2,
+        };
+      }
+    }
+    return { partner1: displayAs, delimiter: null, partner2: null };
+  })();
+
   return (
     <section
       id="hero"
@@ -70,8 +92,24 @@ export function HeroSection({
             {/* Couple Names Card */}
             {displayAs ? (
               <div className="px-3 py-2 mb-4 max-w-full">
-                <h1 className="wedding-display wedding-hero-name max-w-[min(100%,64rem)] text-balance text-[clamp(2.5rem,6vw,4.75rem)] leading-[1.08] tracking-[-0.025em] text-[color:var(--wedding-text-on-dark)]">
-                  {displayAs}
+                <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-3 sm:my-4 select-none max-w-[min(100%,64rem)]">
+                  {parsedNames.partner2 ? (
+                    <>
+                      <span className="wedding-hero-name font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                        {parsedNames.partner1}
+                      </span>
+                      <span className="text-xl sm:text-2xl md:text-3xl my-1 sm:my-1.5 leading-none select-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] animate-pulse">
+                        {parsedNames.delimiter || "❤️"}
+                      </span>
+                      <span className="wedding-hero-name font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                        {parsedNames.partner2}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="wedding-hero-name font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                      {displayAs}
+                    </span>
+                  )}
                 </h1>
               </div>
             ) : null}

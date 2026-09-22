@@ -11,7 +11,7 @@
  */
 export const templateBranding = {
   hero: {
-    imagePath: "/wedding-assets/dianne/dianne-hero-background.webp",
+    imagePath: "/template-assets/photos/hero/hero-bg.webp",
     websitePosition: "center 40%",
     socialPosition: "center 30%",
   },

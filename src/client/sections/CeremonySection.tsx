@@ -132,7 +132,7 @@ export function CeremonySection({
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch mt-8">
               {/* Left side: Calendar Grid Visualizer with soft glass / translucent styling */}
               <div className="flex justify-center items-stretch">
-                <div className="relative flex flex-col justify-center bg-cream/80 backdrop-blur-md border border-sand/30 rounded-3xl p-6 sm:p-10 shadow-card w-full select-none overflow-hidden transform hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300">
+                <div className="wedding-paper-card bg-white border border-[#B8C7BD] relative flex flex-col justify-center rounded-3xl p-6 sm:p-10 w-full select-none overflow-hidden transform hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-300">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={grid ? `${grid.monthName}-${grid.year}` : "skeleton"}
@@ -153,7 +153,7 @@ export function CeremonySection({
                         {["S", "M", "T", "W", "T", "F", "S"].map((day, idx) => (
                           <span
                             key={idx}
-                            className="text-[10px] sm:text-xs font-bold tracking-[0.1em] text-[color:var(--wedding-text-secondary)]/70 uppercase"
+                            className="text-[10px] sm:text-xs font-bold tracking-[0.1em] text-[#34483B] uppercase"
                           >
                             {day}
                           </span>
@@ -182,15 +182,15 @@ export function CeremonySection({
                                   className="relative flex items-center justify-center h-9 w-9 sm:h-10 sm:w-10 mx-auto"
                                 >
                                   {isWeddingDay ? (
-                                    <div className="absolute inset-0 bg-coral text-white font-bold rounded-full flex items-center justify-center shadow-md">
+                                    <div className="absolute inset-0 bg-[#3D604C] text-white font-bold rounded-full flex items-center justify-center shadow-md">
                                       {dayNum}
                                     </div>
                                   ) : isRsvpDay ? (
-                                    <div className="absolute inset-0 border-2 border-coral border-dashed rounded-full flex items-center justify-center font-medium text-coral">
+                                    <div className="absolute inset-0 border-2 border-[#C5A059] border-dashed rounded-full flex items-center justify-center font-bold text-[#C5A059]">
                                       {dayNum}
                                     </div>
                                   ) : (
-                                    <span className="text-cocoa font-medium">
+                                    <span className="text-[#1B2B22] font-semibold">
                                       {dayNum}
                                     </span>
                                   )}
@@ -209,11 +209,11 @@ export function CeremonySection({
                 </div>
               </div>
 
-              {/* Right side: Details Panel with soft glass / translucent styling */}
+              {/* Right side: Details Panel with tactile elevated paper card */}
               <div className="flex">
                 <SpotlightCard
-                  className="w-full h-full bg-white/80 backdrop-blur-md border border-sand/30 p-6 sm:p-8 rounded-3xl flex flex-col justify-center shadow-soft text-left"
-                  spotlightColor="rgba(116, 152, 171, 0.16)"
+                  className="w-full h-full wedding-paper-card-elevated bg-white border border-[#A8BDB0] p-6 sm:p-8 rounded-3xl flex flex-col justify-center text-left"
+                  spotlightColor="rgba(61, 96, 76, 0.08)"
                 >
                   <div className="space-y-6 relative z-20">
                     {/* Title & Kicker */}
@@ -221,34 +221,34 @@ export function CeremonySection({
                       <h3 className="font-serif text-2xl text-[color:var(--wedding-text-primary)] font-semibold mb-1">
                         Save Our Date
                       </h3>
-                      <p className="text-xs text-[color:var(--wedding-text-secondary)] uppercase tracking-widest font-semibold">
+                      <p className="text-xs text-[#34483B] uppercase tracking-widest font-bold">
                         We can&apos;t wait to celebrate with you
                       </p>
                     </div>
 
-                    <hr className="border-t border-sand/20" />
+                    <hr className="border-t border-[#B8C7BD]/40" />
 
                     {/* Timing details */}
                     <button
                       type="button"
                       onClick={() => setCalendarFocus("ceremony")}
-                      className={`w-full text-left flex gap-4 items-start p-3 -mx-3 rounded-xl transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-coral/50 ${calendarFocus === "ceremony" ? "bg-cream/50" : "hover:bg-cream/30"}`}
+                      className={`w-full text-left flex gap-4 items-start p-3 -mx-3 rounded-xl transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#3D604C]/50 ${calendarFocus === "ceremony" ? "bg-[#FAF7F2]" : "hover:bg-[#FAF7F2]/60"}`}
                     >
-                      <div className="w-12 h-12 bg-cream rounded-2xl text-coral border border-sand/20 flex-shrink-0 flex items-center justify-center">
+                      <div className="w-12 h-12 bg-[#FAF4E8] rounded-2xl text-[#3D604C] border border-[#C5A059]/40 flex-shrink-0 flex items-center justify-center">
                         <Clock3 className="size-6" />
                       </div>
                       <div className="mt-1">
-                        <h4 className="font-serif text-base font-semibold text-cocoa">
+                        <h4 className="font-serif text-base font-semibold text-[#1B2B22]">
                           Timing & Hours
                         </h4>
                         {ceremony.eventTime && (
-                          <p className="text-sm text-coral font-medium mt-1">
+                          <p className="text-sm text-[#3D604C] font-semibold mt-1">
                             Starts at {formatTime(ceremony.eventTime)}
                             {ceremony.endTime &&
                               ` - ${formatTime(ceremony.endTime)}`}
                           </p>
                         )}
-                        <p className="text-xs text-[color:var(--wedding-text-secondary)] mt-1">
+                        <p className="text-xs text-[#34483B] font-medium mt-1">
                           {mounted ? formatDate(ceremony.eventDate) : ""}
                         </p>
                       </div>
@@ -257,14 +257,14 @@ export function CeremonySection({
                     {/* Minimal Venue details */}
                     {venue && venue.venueName && (
                       <div className="flex gap-4 items-start p-3 -mx-3">
-                        <div className="w-12 h-12 bg-cream rounded-2xl text-coral border border-sand/20 flex-shrink-0 flex items-center justify-center">
+                        <div className="w-12 h-12 bg-[#FAF4E8] rounded-2xl text-[#3D604C] border border-[#C5A059]/40 flex-shrink-0 flex items-center justify-center">
                           <MapPin className="size-6" />
                         </div>
                         <div className="mt-1">
-                          <h4 className="font-serif text-base font-semibold text-cocoa">
+                          <h4 className="font-serif text-base font-semibold text-[#1B2B22]">
                             Location
                           </h4>
-                          <p className="text-sm text-cocoa mt-1">
+                          <p className="text-sm text-[#1B2B22] font-medium mt-1">
                             {venue.venueName}
                           </p>
                         </div>
@@ -276,25 +276,25 @@ export function CeremonySection({
                       <button
                         type="button"
                         onClick={() => setCalendarFocus("deadline")}
-                        className={`w-full text-left flex gap-4 items-start p-3 -mx-3 rounded-xl transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-coral/50 ${calendarFocus === "deadline" ? "bg-shell-pink/20" : "hover:bg-shell-pink/10"}`}
+                        className={`w-full text-left flex gap-4 items-start p-3 -mx-3 rounded-xl transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#3D604C]/50 ${calendarFocus === "deadline" ? "bg-[#FAF7F2]" : "hover:bg-[#FAF7F2]/60"}`}
                       >
-                        <div className="w-12 h-12 bg-cream rounded-2xl text-coral border border-sand/20 flex-shrink-0 flex items-center justify-center">
-                          <Heart className="size-6 fill-current text-coral/70" />
+                        <div className="w-12 h-12 bg-[#FAF4E8] rounded-2xl text-[#C5A059] border border-[#C5A059]/40 flex-shrink-0 flex items-center justify-center">
+                          <Heart className="size-6 fill-current text-[#C5A059]" />
                         </div>
                         <div className="mt-1">
-                          <h4 className="font-serif text-base font-semibold text-cocoa">
+                          <h4 className="font-serif text-base font-semibold text-[#1B2B22]">
                             RSVP Deadline
                           </h4>
                           {mounted ? (
                             ceremony.rsvpDeadline.includes("T") ? (
                               <>
-                                <p className="text-sm text-coral font-medium mt-1">
+                                <p className="text-sm text-[#3D604C] font-semibold mt-1">
                                   Kindly respond by{" "}
                                   {formatTime(
                                     ceremony.rsvpDeadline.split("T")[1],
                                   )}
                                 </p>
-                                <p className="text-xs text-[color:var(--wedding-text-secondary)] mt-1">
+                                <p className="text-xs text-[#34483B] font-medium mt-1">
                                   {formatDate(
                                     ceremony.rsvpDeadline.split("T")[0],
                                   )}
@@ -302,10 +302,10 @@ export function CeremonySection({
                               </>
                             ) : (
                               <>
-                                <p className="text-sm text-coral font-medium mt-1">
+                                <p className="text-sm text-[#3D604C] font-semibold mt-1">
                                   Kindly respond by
                                 </p>
-                                <p className="text-xs text-[color:var(--wedding-text-secondary)] mt-1">
+                                <p className="text-xs text-[#34483B] font-medium mt-1">
                                   {formatDate(ceremony.rsvpDeadline)}
                                 </p>
                               </>

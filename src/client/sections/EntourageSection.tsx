@@ -91,10 +91,10 @@ export function EntourageSection({
                           key={cardIndex}
                           className="relative group/card-wrapper overflow-visible"
                         >
-                          {/* Glassmorphism Card (z-10 base surface) */}
-                          <div className="bg-white/65 backdrop-blur-md border border-sand/40 rounded-2xl p-6 sm:p-8 shadow-soft text-center transition-[border-color,box-shadow,transform] duration-500 hover:border-sand/60 hover:-translate-y-1 hover:shadow-md relative z-10 h-full flex flex-col justify-center">
+                          {/* Tactile Paper Card */}
+                          <div className="wedding-paper-card bg-white border border-[#B8C7BD] rounded-2xl p-6 sm:p-8 text-center transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-1 relative z-10 h-full flex flex-col justify-center">
                             <div className="relative z-20">
-                              <h4 className="text-coral font-medium tracking-widest uppercase mb-2 text-sm">
+                              <h4 className="font-bold uppercase tracking-[0.08em] text-[#324F3E] mb-2 text-sm">
                                 {displayTitle}
                               </h4>
 
@@ -103,18 +103,18 @@ export function EntourageSection({
                                 className="my-3 flex items-center justify-center gap-3 select-none pointer-events-none whitespace-nowrap"
                                 aria-hidden="true"
                               >
-                                <span className="h-px w-10 bg-sand opacity-70" />
-                                <span className="text-sm leading-none text-sand">
+                                <span className="h-px w-10 bg-[color:var(--wedding-accent-line)] opacity-70" />
+                                <span className="text-sm leading-none text-[color:var(--wedding-accent-line)]">
                                   ✦
                                 </span>
-                                <span className="h-px w-10 bg-sand opacity-70" />
+                                <span className="h-px w-10 bg-[color:var(--wedding-accent-line)] opacity-70" />
                               </div>
 
                               <ul className="space-y-2">
                                 {displayNames.map((name, j) => (
                                   <li
                                     key={j}
-                                    className="text-cocoa font-serif text-lg"
+                                    className="text-[#1B2B22] font-serif text-base sm:text-lg font-semibold"
                                   >
                                     {name}
                                   </li>

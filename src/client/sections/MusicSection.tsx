@@ -78,7 +78,7 @@ export function MusicSection({ musicEffects, surface }: MusicSectionProps) {
             spotlightColor="rgba(232, 201, 122, 0.20)"
           >
             {/* Eyebrow */}
-            <p className="relative z-20 text-[10px] font-bold tracking-[0.25em] uppercase text-sand/80 mb-6">
+            <p className="relative z-20 text-[10px] font-bold tracking-[0.25em] uppercase text-[#D4AF37] mb-6">
               OUR WEDDING SONG
             </p>
 
@@ -112,13 +112,13 @@ export function MusicSection({ musicEffects, surface }: MusicSectionProps) {
               {displayTitle}
             </h3>
             {displayArtist ? (
-              <p className="relative z-20 text-xs font-bold tracking-[0.2em] uppercase text-coral mb-6">
+              <p className="relative z-20 text-xs font-bold tracking-[0.2em] uppercase text-[#D4AF37] mb-6">
                 {displayArtist}
               </p>
             ) : null}
 
             {/* Short Note */}
-            <p className="relative z-20 text-sm italic text-cream/70 max-w-xs mx-auto mb-8 font-serif leading-relaxed">
+            <p className="relative z-20 text-sm italic text-[#FAF7F2]/90 max-w-xs mx-auto mb-8 font-serif leading-relaxed">
               &ldquo;
               {musicEffects.shortNote ||
                 "A song that reminds us of our journey together."}

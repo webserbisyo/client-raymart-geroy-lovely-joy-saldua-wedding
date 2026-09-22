@@ -69,28 +69,28 @@ export function ExtraInfoSection({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/65 backdrop-blur-md border border-sand/40 p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-soft hover:border-sand/60 transition-[border-color,box-shadow] duration-300 relative z-10 h-full flex flex-col justify-center"
+                  className="wedding-paper-card bg-white border border-[#B8C7BD] p-6 sm:p-8 rounded-2xl sm:rounded-3xl relative z-10 h-full flex flex-col justify-center"
                 >
                   <div className="relative z-20">
                     {/* Badge Row */}
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] uppercase text-coral">
+                      <span className="text-[10px] sm:text-xs font-bold tracking-[0.24em] uppercase text-[#3D604C]">
                         NOTE {badgeNumber}
                       </span>
-                      <span className="text-sand text-xs select-none">✦</span>
+                      <span className="text-[#C5A059] text-xs select-none">✦</span>
                     </div>
 
                     {/* Card Title */}
-                    <h4 className="font-serif text-xl md:text-2xl text-[color:var(--wedding-text-primary)] font-semibold">
+                    <h4 className="font-serif text-xl md:text-2xl text-[#1B2B22] font-bold">
                       {item.title}
                     </h4>
 
                     {/* Elegant Divider */}
-                    <div className="h-px w-16 bg-sand/35 my-4" />
+                    <div className="h-px w-16 bg-[#B8C7BD] my-4" />
 
                     {/* Card Body Description */}
                     {item.details && (
-                      <p className="text-[color:var(--wedding-text-secondary)] text-sm md:text-base leading-relaxed text-balance">
+                      <p className="text-[#34483B] text-sm md:text-base leading-relaxed text-balance font-medium">
                         {item.details}
                       </p>
                     )}

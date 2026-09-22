@@ -79,24 +79,24 @@ export function ReceptionSection({
         <FadeContent>
           <div className="relative overflow-visible">
             <SpotlightCard
-              className="bg-white/65 backdrop-blur-md border border-sand/40 p-6 sm:p-10 rounded-3xl shadow-[0_12px_40px_rgba(139,104,58,0.06)] hover:border-sand/60 transition-[border-color,box-shadow] duration-500"
-              spotlightColor="rgba(116, 152, 171, 0.16)"
+              className="wedding-paper-card-elevated bg-white border border-[#A8BDB0] p-6 sm:p-10 rounded-3xl"
+              spotlightColor="rgba(61, 96, 76, 0.08)"
             >
               <div className="space-y-6 sm:space-y-8 relative z-20">
                 {/* Venue Name & Full Address */}
                 {(reception.venueName || reception.fullAddress) && (
-                  <div className="flex gap-4 sm:gap-6 items-start p-2 sm:p-3 -mx-2 sm:-mx-3 rounded-2xl transition-colors hover:bg-cream/30">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-cream flex items-center justify-center border border-sand/20 text-coral shadow-sm">
+                  <div className="flex gap-4 sm:gap-6 items-start p-2 sm:p-3 -mx-2 sm:-mx-3 rounded-2xl transition-colors hover:bg-[#FAF7F2]/60">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FAF4E8] flex items-center justify-center border border-[#C5A059]/40 text-[#3D604C] shadow-sm">
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
                       {reception.venueName && (
-                        <h3 className="font-serif text-lg font-bold text-cocoa leading-snug">
+                        <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1B2B22] leading-snug">
                           {reception.venueName}
                         </h3>
                       )}
                       {reception.fullAddress && (
-                        <p className="text-[color:var(--wedding-text-secondary)] text-sm md:text-base mt-1.5 leading-relaxed">
+                        <p className="text-[#34483B] text-sm md:text-base mt-1.5 leading-relaxed font-medium">
                           {reception.fullAddress}
                         </p>
                       )}
@@ -106,21 +106,21 @@ export function ReceptionSection({
 
                 {/* Reconstructed Date & Time Row */}
                 {(derivedDate || hasTimeRange) && (
-                  <div className="flex gap-4 sm:gap-6 items-start p-2 sm:p-3 -mx-2 sm:-mx-3 rounded-2xl transition-colors hover:bg-cream/30">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-cream flex items-center justify-center border border-sand/20 text-coral shadow-sm">
+                  <div className="flex gap-4 sm:gap-6 items-start p-2 sm:p-3 -mx-2 sm:-mx-3 rounded-2xl transition-colors hover:bg-[#FAF7F2]/60">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FAF4E8] flex items-center justify-center border border-[#C5A059]/40 text-[#3D604C] shadow-sm">
                       <Clock3 className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-serif text-base font-semibold text-cocoa">
+                      <h4 className="font-serif text-base font-semibold text-[#1B2B22]">
                         Time
                       </h4>
                       {derivedDate && (
-                        <p className="text-[color:var(--wedding-text-secondary)] text-sm md:text-base mt-1.5 font-medium leading-relaxed">
+                        <p className="text-[#34483B] text-sm md:text-base mt-1.5 font-medium leading-relaxed">
                           {derivedDate}
                         </p>
                       )}
                       {formattedTimeRange && (
-                        <p className="text-coral font-medium uppercase tracking-widest text-xs mt-1">
+                        <p className="inline-block text-[#3D604C] font-bold tracking-widest text-xs uppercase mt-2 bg-[#FAF4E8] px-3 py-1 rounded-full border border-[#C5A059]/30">
                           {formattedTimeRange}
                         </p>
                       )}
@@ -130,15 +130,15 @@ export function ReceptionSection({
 
                 {/* Reception Note */}
                 {reception.receptionNote && (
-                  <div className="flex gap-4 sm:gap-6 items-start p-2 sm:p-3 -mx-2 sm:-mx-3 rounded-2xl transition-colors hover:bg-cream/30">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-cream flex items-center justify-center border border-sand/20 text-coral shadow-sm">
+                  <div className="flex gap-4 sm:gap-6 items-start p-2 sm:p-3 -mx-2 sm:-mx-3 rounded-2xl transition-colors hover:bg-[#FAF7F2]/60">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FAF4E8] flex items-center justify-center border border-[#C5A059]/40 text-[#3D604C] shadow-sm">
                       <Sparkles className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-serif text-base font-semibold text-cocoa">
+                      <h4 className="font-serif text-base font-semibold text-[#1B2B22]">
                         Note
                       </h4>
-                      <p className="text-[color:var(--wedding-text-secondary)] text-sm md:text-base mt-1.5 leading-relaxed">
+                      <p className="text-[#34483B] text-sm md:text-base mt-1.5 leading-relaxed font-medium">
                         {reception.receptionNote}
                       </p>
                     </div>

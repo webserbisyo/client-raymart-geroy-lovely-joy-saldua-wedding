@@ -20,46 +20,52 @@ import { WeddingDecoration } from "@/client/components/decorations/WeddingDecora
 
 const GALLERY_PHOTOS = [
   {
-    src: "/wedding-assets/dianne/dianne-gallery-01-ceremony.webp",
-    caption: "The Ceremony Arch",
-    location: "Garden Ceremony Setup",
+    id: "gallery-01",
+    src: "/template-assets/photos/gallery/gallery-01.webp",
+    alt: "Raymart Geroy and Lovely Joy Saldua by the historic stone wall",
+    caption: "At the Heritage Grounds",
+    aspectRatio: "1.50",
     orientation: "landscape",
-    alt: "Dianne and Novio wedding ceremony arch in a refined garden setting",
   },
   {
-    src: "/wedding-assets/dianne/dianne-gallery-02-bride.webp",
-    caption: "The Bride",
-    location: "Dianne Solo Portrait",
+    id: "gallery-02",
+    src: "/template-assets/photos/gallery/gallery-02.webp",
+    alt: "Raymart and Lovely Joy sitting peacefully on the lawn",
+    caption: "Golden Afternoon",
+    aspectRatio: "0.67",
     orientation: "portrait",
-    alt: "Portrait of Dianne in her wedding gown",
   },
   {
-    src: "/wedding-assets/dianne/dianne-gallery-03-groom.webp",
-    caption: "The Groom",
-    location: "Novio Solo Portrait",
+    id: "gallery-03",
+    src: "/template-assets/photos/gallery/gallery-03.webp",
+    alt: "Raymart laughing with Lovely Joy holding the bridal bouquet",
+    caption: "Shared Joy",
+    aspectRatio: "0.67",
     orientation: "portrait",
-    alt: "Portrait of Novio on the wedding day",
   },
   {
-    src: "/wedding-assets/dianne/dianne-gallery-04-silhouette.webp",
-    caption: "Midnight Silhouette",
-    location: "Dramatic Evening Scene",
-    orientation: "landscape",
-    alt: "Dramatic evening silhouette of Dianne and Novio",
+    id: "gallery-04",
+    src: "/template-assets/photos/gallery/gallery-04.webp",
+    alt: "Raymart and Lovely Joy under the stone archway",
+    caption: "Under the Archway",
+    aspectRatio: "0.67",
+    orientation: "portrait",
   },
   {
-    src: "/wedding-assets/dianne/dianne-gallery-05-toast.webp",
-    caption: "Reception Toast",
-    location: "Garden Reception",
-    orientation: "landscape",
-    alt: "Dianne and Novio at a candlelit garden reception toast",
+    id: "gallery-05",
+    src: "/template-assets/photos/gallery/gallery-05.webp",
+    alt: "Intimate candid portrait of Raymart and Lovely Joy",
+    caption: "Pure Devotion",
+    aspectRatio: "0.67",
+    orientation: "portrait",
   },
   {
-    src: "/wedding-assets/dianne/dianne-gallery-06-table.webp",
-    caption: "Intimate Table Setting",
-    location: "Dinner Ambience",
-    orientation: "landscape",
-    alt: "Intimate reception table moment with elegant floral styling",
+    id: "gallery-06",
+    src: "/template-assets/photos/gallery/gallery-06.webp",
+    alt: "Romantic garden embrace and veil dip",
+    caption: "Forever Begins",
+    aspectRatio: "0.67",
+    orientation: "portrait",
   },
 ];
 
@@ -114,7 +120,7 @@ export function GallerySection({ surface }: { surface: SectionSurface }) {
               <ScrollStackItem key={i}>
                 <div className="relative overflow-visible mx-auto" style={{ maxWidth: isPortrait ? "390px" : "520px" }}>
                   <div
-                    className="bg-white border-2 border-white rounded p-3 pb-14 shadow-card relative transition-[border-color,box-shadow] duration-300 overflow-visible z-10"
+                    className="wedding-paper-collage bg-white border-2 border-white rounded p-3 relative transition-[border-color,box-shadow] duration-300 overflow-visible z-10"
                     style={{
                       transform: `rotate(${GALLERY_ROTATIONS[i % GALLERY_ROTATIONS.length]})`,
                     }}
@@ -130,14 +136,6 @@ export function GallerySection({ surface }: { surface: SectionSurface }) {
                           className="w-full h-full object-cover rounded-sm hover:scale-105 transition-transform duration-500"
                         />
                       )}
-                    </div>
-                    <div className="absolute bottom-3 left-0 right-0 text-center px-3 z-20">
-                      <p className="font-serif italic text-cocoa text-base mb-0.5">
-                        {photo.caption}
-                      </p>
-                      <p className="text-[0.65rem] tracking-widest uppercase text-driftwood">
-                        {photo.location}
-                      </p>
                     </div>
 
                     {/* Diagonal pair: top-left sprig + bottom-right flourish - anchored to rotated white frame */}

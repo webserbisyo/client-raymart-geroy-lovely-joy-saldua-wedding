@@ -63,13 +63,13 @@ export function SponsorsSection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="bg-white/65 backdrop-blur-md border border-sand/40 rounded-2xl p-6 sm:p-8 shadow-soft text-center relative z-10 h-full flex flex-col justify-center transition-[border-color,box-shadow,transform] duration-500 hover:border-sand/60 hover:-translate-y-1 hover:shadow-md"
+                className="wedding-paper-card bg-white border border-[#B8C7BD] rounded-2xl p-6 sm:p-8 text-center relative z-10 h-full flex flex-col justify-center transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-1"
               >
                 <ul className="space-y-3 relative z-20">
                   {leftColumn.map((name, i) => (
                     <li
                       key={i}
-                      className="font-serif text-cocoa text-lg md:text-xl font-medium tracking-wide"
+                      className="font-serif text-[#1B2B22] text-base sm:text-lg font-semibold tracking-wide"
                     >
                       {name}
                     </li>
@@ -99,13 +99,13 @@ export function SponsorsSection({
                   duration: 0.6,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className="bg-white/65 backdrop-blur-md border border-sand/40 rounded-2xl p-6 sm:p-8 shadow-soft text-center relative z-10 h-full flex flex-col justify-center transition-[border-color,box-shadow,transform] duration-500 hover:border-sand/60 hover:-translate-y-1 hover:shadow-md"
+                className="wedding-paper-card bg-white border border-[#B8C7BD] rounded-2xl p-6 sm:p-8 text-center relative z-10 h-full flex flex-col justify-center transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-1"
               >
                 <ul className="space-y-3 relative z-20">
                   {rightColumn.map((name, i) => (
                     <li
                       key={i}
-                      className="font-serif text-cocoa text-lg md:text-xl font-medium tracking-wide"
+                      className="font-serif text-[#1B2B22] text-base sm:text-lg font-semibold tracking-wide"
                     >
                       {name}
                     </li>

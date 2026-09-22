@@ -54,9 +54,16 @@ export function AttireSection({
       ? configuredPalette
       : undefined;
 
+  // Clean up trailing truncated text if present
+  let displayDressCodeNote = attireDressCode.dressCodeNote?.trim() || "";
+  if (displayDressCodeNote.endsWith("for all g")) {
+    displayDressCodeNote = displayDressCodeNote.replace(/for all g$/, "for all guests.");
+  }
+
   const hasPalette = Boolean(palette && palette.length > 0);
-  const hasDressCodeNote = Boolean(attireDressCode.dressCodeNote);
-  const shouldRenderCard = hasDressCodeNote || hasPalette;
+  const hasDressCodeNote = Boolean(displayDressCodeNote);
+  const hasColorMotifNote = Boolean(attireDressCode.colorMotifNote?.trim());
+  const shouldRenderCard = hasDressCodeNote || hasPalette || hasColorMotifNote;
 
   return (
     <section
@@ -89,7 +96,7 @@ export function AttireSection({
 
         {/* Standalone Guideline Paragraph */}
         {displayIntro && (
-          <p className="text-[color:var(--wedding-attire-card-muted,#443d35)] text-center text-sm md:text-base leading-relaxed max-w-2xl mt-0 mb-8 sm:mb-10 px-4 relative z-10 transition-opacity duration-300">
+          <p className="text-[#34483B] text-center text-sm md:text-base leading-relaxed max-w-2xl mt-0 mb-8 sm:mb-10 px-4 relative z-10 transition-opacity duration-300 font-medium">
             {displayIntro}
           </p>
         )}
@@ -98,24 +105,36 @@ export function AttireSection({
         {shouldRenderCard && (
           <AnimatedContent className="w-full max-w-2xl mx-auto">
             <div className="relative overflow-visible">
-              <div className="w-full relative z-10 overflow-hidden bg-[color:var(--wedding-attire-card-surface,#fbf8f2)] border border-[color:var(--wedding-attire-card-border,#d8c8a9)] p-4 sm:p-6 rounded-3xl text-center shadow-floating transition-[border-color,box-shadow] duration-500">
+              <div className="w-full relative z-10 overflow-hidden wedding-paper-card bg-white border border-[#B8C7BD] p-5 sm:p-8 rounded-3xl text-center">
                 {/* Dress Code Title / Note */}
                 {hasDressCodeNote && (
-                  <h3 className="relative z-20 font-serif text-xl sm:text-2xl md:text-3xl text-[color:var(--wedding-attire-card-heading,#1f1c18)] font-semibold mb-1">
-                    {attireDressCode.dressCodeNote}
+                  <h3 className="relative z-20 font-serif text-xl sm:text-2xl md:text-3xl text-[#1B2B22] font-bold mb-2 whitespace-pre-line leading-snug">
+                    {displayDressCodeNote}
                   </h3>
+                )}
+
+                {/* Color Motif & Ninong / Ninang Guidance Note */}
+                {hasColorMotifNote && (
+                  <div className="relative z-20 my-4 px-4 py-4 rounded-2xl bg-[#FAF7F2] border border-[#B8C7BD]/50 text-center">
+                    <p className="text-[#C5A059] text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold mb-2">
+                      SPONSORS &amp; ATTIRE GUIDELINES
+                    </p>
+                    <p className="text-xs sm:text-sm md:text-base text-[#1B2B22] whitespace-pre-line leading-[1.7] max-w-lg mx-auto font-sans font-medium">
+                      {attireDressCode.colorMotifNote}
+                    </p>
+                  </div>
                 )}
 
                 {/* Swatches Block */}
                 {hasPalette && palette && (
                   <>
                     {/* Clean Category Subtitle */}
-                    <p className="relative z-20 text-[color:var(--wedding-attire-accent,#72501b)] text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.2em] font-semibold mb-3 mt-2">
+                    <p className="relative z-20 text-[#C5A059] text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.2em] font-bold mb-3 mt-2">
                       SUGGESTED GUEST COLORS
                     </p>
 
                     {/* Subtle Divider */}
-                    <div className="h-px w-16 sm:w-20 bg-[color:var(--wedding-attire-card-border,#d8c8a9)] mx-auto mb-4 opacity-60" />
+                    <div className="h-px w-16 sm:w-20 bg-[#B8C7BD]/60 mx-auto mb-4" />
 
                     {/* Color Palette Swatches (One horizontal row of equal columns) */}
                     <div className="relative z-20 grid grid-cols-5 gap-1 sm:gap-3 w-full max-w-xl mx-auto items-start">

@@ -38,7 +38,7 @@ export function TimelineSection({
         <SectionHeading
           label="Wedding Day Timeline"
           title="The flow of the day"
-          subtitle="So our guests know what to expect — from sunlit arrivals to bonfire farewells."
+          subtitle="So our guests know what to expect on our special day."
         />
 
         <div className="relative mt-24 max-w-4xl mx-auto pb-12 sm:max-w-[560px] md:max-w-[760px] lg:max-w-4xl">

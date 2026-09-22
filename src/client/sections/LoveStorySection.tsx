@@ -39,27 +39,27 @@ export function LoveStorySection({
   // The three wedding photos as Folder items (Groom -> Bride -> Couple)
   const folderPhotos = [
     {
-      src: "/wedding-assets/dianne/dianne-gallery-03-groom.webp",
-      alt: "Portrait of Novio in a refined garden setting",
-      title: "The Groom",
-      subtitle: "NOVIO SOLO",
+      src: "/template-assets/photos/gallery/gallery-02.webp",
+      alt: "Portrait of Raymart in a garden setting",
+      title: "Raymart",
+      subtitle: "THE GROOM",
       aspectRatio: 0.85,
       focalPoint: { x: 50, y: 15 },
     },
     {
-      src: "/wedding-assets/dianne/dianne-gallery-02-bride.webp",
-      alt: "Portrait of Dianne in a refined garden setting",
-      title: "The Bride",
-      subtitle: "DIANNE SOLO",
+      src: "/template-assets/photos/gallery/gallery-03.webp",
+      alt: "Portrait of Lovely Joy with the bridal bouquet",
+      title: "Lovely Joy",
+      subtitle: "THE BRIDE",
       aspectRatio: 0.85,
       focalPoint: { x: 50, y: 15 },
     },
     {
-      src: "/wedding-assets/dianne/dianne-gallery-04-silhouette.webp",
-      alt: "Dianne and Novio together in a romantic evening portrait",
-      title: "Our Story",
-      subtitle: "DIANNE & NOVIO",
-      aspectRatio: 2752 / 1536,
+      src: "/template-assets/photos/story/story-candid.webp",
+      alt: "Raymart and Lovely Joy together by the historic stone wall",
+      title: "Our Journey",
+      subtitle: "RAYMART & LOVELY JOY",
+      aspectRatio: 1.5,
       focalPoint: { x: 50, y: 50 },
     },
   ];
@@ -126,12 +126,12 @@ export function LoveStorySection({
               threshold={0.05}
             >
               {/* Romantic Narrative Body */}
-              <p className="text-cocoa/90 font-serif italic text-base sm:text-lg md:text-xl leading-8 md:leading-9 whitespace-pre-line text-center">
+              <p className="text-[#1B2B22] font-serif italic text-base sm:text-lg md:text-xl leading-8 md:leading-9 whitespace-pre-line text-center font-medium">
                 {storyBody}
               </p>
             </FadeContent>
           ) : (
-            <p className="text-cocoa/65 font-serif italic text-base">
+            <p className="text-[#34483B] font-serif italic text-base font-medium">
               Our story is being written...
             </p>
           )}
