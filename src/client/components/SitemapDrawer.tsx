@@ -176,7 +176,7 @@ export function SitemapDrawer({
                 variants={groupVariants}
                 className="flex flex-col gap-3"
               >
-                <h4 className="wedding-drawer-heading text-[11px] sm:text-xs font-bold uppercase tracking-[0.22em] border-b pb-1.5">
+                <h4 className="wedding-drawer-heading text-xs font-bold uppercase tracking-[0.22em] border-b border-[color:var(--wedding-accent-line)]/40 pb-1.5 text-[color:var(--wedding-drawer-text)]">
                   {group.title}
                 </h4>
 
@@ -188,7 +188,7 @@ export function SitemapDrawer({
                         <Link
                           href={getResolvedHref(item.anchor)}
                           onClick={(e) => handleLinkClick(e, item.anchor)}
-                          className="wedding-drawer-link group flex items-center gap-3 min-h-[44px] py-2 px-3 text-sm sm:text-[0.95rem] border border-transparent transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--wedding-drawer-accent,var(--wedding-label-on-light))] rounded-lg -mx-2.5 active:bg-cream/60"
+                          className="wedding-drawer-link group flex items-center gap-3 min-h-[48px] py-2.5 px-3 text-sm sm:text-base border border-transparent transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--wedding-drawer-accent,var(--wedding-label-on-light))] rounded-lg -mx-2.5 active:bg-cream/60"
                         >
                           {Icon && (
                             <Icon className="w-[18px] h-[18px] sm:w-5 sm:h-5 transition-colors shrink-0 group-hover:scale-105" />

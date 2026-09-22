@@ -54,6 +54,7 @@ export type ClientConfig = {
   };
   sections: Record<string, unknown>;
   componentFlorals?: ComponentFloralDecorationsConfig;
+  botanicalFlorals?: BotanicalFloralDecorationsConfig;
   assets: Record<string, unknown>;
   libs: ClientLibsConfig;
   responsive: ClientResponsiveConfig;
@@ -103,6 +104,30 @@ export const PRINCESS_ANNE_COMPONENT_FLORAL_DECORATIONS: ComponentFloralDecorati
   },
 };
 
+export type BotanicalFloralAssetSpec = {
+  src: string;
+  width: number;
+  height: number;
+};
+
+export type BotanicalFloralDecorationsConfig = {
+  cornerSprig: BotanicalFloralAssetSpec;
+  floralCrest: BotanicalFloralAssetSpec;
+};
+
+export const BOTANICAL_COMPONENT_FLORAL_DECORATIONS: BotanicalFloralDecorationsConfig = {
+  cornerSprig: {
+    src: "/template-assets/decorations/corner-sprig.webp",
+    width: 500,
+    height: 500,
+  },
+  floralCrest: {
+    src: "/template-assets/decorations/floral-crest.webp",
+    width: 500,
+    height: 500,
+  },
+};
+
 export type ClientAttireConfigItem = {
   label: string;
   color: string;
@@ -127,11 +152,11 @@ export const PRINCESS_ANNE_ATTIRE_ILLUSTRATION: ClientAttireIllustrationConfig =
  * Note: These are client-configurable Attire palette values, not global website-theme CSS ownership.
  */
 export const PRINCESS_ANNE_ATTIRE_PALETTE: ClientAttireConfigItem[] = [
-  { label: "Dusty Blue", color: "#7498AB" },
-  { label: "Blue Slate", color: "#3F6475" },
-  { label: "Mist Blue", color: "#DCE8ED" },
-  { label: "Champagne Sand", color: "#D6C3A7" },
-  { label: "Evening Navy", color: "#17313D" },
+  { label: "Sage Green", color: "#6B8E7B" },
+  { label: "Deep Forest", color: "#23382D" },
+  { label: "Dusty Rose", color: "#D8A49B" },
+  { label: "Champagne Gold", color: "#D4AF37" },
+  { label: "Warm Linen", color: "#FAF7F2" },
 ];
 
 export const clientConfig = {
@@ -172,6 +197,7 @@ export const clientConfig = {
     },
   },
   componentFlorals: PRINCESS_ANNE_COMPONENT_FLORAL_DECORATIONS,
+  botanicalFlorals: BOTANICAL_COMPONENT_FLORAL_DECORATIONS,
   assets: {},
   libs: {
     icons: {

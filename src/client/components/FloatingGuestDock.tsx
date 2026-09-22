@@ -266,8 +266,8 @@ export function GuestDockToolbar({
   const spring = { mass: 0.1, stiffness: 150, damping: 12 };
   const magnification = compact ? 54 : 64;
   const distance = compact ? 100 : 140;
-  const panelHeight = compact ? 54 : 60;
-  const baseItemSize = compact ? 38 : 44;
+  const panelHeight = compact ? 56 : 60;
+  const baseItemSize = 44;
 
   return (
     <motion.div
@@ -283,7 +283,7 @@ export function GuestDockToolbar({
         isHoveredVal.set(1);
         mouseX.set(Infinity);
       }}
-      className={`wedding-guest-dock flex w-fit max-w-full shrink-0 items-end rounded-full border backdrop-blur-sm ${compact ? "justify-center gap-1.5 px-2 py-2 sm:gap-2 sm:px-3" : "gap-3 px-4 py-2"} ${className}`}
+      className={`wedding-guest-dock flex w-fit max-w-full shrink-0 items-end rounded-full bg-white/92 backdrop-blur-md border border-[#B8C7BD] shadow-[0_8px_32px_rgba(35,56,45,0.16),0_2px_6px_rgba(35,56,45,0.08)] ${compact ? "justify-center gap-1.5 px-2 py-2 sm:gap-2 sm:px-3" : "gap-3 px-4 py-2"} ${className}`}
       style={{ height: panelHeight }}
       role="toolbar"
       aria-label="Guest essentials navigation"

@@ -17,7 +17,6 @@ import { deriveCoupleBranding } from "@/client/utils/derive-couple-branding";
 import { scrollToHash } from "@/client/utils/navigation";
 
 export function ClientNav({
-  config,
   coupleDisplayName,
   visibleSectionKeys = [],
   branding,
@@ -55,10 +54,19 @@ export function ClientNav({
     );
   });
 
-  const visibleSections = visibleSectionKeys.map(
-    (key) => clientSectionRegistry[key],
-  );
-  const topNavItems = visibleSections.filter((section) => section.topNav);
+  const defaultNavKeys: ClientSectionKey[] = [
+    "countdown",
+    "gallery",
+    "timeline_program",
+    "extra_info",
+    "story_message",
+  ];
+  const resolvedKeys =
+    visibleSectionKeys.length > 0 ? visibleSectionKeys : defaultNavKeys;
+  const visibleSections = resolvedKeys
+    .map((key) => clientSectionRegistry[key])
+    .filter(Boolean);
+  const topNavItems = visibleSections.filter((section) => section?.topNav);
 
   const getResolvedHref = (href: string) => {
     if (href.startsWith("#")) {
@@ -115,7 +123,7 @@ export function ClientNav({
           </div>
 
           {/* Center: Desktop Links (Secondary Browsing Only) */}
-          <ul className="wedding-nav-links hidden lg:flex items-center justify-center gap-6 xl:gap-8 text-[10px] xl:text-[11px] font-semibold uppercase tracking-[0.2em] xl:tracking-[0.25em]">
+          <ul className="wedding-nav-links hidden md:flex items-center justify-center gap-4 lg:gap-6 xl:gap-8 text-xs font-bold uppercase tracking-[0.2em]">
             {topNavItems.map((link) => {
               const resolvedHref = getResolvedHref(link.anchor);
               return (
@@ -136,10 +144,10 @@ export function ClientNav({
           <div className="flex items-center justify-end min-w-[120px]">
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="wedding-nav-menu group inline-flex items-center gap-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 rounded px-2.5 py-1.5 -mr-2.5"
+              className="wedding-nav-menu group inline-flex items-center gap-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 rounded-lg py-2.5 px-3.5 -mr-2.5 min-h-[46px] min-w-[46px]"
               aria-label="Open navigation menu"
             >
-              <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-[0.22em] transition-colors mt-0.5">
+              <span className="hidden sm:inline text-xs font-bold uppercase tracking-[0.2em] transition-colors mt-0.5">
                 More
               </span>
               <Menu className="h-[26px] w-[26px] stroke-[2.4] transition-transform group-hover:scale-105" />

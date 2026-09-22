@@ -476,12 +476,15 @@ h1, h2, h3, .wedding-section-title {
 }
 
 /* Template Assets Background Pattern Mappings */
-[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="dense-allover"] {
+[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="dense-allover"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="damask"] {
   --wedding-section-pattern-image: url("/template-assets/backgrounds/pattern-01-damask.webp");
 }
-[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="open-framed"] {
+[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="open-framed"],
+[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="petals"] {
   --wedding-section-pattern-image: url("/template-assets/backgrounds/pattern-02-petals.webp");
 }
+[data-wedding-theme="blue-hour-romance"] .wedding-section-pattern-context[data-floral-pattern="foliage"],
 [data-wedding-theme="blue-hour-romance"] .wedding-section[data-pattern-style="foliage"],
 [data-wedding-theme="blue-hour-romance"] #gallery.wedding-section,
 [data-wedding-theme="blue-hour-romance"] #our-story.wedding-section {
@@ -1481,6 +1484,19 @@ h1, h2, h3, .wedding-section-title {
   height: auto;
 }
 .wedding-decoration--family-frame-corner.wedding-decoration--size-large {
+  width: var(--wedding-decoration-frame-corner-lg, 170px);
+  height: auto;
+}
+
+.wedding-decoration--family-crest.wedding-decoration--size-small {
+  width: var(--wedding-decoration-frame-corner-sm, 110px);
+  height: auto;
+}
+.wedding-decoration--family-crest.wedding-decoration--size-medium {
+  width: var(--wedding-decoration-frame-corner-md, 140px);
+  height: auto;
+}
+.wedding-decoration--family-crest.wedding-decoration--size-large {
   width: var(--wedding-decoration-frame-corner-lg, 170px);
   height: auto;
 }

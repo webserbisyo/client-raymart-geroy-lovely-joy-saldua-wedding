@@ -87,7 +87,7 @@ export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubblePro
               <button
                 type="button"
                 onClick={() => setIsExpanded(false)}
-                className="text-[color:var(--wedding-text-secondary)] hover:text-[color:var(--wedding-text-primary)] p-1 rounded-full hover:bg-[color:var(--wedding-panel-border)]/20 transition"
+                className="text-[color:var(--wedding-text-secondary)] hover:text-[color:var(--wedding-text-primary)] min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 -mt-2 rounded-full hover:bg-[color:var(--wedding-panel-border)]/20 transition"
                 aria-label="Minimize player"
               >
                 <X className="w-4 h-4" />
@@ -100,7 +100,7 @@ export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubblePro
               {isPlaying ? (
                 <WeddingButton
                   variant="primary"
-                  size="sm"
+                  size="md"
                   onClick={pause}
                   type="button"
                 >
@@ -110,7 +110,7 @@ export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubblePro
               ) : (
                 <WeddingButton
                   variant="primary"
-                  size="sm"
+                  size="md"
                   onClick={play}
                   type="button"
                 >
@@ -120,7 +120,7 @@ export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubblePro
               )}
               <WeddingButton
                 variant="secondary"
-                size="sm"
+                size="md"
                 type="button"
                 onClick={() => {
                   stop();

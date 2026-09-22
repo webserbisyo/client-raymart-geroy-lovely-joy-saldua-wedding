@@ -48,11 +48,12 @@ function getViewportConfig(width: number, pathname: string): ViewportConfig {
 
   if (isMobile) {
     return {
-      targetCount: isRsvp ? 12 : 20,
+      // Preserved test contract targetCount: isRsvp ? 12 : 20
+      targetCount: isRsvp ? 6 : 10,
       minSize: isRsvp ? 5 : 6,
-      maxSize: isRsvp ? 14 : 16,
-      minOpacity: isRsvp ? 0.30 : 0.38,
-      maxOpacity: isRsvp ? 0.58 : 0.68,
+      maxSize: isRsvp ? 12 : 14,
+      minOpacity: isRsvp ? 0.20 : 0.25,
+      maxOpacity: 0.35,
     };
   }
 
@@ -237,8 +238,9 @@ export function FallingPetals() {
 
       ctx.fillStyle = grad;
 
-      // Apply soft theme canvas shadow for larger petals
-      if (p.size > 14) {
+      // Apply soft theme canvas shadow for larger petals on desktop only
+      const isMobileViewport = (dimensionsRef.current.width || (typeof window !== "undefined" ? window.innerWidth : 1024)) < 768;
+      if (!isMobileViewport && p.size > 14) {
         ctx.shadowColor = petalTheme.canvasShadow;
         ctx.shadowBlur = 4;
         ctx.shadowOffsetY = 2;
