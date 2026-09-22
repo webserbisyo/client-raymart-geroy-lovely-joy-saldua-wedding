@@ -1,13 +1,25 @@
 import type { EventWebsiteRenderModel } from "@/types/public-event";
 
+const PRODUCTION_CANONICAL = "https://raymart-and-lovely.rsvp.webserbisyo.com";
+
 export function getSiteUrl(): string {
-  return (
+  const candidate =
     process.env.NEXT_PUBLIC_SITE_URL ||
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "") ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
-  );
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+  // Guard: never emit a localhost URL in a production build.
+  // This prevents .env.local overrides from leaking into baked OG metadata on Vercel.
+  if (
+    process.env.NODE_ENV === "production" &&
+    (candidate.includes("localhost") || candidate.includes("127.0.0.1"))
+  ) {
+    return PRODUCTION_CANONICAL;
+  }
+
+  return candidate;
 }
 
 export function safePublicCanonicalUrl(value?: string | null): string | undefined {

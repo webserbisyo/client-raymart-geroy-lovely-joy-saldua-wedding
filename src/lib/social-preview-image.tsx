@@ -8,25 +8,43 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
   const result = await loadPublicEvent();
   const event = result.status === "available" ? result.event : undefined;
 
+  // --- Resolve partner names from API data ---
   const rawCouple = event?.raw?.sectionsByKey?.host_info as Record<string, unknown> | undefined;
-  const partner1 =
+  let partner1Name =
     typeof rawCouple?.groomName === "string"
       ? rawCouple.groomName
       : typeof rawCouple?.partner1Name === "string"
         ? rawCouple.partner1Name
         : "";
-  const partner2 =
+  let partner2Name =
     typeof rawCouple?.brideName === "string"
       ? rawCouple.brideName
       : typeof rawCouple?.partner2Name === "string"
         ? rawCouple.partner2Name
         : "";
 
-  const couple =
+  // Fallback: split coupleDisplayName on common delimiters to derive initials
+  const coupleDisplay =
     event?.coupleDisplayName ||
-    (partner1 && partner2 ? `${partner1} & ${partner2}` : "") ||
+    (partner1Name && partner2Name ? `${partner1Name} & ${partner2Name}` : "") ||
     event?.title ||
-    "Princess Anne & Quilang";
+    "Raymart Geroy ❤️ Lovely Joy";
+
+  if (!partner1Name || !partner2Name) {
+    const DELIMITERS = ["❤️", " & ", " and ", " • "];
+    for (const delim of DELIMITERS) {
+      if (coupleDisplay.includes(delim)) {
+        const parts = coupleDisplay.split(delim).map((s: string) => s.trim());
+        if (parts[0]) partner1Name = parts[0];
+        if (parts[1]) partner2Name = parts[1];
+        break;
+      }
+    }
+  }
+
+  // Extract first letters — default to R & L for this client
+  const initial1 = (partner1Name.charAt(0) || "R").toUpperCase();
+  const initial2 = (partner2Name.charAt(0) || "L").toUpperCase();
 
   const venueSection = event?.sections?.find(
     (s) => s.key === "venue" || s.key === "main_event" || s.key === "ceremony",
@@ -43,7 +61,6 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
 
   const date = event?.eventDateLabel || event?.eventDate || "Save The Date";
   const venue = rawVenue?.trim() || "The Grand Pavilion";
-  const initial = couple.trim().charAt(0).toUpperCase() || "P";
 
   return new ImageResponse(
     (
@@ -101,8 +118,8 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
               width: "240px",
               height: "240px",
               borderRadius: "50%",
-              backgroundColor: "#132832",
-              border: "4px solid #D6C3A7",
+              backgroundColor: "#1B2A20",
+              border: "4px solid #D4AF37",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -110,17 +127,34 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
               boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
             }}
           >
-            <span style={{ fontSize: "96px", color: "#D6C3A7", fontWeight: 700, lineHeight: 1 }}>
-              {initial}
-            </span>
+            {/* Dual-initial monogram: e.g. R & L */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                color: "#FAF7F2",
+                fontFamily: "serif",
+                fontWeight: 700,
+                fontSize: "52px",
+                lineHeight: 1,
+                letterSpacing: "2px",
+              }}
+            >
+              <span>{initial1}</span>
+              <span style={{ fontSize: "36px", color: "#D4AF37", fontWeight: 400 }}>&amp;</span>
+              <span>{initial2}</span>
+            </div>
             <span
               style={{
                 fontSize: "13px",
-                color: "#7498AB",
-                letterSpacing: "4px",
-                marginTop: "4px",
+                color: "#D4AF37",
+                letterSpacing: "5px",
+                marginTop: "6px",
                 fontFamily: "sans-serif",
-                fontWeight: 700,
+                fontWeight: 600,
+                textTransform: "uppercase",
               }}
             >
               WEDDING
@@ -163,7 +197,7 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
               fontWeight: "normal",
             }}
           >
-            {couple}
+            {coupleDisplay}
           </h1>
 
           {/* Subtitle */}
@@ -178,7 +212,7 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
               fontWeight: 600,
             }}
           >
-            Blue Hour Romance • Celebration
+            Wedding Celebration
           </span>
 
           {/* Date & Venue Container */}
