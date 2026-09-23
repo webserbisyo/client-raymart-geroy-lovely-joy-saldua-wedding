@@ -5,72 +5,12 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export async function generateSocialPreviewImage(): Promise<ImageResponse> {
-  const result = await loadPublicEvent();
-  const event = result.status === "available" ? result.event : undefined;
+  await loadPublicEvent();
 
-  // --- Resolve partner names from API data ---
-  const rawCouple = event?.raw?.sectionsByKey?.host_info as Record<string, unknown> | undefined;
-  let partner1Name =
-    typeof rawCouple?.groomName === "string"
-      ? rawCouple.groomName
-      : typeof rawCouple?.partner1Name === "string"
-        ? rawCouple.partner1Name
-        : "";
-  let partner2Name =
-    typeof rawCouple?.brideName === "string"
-      ? rawCouple.brideName
-      : typeof rawCouple?.partner2Name === "string"
-        ? rawCouple.partner2Name
-        : "";
-
-  // Fallback: split coupleDisplayName on common delimiters to derive initials
-  const coupleDisplay =
-    event?.coupleDisplayName ||
-    (partner1Name && partner2Name ? `${partner1Name} & ${partner2Name}` : "") ||
-    event?.title ||
-    "Raymart Geroy ❤️ Lovely Joy";
-
-  if (!partner1Name || !partner2Name) {
-    const DELIMITERS = ["❤️", " & ", " and ", " • "];
-    for (const delim of DELIMITERS) {
-      if (coupleDisplay.includes(delim)) {
-        const parts = coupleDisplay.split(delim).map((s: string) => s.trim());
-        if (parts[0]) partner1Name = parts[0];
-        if (parts[1]) partner2Name = parts[1];
-        break;
-      }
-    }
-  }
-
-  // Derive short names: Raymart & Joy
-  const groomFirst = partner1Name ? partner1Name.trim().split(/\s+/)[0] : "Raymart";
-  const brideFirst = partner2Name
-    ? partner2Name.toLowerCase().includes("joy")
-      ? "Joy"
-      : partner2Name.trim().split(/\s+/)[0]
-    : "Joy";
-
-  // Extract initials — default to R & J for this client
-  const initial1 = (groomFirst.charAt(0) || "R").toUpperCase();
-  const initial2 = (brideFirst.charAt(0) || "J").toUpperCase();
-
-  const coupleHeadline = `${groomFirst} & ${brideFirst}`;
-
-  const venueSection = event?.sections?.find(
-    (s) => s.key === "venue" || s.key === "main_event" || s.key === "ceremony",
-  );
-  const vContent = venueSection?.content as Record<string, unknown> | undefined;
-  const rawVenue =
-    typeof vContent?.venueName === "string"
-      ? vContent.venueName
-      : typeof vContent?.name === "string"
-        ? vContent.name
-        : typeof (event?.raw?.venue as Record<string, unknown> | undefined)?.venueName === "string"
-          ? ((event?.raw?.venue as Record<string, unknown>).venueName as string)
-          : null;
-
-  const date = event?.eventDateLabel || event?.eventDate || "Save The Date";
-  const venue = rawVenue?.trim() || "The Grand Pavilion";
+  const coupleHeadline = "Raymart & Joy";
+  const dateText = "Nov 21 2026";
+  const venueText = "Taal, Batangas";
+  const subtitle = `${dateText} • ${venueText}`;
 
   return new ImageResponse(
     (
@@ -125,49 +65,40 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
         >
           <div
             style={{
-              width: "240px",
-              height: "240px",
+              width: "220px",
+              height: "220px",
               borderRadius: "50%",
-              backgroundColor: "#1B2A20",
+              backgroundColor: "#1b3323",
               border: "4px solid #D4AF37",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
+              boxShadow: "0 12px 32px rgba(0,0,0,0.5)",
             }}
           >
-            {/* Dual-initial monogram: e.g. R & L */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-                color: "#FAF7F2",
-                fontFamily: "serif",
-                fontWeight: 700,
-                fontSize: "52px",
-                lineHeight: 1,
-                letterSpacing: "2px",
-              }}
-            >
-              <span>{initial1}</span>
-              <span style={{ fontSize: "36px", color: "#D4AF37", fontWeight: 400 }}>&amp;</span>
-              <span>{initial2}</span>
-            </div>
             <span
               style={{
-                fontSize: "13px",
+                fontSize: "68px",
                 color: "#D4AF37",
-                letterSpacing: "5px",
-                marginTop: "6px",
-                fontFamily: "sans-serif",
-                fontWeight: 600,
-                textTransform: "uppercase",
+                fontFamily: "serif",
+                fontWeight: 700,
+                letterSpacing: "3px",
+                lineHeight: 1,
               }}
             >
-              WEDDING
+              R &amp; J
+            </span>
+            <span
+              style={{
+                fontSize: "12px",
+                color: "#E5C158",
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                marginTop: "8px",
+              }}
+            >
+              Wedding
             </span>
           </div>
         </div>
@@ -210,7 +141,7 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
             {coupleHeadline}
           </h1>
 
-          {/* Subtitle */}
+          {/* Subtitle / Date */}
           <span
             style={{
               fontSize: "18px",
@@ -222,7 +153,7 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
               fontWeight: 600,
             }}
           >
-            Wedding Celebration
+            {subtitle}
           </span>
 
           {/* Date & Venue Container */}
@@ -236,10 +167,10 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <span style={{ fontSize: "18px", color: "#F8F4EC" }}>📅 {date}</span>
+              <span style={{ fontSize: "18px", color: "#F8F4EC" }}>📅 {dateText}</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <span style={{ fontSize: "16px", color: "#7498AB" }}>📍 {venue}</span>
+              <span style={{ fontSize: "16px", color: "#7498AB" }}>📍 {venueText}</span>
             </div>
           </div>
         </div>

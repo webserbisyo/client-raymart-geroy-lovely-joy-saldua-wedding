@@ -51,11 +51,11 @@ export async function generateMetadata({ searchParams }: PageProps = {}): Promis
       siteName: templateBranding.social.siteName,
       images: [
         {
-          url: "/opengraph-image",
+          url: "/opengraph-image?v=rj-2026-final",
           width: 1200,
           height: 630,
           type: "image/png",
-          alt: title,
+          alt: "Raymart & Joy Wedding Invitation",
         },
       ],
     },
@@ -63,7 +63,7 @@ export async function generateMetadata({ searchParams }: PageProps = {}): Promis
       card: "summary_large_image",
       title,
       description,
-      images: ["/opengraph-image"],
+      images: ["/opengraph-image?v=rj-2026-final"],
     },
   };
 }

@@ -142,7 +142,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   // Post messages to YouTube iframe
-  const sendYoutubeCommand = (func: string, args: unknown = "") => {
+  const sendYoutubeCommand = useCallback((func: string, args: unknown = "") => {
     const iframe = iframeRef.current;
     if (!iframe?.contentWindow) return;
     const message = JSON.stringify({ event: "command", func, args });
@@ -154,14 +154,14 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     if (typeof win[postMsg] === "function") {
       win[postMsg](message, "*");
     }
-  };
+  }, []);
 
   // Sync YouTube mute state
   useEffect(() => {
     if (sourceType === "youtube" && iframeReadyRef.current) {
       sendYoutubeCommand(isMuted ? "mute" : "unMute");
     }
-  }, [isMuted, sourceType]);
+  }, [isMuted, sendYoutubeCommand, sourceType]);
 
   const play = useCallback(() => {
     if (sourceType === "mp3") {
@@ -208,7 +208,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     }
 
     setPlaybackState("playing");
-  }, [isMuted, musicLink, sourceType]);
+  }, [isMuted, musicLink, sendYoutubeCommand, sourceType]);
 
   const pause = () => {
     setPlaybackState("paused");
@@ -246,6 +246,11 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
   const handleIframeLoad = () => {
     iframeReadyRef.current = true;
+
+    // Send "listening" handshake so YouTube posts onStateChange / infoDelivery events
+    sendYoutubeCommand("listening");
+    sendYoutubeCommand("addEventListener", ["onStateChange"]);
+
     if (pendingPlayRef.current) {
       pendingPlayRef.current = false;
       sendYoutubeCommand("unMute");
@@ -253,6 +258,79 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
       sendYoutubeCommand("playVideo");
     }
   };
+
+  // Inbound YouTube event bridge (automated infinite loop on state 0 + state synchronization)
+  useEffect(() => {
+    if (sourceType !== "youtube") return;
+
+    const handleMessage = (event: MessageEvent) => {
+      // Validate origin
+      if (
+        typeof event.origin !== "string" ||
+        (!event.origin.includes("youtube.com") && !event.origin.includes("youtube-nocookie.com"))
+      ) {
+        return;
+      }
+
+      // Parse payload safely
+      let data: unknown = event.data;
+      if (typeof data === "string") {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          return;
+        }
+      }
+      if (!data || typeof data !== "object") return;
+      const parsed = data as {
+        event?: string;
+        info?: number | { playerState?: number; currentTime?: number; duration?: number };
+      };
+
+      // Extract player state
+      let playerState: number | undefined;
+      if (parsed.event === "onStateChange" && typeof parsed.info === "number") {
+        playerState = parsed.info;
+      } else if (
+        parsed.event === "infoDelivery" &&
+        parsed.info &&
+        typeof parsed.info === "object" &&
+        typeof parsed.info.playerState === "number"
+      ) {
+        playerState = parsed.info.playerState;
+      }
+
+      // State 0 (ENDED) -> Automated Infinite Loop
+      if (playerState === 0) {
+        sendYoutubeCommand("seekTo", [0, true]);
+        sendYoutubeCommand("playVideo");
+        setPlaybackState("playing");
+        return;
+      }
+
+      // Synchronize Playback State
+      if (playerState === 1 && playbackState !== "playing") {
+        setPlaybackState("playing");
+      } else if (playerState === 2 && playbackState === "playing") {
+        setPlaybackState("paused");
+      }
+
+      // Synchronize currentTime / duration if provided
+      if (parsed.info && typeof parsed.info === "object") {
+        if (typeof parsed.info.currentTime === "number") {
+          setCurrentTime(parsed.info.currentTime);
+        }
+        if (typeof parsed.info.duration === "number" && parsed.info.duration > 0) {
+          setDuration(parsed.info.duration);
+        }
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, [playbackState, sendYoutubeCommand, sourceType]);
 
   // First-Interaction Autoplay Listener
   useEffect(() => {

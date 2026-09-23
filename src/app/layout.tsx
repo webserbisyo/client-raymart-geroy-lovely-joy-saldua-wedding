@@ -56,6 +56,20 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/manifest.webmanifest",
+  openGraph: {
+    images: [
+      {
+        url: "/opengraph-image?v=rj-2026-final",
+        width: 1200,
+        height: 630,
+        alt: "Raymart & Joy Wedding Invitation",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image?v=rj-2026-final"],
+  },
 };
 
 import { clientConfig } from "@/client/client.config";
