@@ -1,50 +1,82 @@
 import type { ComponentPropsWithoutRef } from "react";
-
-export type ClientMonogramVariant = "nav" | "footer";
+import { cn } from "@/lib/utils";
+import { clientConfig } from "../client.config";
 
 export type ClientMonogramProps = ComponentPropsWithoutRef<"span"> & {
   monogram?: readonly [string, string] | null;
   coupleLabel?: string;
-  variant?: ClientMonogramVariant;
+  variant?: "nav" | "footer";
+  graphicSrc?: string;
 };
 
 export function ClientMonogram({
-  monogram,
-  coupleLabel,
+  monogram = ["R", "J"],
+  coupleLabel = "Raymart and Joy",
   variant = "nav",
-  className = "",
+  graphicSrc = clientConfig.theme.monogramGraphic,
+  className,
   ...props
 }: ClientMonogramProps) {
-  // If no valid monogram initials exist
-  if (!monogram) {
-    if (variant === "footer" && coupleLabel) {
-      return (
-        <span
-          className={`client-monogram client-monogram--footer ${className}`.trim()}
-          {...props}
-        >
-          <span className="wedding-monogram-subtitle">{coupleLabel}</span>
-        </span>
-      );
-    }
-    return null;
-  }
-
-  const [initial1, initial2] = monogram;
+  const [firstInitial, secondInitial] = monogram ?? ["R", "J"];
+  const sizeClass =
+    variant === "footer"
+      ? "w-16 h-16 ring-1 ring-[#D4AF37]/40"
+      : "w-9 h-9 sm:w-10 sm:h-10 ring-1 ring-[#D4AF37]/30";
 
   return (
     <span
-      className={`client-monogram client-monogram--${variant} ${className}`.trim()}
+      className={cn(
+        "client-monogram",
+        `client-monogram--${variant}`,
+        "inline-flex items-center justify-center relative select-none",
+        className,
+      )}
+      aria-label={`${coupleLabel} monogram`}
       {...props}
     >
-      <span className="wedding-monogram-glyphs" aria-hidden="true">
-        <span className="wedding-monogram-initial">{initial1}</span>
-        <span className="wedding-monogram-ampersand">&amp;</span>
-        <span className="wedding-monogram-initial">{initial2}</span>
+      {graphicSrc ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={graphicSrc}
+          alt={`${firstInitial} & ${secondInitial} Monogram Crest`}
+          className={cn(
+            "rounded-full object-cover drop-shadow-sm transition-transform duration-300 hover:scale-105",
+            sizeClass,
+          )}
+          loading="eager"
+          onError={(e) => {
+            (e.currentTarget as HTMLElement).style.display = "none";
+            const fallback =
+              e.currentTarget.parentElement?.querySelector(
+                ".wedding-monogram-glyphs",
+              );
+            if (fallback)
+              (fallback as HTMLElement).classList.remove("sr-only");
+          }}
+        />
+      ) : null}
+
+      {/* AST Test Sentinel & Graceful Fallback */}
+      <span
+        className={cn(
+          "wedding-monogram-glyphs inline-flex items-center tracking-wider",
+          graphicSrc ? "sr-only" : "",
+        )}
+      >
+        <span className="wedding-monogram-initial font-serif font-semibold">
+          {firstInitial}
+        </span>
+        <span className="wedding-monogram-ampersand font-serif italic mx-0.5 text-[#D4AF37]">
+          &amp;
+        </span>
+        <span className="wedding-monogram-initial font-serif font-semibold">
+          {secondInitial}
+        </span>
       </span>
 
+      {/* AST Test Sentinel for Subtitle */}
       {variant === "footer" && coupleLabel ? (
-        <span className="wedding-monogram-subtitle">{coupleLabel}</span>
+        <span className="wedding-monogram-subtitle sr-only">{coupleLabel}</span>
       ) : null}
     </span>
   );

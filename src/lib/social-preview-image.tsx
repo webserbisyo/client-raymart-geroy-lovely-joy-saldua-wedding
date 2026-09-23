@@ -42,9 +42,19 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
     }
   }
 
-  // Extract first letters — default to R & L for this client
-  const initial1 = (partner1Name.charAt(0) || "R").toUpperCase();
-  const initial2 = (partner2Name.charAt(0) || "L").toUpperCase();
+  // Derive short names: Raymart & Joy
+  const groomFirst = partner1Name ? partner1Name.trim().split(/\s+/)[0] : "Raymart";
+  const brideFirst = partner2Name
+    ? partner2Name.toLowerCase().includes("joy")
+      ? "Joy"
+      : partner2Name.trim().split(/\s+/)[0]
+    : "Joy";
+
+  // Extract initials — default to R & J for this client
+  const initial1 = (groomFirst.charAt(0) || "R").toUpperCase();
+  const initial2 = (brideFirst.charAt(0) || "J").toUpperCase();
+
+  const coupleHeadline = `${groomFirst} & ${brideFirst}`;
 
   const venueSection = event?.sections?.find(
     (s) => s.key === "venue" || s.key === "main_event" || s.key === "ceremony",
@@ -197,7 +207,7 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
               fontWeight: "normal",
             }}
           >
-            {coupleDisplay}
+            {coupleHeadline}
           </h1>
 
           {/* Subtitle */}

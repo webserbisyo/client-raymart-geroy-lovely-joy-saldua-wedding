@@ -43,10 +43,12 @@ function parseDisplayAsInitials(displayAs: string): readonly [string, string] | 
   if (!clean) return null;
 
   // Split on common couple name delimiters: &, and, +, /
-  const segments = clean.split(/\s+(?:&|and|\+|\/)\s+/i);
+  const segments = clean.split(/\s+(?:&|and|\+|\/|❤️|❤)\s+/i);
   if (segments.length === 2) {
     const first = extractFirstLetter(segments[0]);
-    const second = extractFirstLetter(segments[1]);
+    const second = segments[1].toLowerCase().includes("joy")
+      ? "J"
+      : extractFirstLetter(segments[1]);
     if (first && second) {
       return [first, second];
     }
@@ -87,7 +89,9 @@ export function deriveCoupleBranding(input?: DeriveCoupleBrandingInput | null): 
 
   if (partnerOne && partnerTwo) {
     const init1 = extractFirstLetter(partnerOne);
-    const init2 = extractFirstLetter(partnerTwo);
+    const init2 = partnerTwo.toLowerCase().includes("joy")
+      ? "J"
+      : extractFirstLetter(partnerTwo);
     if (init1 && init2) {
       monogram = [init1, init2];
     }

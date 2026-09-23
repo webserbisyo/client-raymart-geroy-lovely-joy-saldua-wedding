@@ -39,6 +39,7 @@ export type ClientConfig = {
     id: string;
     preset: string;
     monogram?: readonly [string, string];
+    monogramGraphic?: string;
     fonts: {
       heading: string;
       body: string;
@@ -207,6 +208,8 @@ export const clientConfig = {
   theme: {
     id: "blue-hour-romance",
     preset: "blue-hour-romance",
+    monogram: ["R", "J"] as const,
+    monogramGraphic: "/template-assets/decorations/monogram-rj.webp",
     fonts: {
       heading: "",
       body: "",
