@@ -9,7 +9,7 @@ import { templateBranding } from "@/config/template-branding";
 import {
   buildPageDescription,
   buildPageTitle,
-  getSiteUrl,
+  getDynamicSiteOrigin,
   safePublicCanonicalUrl,
 } from "@/lib/metadata";
 import { type PreviewQuery } from "@/lib/preview-context";
@@ -29,8 +29,12 @@ export async function generateMetadata({ searchParams }: PageProps = {}): Promis
     };
   }
 
-  const siteUrl = getSiteUrl();
-  const canonical = safePublicCanonicalUrl(result.event.publicUrl) || siteUrl;
+  const apiPublicUrl = safePublicCanonicalUrl(
+    result.status === "available" ? result.event.publicUrl : undefined
+  );
+  const dynamicOrigin = await getDynamicSiteOrigin();
+  const activeBaseUrl = apiPublicUrl || dynamicOrigin;
+
   const shouldNoIndex =
     result.event.previewMode === "dashboard" || result.event.raw.visibility === "private";
 
@@ -38,15 +42,15 @@ export async function generateMetadata({ searchParams }: PageProps = {}): Promis
   const description = buildPageDescription(result.event);
 
   return {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(activeBaseUrl),
     title,
     description,
-    alternates: shouldNoIndex ? undefined : { canonical },
+    alternates: shouldNoIndex ? undefined : { canonical: activeBaseUrl },
     robots: shouldNoIndex ? { index: false, follow: false } : undefined,
     openGraph: {
       title,
       description,
-      url: siteUrl,
+      url: activeBaseUrl,
       type: "website",
       siteName: templateBranding.social.siteName,
       images: [
@@ -55,7 +59,7 @@ export async function generateMetadata({ searchParams }: PageProps = {}): Promis
           width: 1200,
           height: 630,
           type: "image/png",
-          alt: "Raymart & Joy Wedding Invitation",
+          alt: `${title} Invitation`,
         },
       ],
     },

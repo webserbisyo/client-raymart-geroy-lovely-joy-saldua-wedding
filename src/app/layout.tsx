@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Cormorant_Garamond, Manrope } from "next/font/google";
 import { PwaRegister } from "@/components/pwa-register";
 import { WEDDING_BROWSER_THEME_COLOR } from "@/config/browser-theme";
-import { getSiteBaseUrl } from "@/lib/metadata";
+import { getMetadataBase } from "@/lib/metadata";
 import "@/styles/globals.css";
 
 const bodoni = Bodoni_Moda({
@@ -26,10 +26,6 @@ const manrope = Manrope({
   display: "swap",
   weight: ["400", "500", "600", "700", "800"],
 });
-
-function getMetadataBase(): URL {
-  return new URL(getSiteBaseUrl());
-}
 
 export const viewport: Viewport = {
   themeColor: WEDDING_BROWSER_THEME_COLOR,
@@ -56,7 +52,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image?v=rj-2026-final",
         width: 1200,
         height: 630,
-        alt: "Raymart & Joy Wedding Invitation",
+        alt: "Wedding Celebration Invitation",
       },
     ],
   },

@@ -1,71 +1,101 @@
 import type { EventWebsiteRenderModel } from "@/types/public-event";
+import { headers } from "next/headers";
 
-const PRODUCTION_CANONICAL = "https://raymart-and-lovely.rsvp.webserbisyo.com";
-
+/**
+ * Static/build-time origin fallback.
+ * Safe for synchronous callers like root layout.tsx static metadata.
+ */
 export function getSiteBaseUrl(): string {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/+$/, "");
+  }
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
   return "http://localhost:3000";
 }
 
-export function getSiteUrl(): string {
-  const candidate =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "") ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
-
-  // Guard: never emit a localhost URL in a production build.
-  // This prevents .env.local overrides from leaking into baked OG metadata on Vercel.
-  if (
-    process.env.NODE_ENV === "production" &&
-    (candidate.includes("localhost") || candidate.includes("127.0.0.1"))
-  ) {
-    return PRODUCTION_CANONICAL;
+/**
+ * Dynamic request-time origin resolver.
+ * Inspects incoming proxy headers (x-forwarded-host) to detect custom subdomains on the fly.
+ */
+export async function getDynamicSiteOrigin(): Promise<string> {
+  // 1. Explicit env override if intentionally set
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/+$/, "");
   }
 
-  return candidate;
+  // 2. Dynamic host detection from proxy/request headers
+  try {
+    const hdrs = await headers();
+    const forwardedHost = hdrs.get("x-forwarded-host");
+    const host = forwardedHost || hdrs.get("host");
+    const proto = hdrs.get("x-forwarded-proto") || "https";
+
+    if (host && !host.includes("localhost") && !host.includes("127.0.0.1")) {
+      return `${proto}://${host}`;
+    }
+  } catch {
+    // headers() can throw in static generation contexts; fall through to system env
+  }
+
+  // 3. Fallback to Vercel automated system variables
+  return getSiteBaseUrl();
 }
 
-export function safePublicCanonicalUrl(value?: string | null): string | undefined {
-  if (!value) return undefined;
+/**
+ * Backward-compatible alias for existing consumers.
+ */
+export const getSiteUrl = getDynamicSiteOrigin;
+
+export function safePublicCanonicalUrl(candidate?: string | null): string | undefined {
+  if (!candidate || typeof candidate !== "string") return undefined;
+  const trimmed = candidate.trim().replace(/\/+$/, "");
+  if (!trimmed) return undefined;
 
   try {
-    const url = new URL(value);
-    const hostname = url.hostname.toLowerCase();
+    const parsed = new URL(trimmed);
+    const host = parsed.hostname.toLowerCase();
 
-    // 1. Reject local dev and Vercel preview domains
+    // 1. Reject localhost, loopback, and LAN IP dev origins
     if (
-      hostname.endsWith(".vercel.app") ||
-      hostname === "localhost" ||
-      hostname === "127.0.0.1" ||
-      hostname.startsWith("192.168.") ||
-      hostname.startsWith("10.") ||
-      /^172\.(1[6-9]|2[0-9]|3[01])\./.test(hostname)
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host === "0.0.0.0" ||
+      host.endsWith(".vercel.app") ||
+      host.startsWith("192.168.") ||
+      host.startsWith("10.") ||
+      /^172\.(1[6-9]|2[0-9]|3[01])\./.test(host)
     ) {
       return undefined;
     }
 
     // 2. Allow client wedding subdomains (*.rsvp.webserbisyo.com)
-    if (hostname.endsWith(".rsvp.webserbisyo.com") && hostname !== "rsvp.webserbisyo.com") {
-      return url.toString().replace(/\/+$/, "");
+    if (host.endsWith(".rsvp.webserbisyo.com") && host !== "rsvp.webserbisyo.com") {
+      return trimmed;
     }
 
     // 3. Reject central platform root domains
     if (
-      hostname === "rsvp.webserbisyo.com" ||
-      hostname === "webserbisyo.com" ||
-      hostname.endsWith(".webserbisyo.com")
+      host === "rsvp.webserbisyo.com" ||
+      host === "webserbisyo.com" ||
+      host.endsWith(".webserbisyo.com")
     ) {
       return undefined;
     }
 
-    return url.toString().replace(/\/+$/, "");
+    // Allow custom subdomains and production hosts
+    return trimmed;
   } catch {
     return undefined;
   }
+}
+
+export function getMetadataBase(): URL {
+  return new URL(getSiteBaseUrl());
 }
 
 export function buildPageTitle(event?: EventWebsiteRenderModel): string {
@@ -80,3 +110,4 @@ export function buildPageDescription(event?: EventWebsiteRenderModel): string {
   }
   return `Join ${displayName} as they celebrate their wedding. View event details and RSVP online.`;
 }
+

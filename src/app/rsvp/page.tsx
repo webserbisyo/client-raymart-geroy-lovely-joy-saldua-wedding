@@ -4,7 +4,12 @@ import { clientConfig } from "@/client/client.config";
 import { ClientRsvpPage } from "@/client/rsvp";
 import { loadPublicEvent } from "@/app/public-event-loader";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { buildPageDescription, buildPageTitle, getSiteUrl } from "@/lib/metadata";
+import {
+  buildPageDescription,
+  buildPageTitle,
+  getDynamicSiteOrigin,
+  safePublicCanonicalUrl,
+} from "@/lib/metadata";
 import { type PreviewQuery } from "@/lib/preview-context";
 
 type PageProps = {
@@ -22,22 +27,28 @@ export async function generateMetadata({ searchParams }: PageProps = {}): Promis
     };
   }
 
-  const siteUrl = getSiteUrl();
+  const apiPublicUrl = safePublicCanonicalUrl(
+    result.status === "available" ? result.event.publicUrl : undefined
+  );
+  const dynamicOrigin = await getDynamicSiteOrigin();
+  const activeBaseUrl = apiPublicUrl || dynamicOrigin;
+
+  const shouldNoIndex =
+    result.event.previewMode === "dashboard" || result.event.raw.visibility === "private";
+
   const title = `RSVP | ${buildPageTitle(result.event)}`;
   const description = buildPageDescription(result.event);
 
   return {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(activeBaseUrl),
     title,
     description,
-    robots:
-      result.event.previewMode === "dashboard" || result.event.raw.visibility === "private"
-        ? { index: false, follow: false }
-        : undefined,
+    alternates: shouldNoIndex ? undefined : { canonical: `${activeBaseUrl}/rsvp` },
+    robots: shouldNoIndex ? { index: false, follow: false } : undefined,
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/rsvp`,
+      url: `${activeBaseUrl}/rsvp`,
       type: "website",
       siteName: "WebSerbisyo RSVP",
       images: [
