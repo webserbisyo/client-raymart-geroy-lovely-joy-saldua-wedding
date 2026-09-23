@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useRef } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef, useCallback } from "react";
 
 export type PlaybackState = "idle" | "playing" | "paused" | "stopped";
 export type AudioSourceType = "youtube" | "mp3" | "none";
@@ -163,7 +163,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     }
   }, [isMuted, sourceType]);
 
-  const play = () => {
+  const play = useCallback(() => {
     if (sourceType === "mp3") {
       // MP3: call play() synchronously inside the user gesture.
       // iOS Safari requires audio.play() to be called in the same call stack
@@ -192,6 +192,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     }
 
     if (sourceType === "youtube") {
+      sendYoutubeCommand("unMute");
+      sendYoutubeCommand("setVolume", [100]);
       if (iframeReadyRef.current) {
         // Iframe already loaded: send command immediately (still in gesture stack
         // because postMessage is synchronous)
@@ -206,7 +208,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     }
 
     setPlaybackState("playing");
-  };
+  }, [isMuted, musicLink, sourceType]);
 
   const pause = () => {
     setPlaybackState("paused");
@@ -246,9 +248,28 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     iframeReadyRef.current = true;
     if (pendingPlayRef.current) {
       pendingPlayRef.current = false;
+      sendYoutubeCommand("unMute");
+      sendYoutubeCommand("setVolume", [100]);
       sendYoutubeCommand("playVideo");
     }
   };
+
+  // First-Interaction Autoplay Listener
+  useEffect(() => {
+    if (!musicLink) return;
+    const handleFirstGesture = () => {
+      play();
+    };
+    window.addEventListener("touchstart", handleFirstGesture, { once: true, passive: true });
+    window.addEventListener("click", handleFirstGesture, { once: true, passive: true });
+    window.addEventListener("scroll", handleFirstGesture, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener("touchstart", handleFirstGesture);
+      window.removeEventListener("click", handleFirstGesture);
+      window.removeEventListener("scroll", handleFirstGesture);
+    };
+  }, [musicLink, play]);
 
   // Render YouTube player as soon as we have a valid youtubeId — not gated
   // behind "hasStartedPlaying" to avoid the first-tap mounting race on iOS.
@@ -274,18 +295,23 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
     const embedUrl = `https://www.youtube.com/embed/${youtubeId}?${params.toString()}`;
 
-
     return (
       <div
-        className="fixed pointer-events-none opacity-0 w-0 h-0 overflow-hidden"
-        style={{ left: "-9999px", top: "-9999px" }}
+        className="fixed bottom-0 right-0 z-[-1] pointer-events-none overflow-hidden"
+        style={{
+          width: "200px",
+          height: "200px",
+          opacity: 0.001,
+          transform: "scale(0.01)",
+          transformOrigin: "bottom right",
+        }}
         aria-hidden="true"
       >
         {React.createElement("ifr" + "ame", {
           ref: iframeRef,
           id: "youtube-ambient-player",
-          width: "1",
-          height: "1",
+          width: "200",
+          height: "200",
           src: embedUrl,
           title: "Wedding Ambience Player",
           allow: "autoplay; encrypted-media",

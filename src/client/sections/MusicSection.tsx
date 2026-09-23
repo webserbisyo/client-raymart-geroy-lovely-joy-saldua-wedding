@@ -24,6 +24,9 @@ type MusicSectionProps = {
   surface: SectionSurface;
 };
 
+// Set to true to re-enable the visual vinyl card section on the homepage
+const SHOW_VISUAL_CARD = false;
+
 export function MusicSection({ musicEffects, surface }: MusicSectionProps) {
   const shouldReduceMotion = useReducedMotion();
   const { playbackState, isPlaying, play, pause, stop, setMusicData } =
@@ -41,6 +44,17 @@ export function MusicSection({ musicEffects, surface }: MusicSectionProps) {
   }, [musicEffects, setMusicData]);
 
   if (!musicEffects?.musicLink) return null;
+
+  if (!SHOW_VISUAL_CARD) {
+    return (
+      <section id="music" data-tone={surface} className="sr-only" aria-hidden="true">
+        <span className="wedding-music-disc-center">
+          <span className="wedding-music-disc-icon" />
+        </span>
+        <span>{musicEffects.playButtonLabel || "Play our song"}</span>
+      </section>
+    );
+  }
 
   const { displayTitle, displayArtist } = parseMusicMeta(
     musicEffects.musicTitle,

@@ -135,7 +135,7 @@
   --wedding-monogram-initial-fg: var(--wedding-text-on-dark);
   --wedding-monogram-ampersand-fg: var(--wedding-label-on-dark);
   --wedding-monogram-subtitle-fg: var(--wedding-text-on-dark-secondary);
-  --font-wedding-display: var(--font-cormorant), Georgia, serif;
+  --font-wedding-display: var(--font-bodoni), var(--font-cormorant), Georgia, serif;
   --font-wedding-body: var(--font-manrope), ui-sans-serif, system-ui;
   --font-wedding-monogram: var(--font-cormorant), Georgia, serif;
   --font-wedding-script: var(--font-cormorant), Georgia, serif;

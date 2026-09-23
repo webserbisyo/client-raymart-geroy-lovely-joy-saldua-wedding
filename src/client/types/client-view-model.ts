@@ -20,6 +20,10 @@ export type ClientCoupleInfo = {
   displayAs: string;
   hostLine?: string;
   shortHostMessage?: string;
+  firstPartnerName?: string;
+  secondPartnerName?: string;
+  groomName?: string;
+  brideName?: string;
 };
 
 export type ClientCeremonyData = {

@@ -1,8 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Bodoni_Moda, Cormorant_Garamond, Manrope } from "next/font/google";
 import { PwaRegister } from "@/components/pwa-register";
 import { WEDDING_BROWSER_THEME_COLOR } from "@/config/browser-theme";
 import "@/styles/globals.css";
+
+const bodoni = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-bodoni",
+  display: "swap",
+  style: ["normal", "italic"],
+});
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -57,7 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${manrope.variable}`}
+      className={`${bodoni.variable} ${cormorant.variable} ${manrope.variable}`}
       data-wedding-theme={clientConfig.theme.id}
       data-scroll-behavior="smooth"
       suppressHydrationWarning

@@ -14,8 +14,9 @@ export function FloatingControlsLayer({
   visibleSectionKeys: ClientSectionKey[];
 }) {
   const { isVisible: isDockVisible, dockHandlers } = useAutoHideDock();
-  const { playbackState } = useAudio();
-  const musicVisible = playbackState !== "idle" && playbackState !== "stopped";
+  const { musicLink } = useAudio();
+  // Bubble stays permanently docked as long as a track exists
+  const musicVisible = Boolean(musicLink);
   const [isCompactDock, setIsCompactDock] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 

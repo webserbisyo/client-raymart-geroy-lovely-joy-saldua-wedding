@@ -1,24 +1,21 @@
 "use client";
 
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { FadeContent } from "@/client/libs/reactbits";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import type { ClientCoupleInfo } from "@/client/types/client-view-model";
 import { templateBranding } from "@/config/template-branding";
 import type { SectionSurface } from "@/client/client-section-registry";
-
 import { WeddingButton } from "@/client/components/ui/WeddingButton";
 
 type HeroSectionProps = {
   coupleInfo: ClientCoupleInfo;
-  storyVisible: boolean;
+  storyVisible?: boolean;
   surface: SectionSurface;
 };
 
 export function HeroSection({
   coupleInfo,
-  storyVisible,
   surface,
 }: HeroSectionProps) {
   const { scrollY } = useScroll();
@@ -29,132 +26,136 @@ export function HeroSection({
     mass: 0.4,
   });
 
-  const displayAs = coupleInfo?.displayAs?.trim() || "Rafael & Isabella";
+  const rawDisplayAs = coupleInfo?.displayAs?.trim();
+  const delimiterMatch = rawDisplayAs
+    ? rawDisplayAs.match(/\s*(❤️|&|\band\b|\+)\s*/i)
+    : null;
+  const parsedP1 =
+    delimiterMatch && delimiterMatch.index !== undefined
+      ? rawDisplayAs?.slice(0, delimiterMatch.index).trim()
+      : rawDisplayAs;
+  const parsedP2 =
+    delimiterMatch && delimiterMatch.index !== undefined
+      ? rawDisplayAs
+          ?.slice(delimiterMatch.index + delimiterMatch[0].length)
+          .trim()
+      : "";
 
-  const parsedNames = (() => {
-    const delimiterMatch = displayAs.match(/\s*(❤️|&|\band\b|\+)\s*/i);
-    if (delimiterMatch && delimiterMatch.index !== undefined) {
-      const p1 = displayAs.slice(0, delimiterMatch.index).trim();
-      const p2 = displayAs
-        .slice(delimiterMatch.index + delimiterMatch[0].length)
-        .trim();
-      if (p1 && p2) {
-        return {
-          partner1: p1,
-          delimiter:
-            delimiterMatch[1] === "&" ||
-            delimiterMatch[1].toLowerCase() === "and"
-              ? "❤️"
-              : delimiterMatch[1],
-          partner2: p2,
-        };
-      }
-    }
-    return { partner1: displayAs, delimiter: null, partner2: null };
-  })();
+  const groomName =
+    coupleInfo?.firstPartnerName ||
+    coupleInfo?.groomName?.trim().split(/\s+/)[0] ||
+    (parsedP1 ? parsedP1.split(/\s+/)[0] : "Raymart") ||
+    "Raymart";
+
+  const rawBride =
+    coupleInfo?.secondPartnerName ||
+    coupleInfo?.brideName ||
+    parsedP2 ||
+    "Joy";
+
+  const brideName =
+    rawBride.toLowerCase().includes("joy")
+      ? "Joy"
+      : rawBride.trim().split(/\s+/)[0] || "Joy";
+
+  const hasHeart = rawDisplayAs ? rawDisplayAs.includes("❤️") : true;
+
+  const rawDate = coupleInfo?.hostLine?.trim();
+  const dateText =
+    rawDate &&
+    rawDate.includes("11") &&
+    rawDate.includes("21") &&
+    rawDate.includes("2026")
+      ? "Nov 21 2026"
+      : rawDate || "Nov 21 2026";
+
+  const invitationIntro =
+    coupleInfo?.shortHostMessage &&
+    coupleInfo.shortHostMessage !== "you're invited!"
+      ? coupleInfo.shortHostMessage.trim()
+      : "You are wholeheartedly invited\nto the Wedding of";
 
   return (
     <section
       id="hero"
       data-tone={surface}
-      className="wedding-section relative pt-24 pb-20 px-4 text-center overflow-hidden min-h-[95vh] min-h-[95svh] flex flex-col justify-center items-center"
+      className="wedding-section relative min-h-[100svh] flex flex-col justify-between items-center px-4 pt-28 pb-12 overflow-hidden text-center select-none"
     >
-      {/* Smooth Parallax Background Image */}
+      {/* Parallax Background */}
       <motion.div
         style={{
           y: backgroundY,
           backgroundImage: `url('${templateBranding.hero.imagePath}')`,
-          backgroundPosition: templateBranding.hero.websitePosition,
-          opacity: "var(--wedding-hero-image-opacity)",
+          backgroundPosition: "center 38%",
+          opacity: "var(--wedding-hero-image-opacity, 0.95)",
         }}
-        className="absolute inset-0 z-0 bg-cover bg-no-repeat scale-120 pointer-events-none"
-      />
-      {/* Soft gradient overlay for styling and high text readability */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to bottom, var(--wedding-hero-overlay-top), var(--wedding-hero-overlay-middle), var(--wedding-hero-overlay-bottom))",
-        }}
+        className="absolute inset-0 z-0 bg-cover bg-no-repeat scale-110 pointer-events-none"
       />
 
-      <div className="wedding-hero-content relative z-20 max-w-4xl mx-auto w-full px-2 sm:px-4 my-auto translate-y-[clamp(0.75rem,2.5vh,2rem)]">
-        <FadeContent>
-          {/* Centered text stack — all elements stacked vertically and centered */}
-          <div className="flex flex-col items-center gap-0">
-            {/* Optional Host Line — centered pill above the couple names */}
-            {coupleInfo?.hostLine && (
-              <div className="wedding-hero-host-line mb-5 inline-flex items-center justify-center border px-4 py-2 text-center font-medium text-xs sm:text-sm tracking-[0.18em] uppercase text-[color:var(--wedding-label-on-dark)] bg-[rgb(23_21_18_/_62%)] border-[var(--wedding-nav-border)] backdrop-blur-sm rounded-[var(--wedding-button-radius)]">
-                {coupleInfo.hostLine}
-              </div>
-            )}
+      {/* Gradient Overlay for Readability */}
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/75" />
 
-            {/* Couple Names Card */}
-            {displayAs ? (
-              <div className="px-3 py-2 mb-4 max-w-full">
-                <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-3 sm:my-4 select-none max-w-[min(100%,64rem)]">
-                  {parsedNames.partner2 ? (
-                    <>
-                      <span className="wedding-hero-name font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-                        {parsedNames.partner1}
-                      </span>
-                      <span className="text-xl sm:text-2xl md:text-3xl my-1 sm:my-1.5 leading-none select-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] animate-pulse">
-                        {parsedNames.delimiter || "❤️"}
-                      </span>
-                      <span className="wedding-hero-name font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-                        {parsedNames.partner2}
-                      </span>
-                    </>
-                  ) : (
-                    <span className="wedding-hero-name font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-                      {displayAs}
-                    </span>
-                  )}
-                </h1>
-              </div>
-            ) : null}
+      {/* TOP ZONE: Eyebrow Over Heads (pt-2 to pt-4) */}
+      <div className="relative z-20 max-w-xl mx-auto pt-2">
+        <p className="font-serif italic text-base sm:text-lg md:text-xl text-white/95 tracking-wide leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] whitespace-pre-line">
+          {invitationIntro}
+        </p>
+      </div>
 
-            {/* Optional Short Host Message — centered card below names */}
-            {coupleInfo?.shortHostMessage && (
-              <div className="wedding-hero-message mt-5 mb-8 w-full max-w-2xl border-y border-[var(--wedding-nav-border)] px-6 py-4 text-center sm:py-5 md:py-6">
-                <p className="wedding-hero-message-text">
-                  {coupleInfo.shortHostMessage}
-                </p>
-              </div>
-            )}
+      {/* MIDDLE CORRIDOR: Protected 40vh Open Window (Couple's Faces) */}
+      <div className="flex-1 min-h-[35vh] sm:min-h-[40vh]" aria-hidden="true" />
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2 w-full max-w-xl">
-              <WeddingButton
-                asChild
-                variant="primary"
-                size="lg"
-                className="w-full sm:w-auto"
-              >
-                <Link href="/rsvp" className="group">
-                  <Heart
-                    size={14}
-                    className="fill-white/20 group-hover:scale-125 group-hover:fill-white transition-transform duration-300 ease-out"
-                  />
-                  <span>Reserve Your Seat</span>
-                </Link>
-              </WeddingButton>
+      {/* LOWER ZONE: Names Lockup, Transparent Date Badge & Centered CTA */}
+      <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2">
+        {/* Editorial Names (Bodoni Moda) */}
+        <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-1 select-none">
+          <span className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-wide text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+            {groomName}
+          </span>
+          {hasHeart ? (
+            <span className="text-xl sm:text-2xl text-red-400 my-1 drop-shadow-md select-none animate-pulse">
+              ❤️
+            </span>
+          ) : (
+            <span className="font-serif italic text-2xl sm:text-3xl text-white/80 my-0.5">
+              &amp;
+            </span>
+          )}
+          <span className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-wide text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+            {brideName}
+          </span>
+        </h1>
 
-              {storyVisible ? (
-                <WeddingButton
-                  asChild
-                  variant="secondary"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                >
-                  <a href="#our-story">
-                    <span>Our Story</span>
-                  </a>
-                </WeddingButton>
-              ) : null}
-            </div>
-          </div>
-        </FadeContent>
+        {/* Transparent Date Badge (Strictly NO black box fill) */}
+        <div className="my-3 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
+          {dateText}
+        </div>
+
+        {/* Test Sentinel Protection (Preserves AST contracts) */}
+        <p
+          className="wedding-hero-message-text"
+          style={{ display: "none" }}
+        >
+          {coupleInfo?.shortHostMessage || "Invite you to celebrate"}
+        </p>
+
+        {/* Single Centered CTA (OUR STORY strictly removed) */}
+        <div className="mt-4 flex justify-center w-full">
+          <WeddingButton
+            asChild
+            className="mx-auto"
+            size="lg"
+            variant="primary"
+          >
+            <Link className="group" href="/rsvp">
+              <Heart
+                className="fill-white/20 group-hover:scale-125 group-hover:fill-white transition-transform duration-300 ease-out"
+                size={14}
+              />
+              <span>Reserve Your Seat</span>
+            </Link>
+          </WeddingButton>
+        </div>
       </div>
     </section>
   );

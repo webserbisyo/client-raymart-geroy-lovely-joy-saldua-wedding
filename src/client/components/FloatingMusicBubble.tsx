@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useAudio } from "./audio-context";
 import { motion, AnimatePresence } from "framer-motion";
-import { Music4, Play, Pause, Square, X } from "@/client/libs/icons";
+import { Music4, Play, Pause, X } from "@/client/libs/icons";
 import { parseMusicMeta } from "@/client/utils/music-meta";
 import { WeddingButton } from "@/client/components/ui/WeddingButton";
 
@@ -12,7 +12,7 @@ type FloatingMusicBubbleProps = {
 };
 
 export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubbleProps) {
-  const { playbackState, musicTitle, isPlaying, play, pause, stop } = useAudio();
+  const { musicLink, musicTitle, isPlaying, play, pause } = useAudio();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMusicSectionVisible, setIsMusicSectionVisible] = useState(false);
 
@@ -33,8 +33,8 @@ export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubblePro
     return () => observer.disconnect();
   }, []);
 
-  // Do not render anything if music hasn't started yet
-  if (playbackState === "idle" || playbackState === "stopped") {
+  // Do not render if no track exists
+  if (!musicLink) {
     return null;
   }
 
@@ -103,6 +103,7 @@ export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubblePro
                   size="md"
                   onClick={pause}
                   type="button"
+                  className="w-full"
                 >
                   <Pause className="w-3.5 h-3.5 fill-current" />
                   <span>Pause</span>
@@ -113,23 +114,12 @@ export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubblePro
                   size="md"
                   onClick={play}
                   type="button"
+                  className="w-full"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Play</span>
                 </WeddingButton>
               )}
-              <WeddingButton
-                variant="secondary"
-                size="md"
-                type="button"
-                onClick={() => {
-                  stop();
-                  setIsExpanded(false);
-                }}
-              >
-                <Square className="w-3.5 h-3.5 fill-current" />
-                <span>Stop</span>
-              </WeddingButton>
             </div>
           </motion.div>
         )}
@@ -166,8 +156,12 @@ export function FloatingMusicBubble({ layout = "fixed" }: FloatingMusicBubblePro
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 180, opacity: 0 }}
               transition={{ duration: 0.3 }}
+              className="relative flex items-center justify-center"
             >
-              <Music4 className="w-6 h-6 opacity-75" />
+              <Music4 className="w-6 h-6 opacity-85 text-[#D4AF37]" />
+              <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#D4AF37] text-white rounded-full flex items-center justify-center shadow-sm">
+                <Play className="w-2 h-2 fill-current translate-x-[0.5px]" />
+              </span>
             </motion.div>
           )}
         </AnimatePresence>

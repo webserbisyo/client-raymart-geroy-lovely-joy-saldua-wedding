@@ -246,15 +246,14 @@ export function getVisibleClientSectionKeys(
   const enabledSections = (layout.enabledSections ?? {}) as Record<string, unknown>;
   const sectionsByKey = (raw.sectionsByKey ?? {}) as Record<string, unknown>;
 
-  const isGuestbookExplicitlyDisabled = event.sections.some(
-    (section) => section.key === "guestbook" && section.enabled === false,
-  );
+  const isGuestbookExplicitlyDisabled =
+    enabledSections.guestbook === false ||
+    event.sections.some((s) => s.key === "guestbook" && s.enabled === false);
 
   const isGuestbookEnabled =
     !isGuestbookExplicitlyDisabled &&
     (enabledSections.guestbook === true ||
-      Boolean(sectionsByKey.guestbook) ||
-      Boolean(raw.guestbook));
+      (enabledSections.guestbook === undefined && Boolean(sectionsByKey.guestbook)));
 
   if (isGuestbookEnabled && clientSectionRegistry.guestbook) {
     keys.add("guestbook");

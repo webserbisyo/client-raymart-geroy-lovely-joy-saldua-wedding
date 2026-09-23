@@ -63,6 +63,8 @@ export function buildClientViewModel(raw: Record<string, unknown>): ClientViewMo
       displayAs: str(coupleInfoRaw, "displayAs") ?? "",
       hostLine: str(coupleInfoRaw, "hostLine"),
       shortHostMessage: str(coupleInfoRaw, "shortHostMessage"),
+      groomName: str(coupleInfoRaw, "groomName"),
+      brideName: str(coupleInfoRaw, "brideName"),
     },
     ceremony: {
       eventDate: str(ceremonyRaw, "eventDate"),
