@@ -2,6 +2,13 @@ import type { EventWebsiteRenderModel } from "@/types/public-event";
 
 const PRODUCTION_CANONICAL = "https://raymart-and-lovely.rsvp.webserbisyo.com";
 
+export function getSiteBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+}
+
 export function getSiteUrl(): string {
   const candidate =
     process.env.NEXT_PUBLIC_SITE_URL ||

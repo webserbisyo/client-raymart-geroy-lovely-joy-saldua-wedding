@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Cormorant_Garamond, Manrope } from "next/font/google";
 import { PwaRegister } from "@/components/pwa-register";
 import { WEDDING_BROWSER_THEME_COLOR } from "@/config/browser-theme";
+import { getSiteBaseUrl } from "@/lib/metadata";
 import "@/styles/globals.css";
 
 const bodoni = Bodoni_Moda({
@@ -27,14 +28,7 @@ const manrope = Manrope({
 });
 
 function getMetadataBase(): URL {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-    ? process.env.NEXT_PUBLIC_SITE_URL
-    : process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000";
-  return new URL(siteUrl);
+  return new URL(getSiteBaseUrl());
 }
 
 export const viewport: Viewport = {

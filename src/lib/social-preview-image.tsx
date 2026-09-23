@@ -1,3 +1,5 @@
+import path from "node:path";
+import { readFileSync } from "node:fs";
 import { ImageResponse } from "next/og";
 import { loadPublicEvent } from "@/app/public-event-loader";
 
@@ -5,12 +7,78 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export async function generateSocialPreviewImage(): Promise<ImageResponse> {
-  await loadPublicEvent();
+  const result = await loadPublicEvent();
+  const event = result.status === "available" ? result.event : undefined;
 
-  const coupleHeadline = "Raymart & Joy";
-  const dateText = "Nov 21 2026";
-  const venueText = "Taal, Batangas";
-  const subtitle = `${dateText} • ${venueText}`;
+  // Load 240px monogram PNG as base64 data URI (Satori-safe)
+  let monogramSrc: string | null = null;
+  try {
+    const pngPath = path.join(process.cwd(), "public/template-assets/decorations/monogram-rj.png");
+    const buf = readFileSync(pngPath);
+    monogramSrc = `data:image/png;base64,${buf.toString("base64")}`;
+  } catch {
+    // Fallback handled gracefully in JSX
+  }
+
+  // Partner names & dynamic headline
+  const rawCouple = event?.raw?.sectionsByKey?.host_info as Record<string, unknown> | undefined;
+  let partner1Name =
+    typeof rawCouple?.groomName === "string"
+      ? rawCouple.groomName
+      : typeof rawCouple?.partner1Name === "string"
+        ? rawCouple.partner1Name
+        : "";
+  let partner2Name =
+    typeof rawCouple?.brideName === "string"
+      ? rawCouple.brideName
+      : typeof rawCouple?.partner2Name === "string"
+        ? rawCouple.partner2Name
+        : "";
+
+  const coupleDisplay =
+    event?.coupleDisplayName ||
+    (partner1Name && partner2Name ? `${partner1Name} & ${partner2Name}` : "") ||
+    event?.title ||
+    "Raymart Geroy ❤️ Lovely Joy";
+
+  if (!partner1Name || !partner2Name) {
+    const DELIMITERS = ["❤️", " & ", " and ", " • "];
+    for (const delim of DELIMITERS) {
+      if (coupleDisplay.includes(delim)) {
+        const parts = coupleDisplay.split(delim).map((s: string) => s.trim());
+        if (parts[0]) partner1Name = parts[0];
+        if (parts[1]) partner2Name = parts[1];
+        break;
+      }
+    }
+  }
+
+  const groomFirst = partner1Name ? partner1Name.trim().split(/\s+/)[0] : "Raymart";
+  const brideFirst = partner2Name
+    ? partner2Name.toLowerCase().includes("joy")
+      ? "Joy"
+      : partner2Name.trim().split(/\s+/)[0]
+    : "Joy";
+
+  const initial1 = (groomFirst.charAt(0) || "R").toUpperCase();
+  const initial2 = (brideFirst.charAt(0) || "J").toUpperCase();
+  const coupleHeadline = `${groomFirst} & ${brideFirst}`;
+
+  const venueSection = event?.sections?.find(
+    (s) => s.key === "venue" || s.key === "main_event" || s.key === "ceremony"
+  );
+  const vContent = venueSection?.content as Record<string, unknown> | undefined;
+  const rawVenue =
+    typeof vContent?.venueName === "string"
+      ? vContent.venueName
+      : typeof vContent?.name === "string"
+        ? vContent.name
+        : typeof (event?.raw?.venue as Record<string, unknown> | undefined)?.venueName === "string"
+          ? ((event?.raw?.venue as Record<string, unknown>).venueName as string)
+          : null;
+
+  const date = event?.eventDateLabel || event?.eventDate || "Nov 21 2026";
+  const venue = rawVenue?.trim() || "Taal, Batangas";
 
   return new ImageResponse(
     (
@@ -27,7 +95,7 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
           border: "16px solid #17313D",
         }}
       >
-        {/* Dual Hairline Champagne Sand & Dusty Blue Accent Borders */}
+        {/* Dual Hairline Accent Frames */}
         <div
           style={{
             position: "absolute",
@@ -53,7 +121,7 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
           }}
         />
 
-        {/* Left Column: Monogram Wax Seal */}
+        {/* Left Column: 240px Circular Medallion */}
         <div
           style={{
             width: "360px",
@@ -65,41 +133,67 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
         >
           <div
             style={{
-              width: "220px",
-              height: "220px",
+              width: "240px",
+              height: "240px",
               borderRadius: "50%",
-              backgroundColor: "#1b3323",
+              backgroundColor: "#1B2A20",
               border: "4px solid #D4AF37",
               display: "flex",
-              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 12px 32px rgba(0,0,0,0.5)",
+              overflow: "hidden",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
             }}
           >
-            <span
-              style={{
-                fontSize: "68px",
-                color: "#D4AF37",
-                fontFamily: "serif",
-                fontWeight: 700,
-                letterSpacing: "3px",
-                lineHeight: 1,
-              }}
-            >
-              R &amp; J
-            </span>
-            <span
-              style={{
-                fontSize: "12px",
-                color: "#E5C158",
-                letterSpacing: "4px",
-                textTransform: "uppercase",
-                marginTop: "8px",
-              }}
-            >
-              Wedding
-            </span>
+            {monogramSrc ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={monogramSrc}
+                alt="R & J Monogram Crest"
+                style={{
+                  width: "232px",
+                  height: "232px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    color: "#FAF7F2",
+                    fontSize: "52px",
+                    fontWeight: 700,
+                  }}
+                >
+                  <span>{initial1}</span>
+                  <span style={{ fontSize: "36px", color: "#D4AF37" }}>&amp;</span>
+                  <span>{initial2}</span>
+                </div>
+                <span
+                  style={{
+                    fontSize: "13px",
+                    color: "#D4AF37",
+                    letterSpacing: "5px",
+                    marginTop: "6px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  WEDDING
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -113,7 +207,6 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
             paddingLeft: "32px",
           }}
         >
-          {/* Eyebrow Label */}
           <span
             style={{
               fontSize: "14px",
@@ -128,7 +221,6 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
             The Wedding Celebration Of
           </span>
 
-          {/* Couple Display Name */}
           <h1
             style={{
               fontSize: "58px",
@@ -141,7 +233,6 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
             {coupleHeadline}
           </h1>
 
-          {/* Subtitle / Date */}
           <span
             style={{
               fontSize: "18px",
@@ -153,10 +244,9 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
               fontWeight: 600,
             }}
           >
-            {subtitle}
+            Wedding Celebration
           </span>
 
-          {/* Date & Venue Container */}
           <div
             style={{
               display: "flex",
@@ -167,15 +257,15 @@ export async function generateSocialPreviewImage(): Promise<ImageResponse> {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <span style={{ fontSize: "18px", color: "#F8F4EC" }}>📅 {dateText}</span>
+              <span style={{ fontSize: "18px", color: "#F8F4EC" }}>📅 {date}</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <span style={{ fontSize: "16px", color: "#7498AB" }}>📍 {venueText}</span>
+              <span style={{ fontSize: "16px", color: "#7498AB" }}>📍 {venue}</span>
             </div>
           </div>
         </div>
       </div>
     ),
-    { ...size },
+    { ...size }
   );
 }
