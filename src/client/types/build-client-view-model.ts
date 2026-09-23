@@ -33,7 +33,10 @@ function str(source: Record<string, unknown>, key: string): string | undefined {
   return typeof v === "string" ? v : undefined;
 }
 
-export function buildClientViewModel(raw: Record<string, unknown>): ClientViewModel {
+export function buildClientViewModel(
+  raw: Record<string, unknown>,
+  eventRaw?: Record<string, unknown>,
+): ClientViewModel {
   const coupleInfoRaw = obj(raw, "coupleInfo");
   const ceremonyRaw = obj(raw, "ceremony");
   const venueRaw = obj(raw, "venue");
@@ -49,6 +52,33 @@ export function buildClientViewModel(raw: Record<string, unknown>): ClientViewMo
   const guestbookRaw = obj(raw, "guestbook");
   const loveStoryRaw = obj(raw, "loveStory");
   const contactRaw = obj(raw, "contactSocials");
+
+  // Extract raw gallery content from sectionsByKey or content.sections
+  const eventRawRecord = (eventRaw ?? raw) as Record<string, unknown>;
+  const rawSectionsByKey = obj(eventRawRecord, "sectionsByKey");
+  const rawContent = obj(eventRawRecord, "content");
+  const rawContentSections = obj(rawContent, "sections");
+  const rawSectionsList = arr(eventRawRecord, "sections");
+  const sectionEntry = rawSectionsList.find(
+    (s): s is Record<string, unknown> =>
+      typeof s === "object" && s !== null && (s as Record<string, unknown>).key === "gallery",
+  );
+  const sectionEntryContent = sectionEntry ? obj(sectionEntry, "content") : undefined;
+
+  const rawGallery: Record<string, unknown> =
+    (typeof raw.gallery === "object" && raw.gallery !== null ? (raw.gallery as Record<string, unknown>) : undefined) ||
+    (Object.keys(obj(rawSectionsByKey, "gallery")).length > 0 ? obj(rawSectionsByKey, "gallery") : undefined) ||
+    (Object.keys(obj(rawContentSections, "gallery")).length > 0 ? obj(rawContentSections, "gallery") : undefined) ||
+    (sectionEntryContent && Object.keys(sectionEntryContent).length > 0 ? sectionEntryContent : undefined) ||
+    {};
+
+  const gallerySectionTitle =
+    (typeof rawGallery.sectionTitle === "string" && rawGallery.sectionTitle.trim()) ||
+    "A GLIMPSE OF US";
+
+  const gallerySectionIntro =
+    (typeof rawGallery.sectionIntro === "string" && rawGallery.sectionIntro.trim()) ||
+    "Our Love in Frames";
 
   const branding = deriveCoupleBranding({
     partnerOneName: str(coupleInfoRaw, "groomName"),
@@ -89,6 +119,10 @@ export function buildClientViewModel(raw: Record<string, unknown>): ClientViewMo
       musicTitle: str(musicRaw, "musicTitle"),
       shortNote: str(musicRaw, "shortNote"),
       playButtonLabel: str(musicRaw, "playButtonLabel"),
+    },
+    gallery: {
+      sectionTitle: gallerySectionTitle,
+      sectionIntro: gallerySectionIntro,
     },
     reception: {
       receptionLabel: str(receptionRaw, "title"),

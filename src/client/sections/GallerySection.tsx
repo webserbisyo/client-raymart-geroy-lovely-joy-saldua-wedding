@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import { ScrollStack, ScrollStackItem } from "@/client/libs/reactbits";
 import type { SectionSurface } from "@/client/client-section-registry";
 import { WeddingDecoration } from "@/client/components/decorations/WeddingDecoration";
+import type { ClientGalleryViewModel } from "@/client/types/client-view-model";
 
 const GALLERY_PHOTOS = [
   {
@@ -81,7 +82,12 @@ const GALLERY_ROTATIONS = [
   "-0.5deg",
 ];
 
-export function GallerySection({ surface }: { surface: SectionSurface }) {
+type GallerySectionProps = {
+  surface: SectionSurface;
+  gallery?: ClientGalleryViewModel;
+};
+
+export function GallerySection({ surface, gallery }: GallerySectionProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -96,12 +102,12 @@ export function GallerySection({ surface }: { surface: SectionSurface }) {
       className="wedding-section relative overflow-x-clip pt-20 pb-20 px-4"
     >
       <div className="max-w-2xl mx-auto relative z-30">
-        <div className="text-center mb-14">
-          <p className="wedding-section-label text-xs font-bold tracking-[0.25em] uppercase mb-3 text-[color:var(--wedding-label-on-light)]">
-            Our Memories
+        <div className="wedding-section-header text-center mb-14">
+          <p className="wedding-section-eyebrow wedding-section-label text-xs font-bold tracking-[0.25em] uppercase mb-3 text-[color:var(--wedding-label-on-light)]">
+            {gallery?.sectionTitle || "A GLIMPSE OF US"}
           </p>
           <h2 className="wedding-display wedding-section-title wedding-section-title--compact mb-3">
-            A Story in Frames
+            {gallery?.sectionIntro || "Our Love in Frames"}
           </h2>
           <div className="flex items-center justify-center gap-3 mt-5 text-[color:var(--wedding-accent-line)] opacity-60">
             <div className="h-px w-12 bg-[color:var(--wedding-accent-line)] opacity-40" />

@@ -104,6 +104,11 @@ export type ClientGuestbookData = {
   emptyStateMessage?: string;
 };
 
+export interface ClientGalleryViewModel {
+  sectionTitle?: string;
+  sectionIntro?: string;
+}
+
 export type ClientLoveStoryData = {
   storyTitle?: string;
   sectionIntro?: string;
@@ -135,6 +140,7 @@ export type ClientViewModel = {
   venue: ClientVenueData;
   countdown: ClientCountdownData;
   musicEffects: ClientMusicData;
+  gallery: ClientGalleryViewModel;
   reception: ClientReceptionData;
   timelineProgram: { items: ClientTimelineItem[] };
   entourage: { groups: ClientEntourageGroup[]; introLine?: string };

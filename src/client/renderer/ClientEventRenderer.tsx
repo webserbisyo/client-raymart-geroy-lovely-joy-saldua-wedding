@@ -37,6 +37,7 @@ import { SectionFloralPatternContext } from "@/client/components/SectionFloralPa
 export function ClientEventRenderer({ event }: ClientEventRendererProps) {
   const vm = buildClientViewModel(
     (event.raw.renderModel ?? {}) as Record<string, unknown>,
+    event.raw as Record<string, unknown>,
   );
   const visibleSectionKeys = getVisibleClientSectionKeys(event);
   const visibleSectionKeySet = new Set(visibleSectionKeys);
@@ -100,7 +101,7 @@ export function ClientEventRenderer({ event }: ClientEventRendererProps) {
           <MusicSection musicEffects={vm.musicEffects} surface={surface} />
         );
       case "gallery":
-        return <GallerySection surface={surface} />;
+        return <GallerySection gallery={vm.gallery} surface={surface} />;
       case "main_event":
         return (
           <CeremonySection
