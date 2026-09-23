@@ -28,19 +28,34 @@ export function safePublicCanonicalUrl(value?: string | null): string | undefine
   try {
     const url = new URL(value);
     const hostname = url.hostname.toLowerCase();
+
+    // 1. Reject local dev and Vercel preview domains
     if (
       hostname.endsWith(".vercel.app") ||
       hostname === "localhost" ||
       hostname === "127.0.0.1" ||
       hostname.startsWith("192.168.") ||
       hostname.startsWith("10.") ||
-      /^172\.(1[6-9]|2[0-9]|3[01])\./.test(hostname) ||
-      hostname.endsWith(".webserbisyo.com") ||
-      hostname === "webserbisyo.com"
+      /^172\.(1[6-9]|2[0-9]|3[01])\./.test(hostname)
     ) {
       return undefined;
     }
-    return url.toString();
+
+    // 2. Allow client wedding subdomains (*.rsvp.webserbisyo.com)
+    if (hostname.endsWith(".rsvp.webserbisyo.com") && hostname !== "rsvp.webserbisyo.com") {
+      return url.toString().replace(/\/+$/, "");
+    }
+
+    // 3. Reject central platform root domains
+    if (
+      hostname === "rsvp.webserbisyo.com" ||
+      hostname === "webserbisyo.com" ||
+      hostname.endsWith(".webserbisyo.com")
+    ) {
+      return undefined;
+    }
+
+    return url.toString().replace(/\/+$/, "");
   } catch {
     return undefined;
   }
