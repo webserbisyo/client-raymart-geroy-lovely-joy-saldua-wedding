@@ -778,6 +778,7 @@ h1, h2, h3, .wedding-section-title {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
+  overflow: visible !important;
 }
 
 [data-wedding-theme="blue-hour-romance"]

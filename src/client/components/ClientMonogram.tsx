@@ -21,7 +21,7 @@ export function ClientMonogram({
   const sizeClass =
     variant === "footer"
       ? "w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-56 xl:h-56 ring-1 ring-[#D4AF37]/40"
-      : "w-14 h-14 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 ring-1 ring-[#D4AF37]/30";
+      : "w-[66px] h-[66px] sm:w-[80px] sm:h-[80px] ring-2 ring-[#D4AF37]/50 shadow-xl drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]";
 
   return (
     <span

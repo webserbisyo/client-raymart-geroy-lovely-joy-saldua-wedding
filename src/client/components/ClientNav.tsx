@@ -97,12 +97,11 @@ export function ClientNav({
       <nav
         aria-label="Client navigation"
         data-scrolled={isScrolled ? "true" : "false"}
-        className="wedding-nav fixed top-0 z-50 w-full"
+        className="wedding-nav fixed top-0 z-50 w-full h-14 sm:h-16 overflow-visible"
       >
-
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 sm:px-8">
-          {/* Left: Monogram */}
-          <div className="flex items-center min-w-[120px]">
+        <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between overflow-visible">
+          {/* Left: Brand Monogram (Hanging Seal Pattern) */}
+          <div className="relative z-30 flex items-center shrink-0 overflow-visible">
             <Link
               href={isRsvpPage ? "/" : "#hero"}
               onClick={(e) => {
@@ -111,14 +110,20 @@ export function ClientNav({
                   scrollToHash("#hero");
                 }
               }}
-              className="wedding-nav-monogram hover:opacity-80 transition-opacity flex items-center shrink-0"
               aria-label={homeLabel}
+              className="wedding-nav-monogram relative block shrink-0 overflow-visible group"
             >
-              <ClientMonogram
-                variant="nav"
-                monogram={resolvedBranding.monogram}
-                coupleLabel={resolvedBranding.coupleLabel}
-              />
+              {/* Overflowing Seal: Anchored near top, hangs past bottom border */}
+              <div className="absolute top-1 sm:top-1.5 left-0 flex items-center justify-center pointer-events-auto">
+                <ClientMonogram
+                  variant="nav"
+                  monogram={resolvedBranding.monogram}
+                  coupleLabel={resolvedBranding.coupleLabel}
+                />
+              </div>
+
+              {/* Layout spacer so sibling links keep proper clearance without stretching height */}
+              <div className="w-16 sm:w-20 h-10 pointer-events-none" />
             </Link>
           </div>
 
