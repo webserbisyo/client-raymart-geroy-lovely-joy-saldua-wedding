@@ -21,7 +21,7 @@ export function ClientMonogram({
   const sizeClass =
     variant === "footer"
       ? "w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-56 xl:h-56 ring-1 ring-[#D4AF37]/40"
-      : "w-[66px] h-[66px] sm:w-[80px] sm:h-[80px] ring-2 ring-[#D4AF37]/50 shadow-xl drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]";
+      : "w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 ring-1 ring-[#D4AF37]/40 shadow-sm";
 
   return (
     <span
@@ -40,7 +40,7 @@ export function ClientMonogram({
           src={graphicSrc}
           alt={`${firstInitial} & ${secondInitial} Monogram Crest`}
           className={cn(
-            "rounded-full object-cover drop-shadow-sm transition-transform duration-300 hover:scale-105",
+            "rounded-full object-cover pointer-events-none drop-shadow-sm transition-transform duration-300",
             sizeClass,
           )}
           loading="eager"

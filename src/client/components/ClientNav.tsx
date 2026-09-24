@@ -100,8 +100,8 @@ export function ClientNav({
         className="wedding-nav fixed top-0 z-50 w-full h-14 sm:h-16 overflow-visible"
       >
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between overflow-visible">
-          {/* Left: Brand Monogram (Hanging Seal Pattern) */}
-          <div className="relative z-30 flex items-center shrink-0 overflow-visible">
+          {/* Left: Brand Monogram (Contained Inline) */}
+          <div className="flex items-center shrink-0">
             <Link
               href={isRsvpPage ? "/" : "#hero"}
               onClick={(e) => {
@@ -111,19 +111,13 @@ export function ClientNav({
                 }
               }}
               aria-label={homeLabel}
-              className="wedding-nav-monogram relative block shrink-0 overflow-visible group"
+              className="wedding-nav-monogram relative flex items-center justify-center shrink-0 rounded-full transition-transform duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/50"
             >
-              {/* Overflowing Seal: Anchored near top, hangs past bottom border */}
-              <div className="absolute top-1 sm:top-1.5 left-0 flex items-center justify-center pointer-events-auto">
-                <ClientMonogram
-                  variant="nav"
-                  monogram={resolvedBranding.monogram}
-                  coupleLabel={resolvedBranding.coupleLabel}
-                />
-              </div>
-
-              {/* Layout spacer so sibling links keep proper clearance without stretching height */}
-              <div className="w-16 sm:w-20 h-10 pointer-events-none" />
+              <ClientMonogram
+                variant="nav"
+                monogram={resolvedBranding.monogram}
+                coupleLabel={resolvedBranding.coupleLabel}
+              />
             </Link>
           </div>
 
