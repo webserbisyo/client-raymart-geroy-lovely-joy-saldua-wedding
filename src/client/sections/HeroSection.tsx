@@ -101,7 +101,7 @@ export function HeroSection({
       <div className="w-full flex-1 min-h-[36px] max-h-[160px] sm:max-h-[200px]" aria-hidden="true" />
 
       {/* ZONE 3: LOWER LOCKUP (Torso / Crossed Arms "Red Box" + CTA) */}
-      <div className="relative z-20 w-full max-w-3xl mx-auto flex flex-col items-center justify-end shrink-0 my-auto pb-1">
+      <div className="relative z-20 w-full max-w-3xl mx-auto flex flex-col items-center justify-end shrink-0 my-auto pb-1 translate-y-6 sm:translate-y-7">
         {/* Editorial Names (Bodoni Moda) */}
         <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-0.5 select-none">
           <span className="wedding-hero-partner font-serif font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
@@ -122,7 +122,7 @@ export function HeroSection({
         </h1>
 
         {/* Transparent Date Badge */}
-        <div className="mt-3.5 sm:mt-4 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
+        <div className="mt-5 sm:mt-6 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
           {dateText}
         </div>
 
@@ -135,7 +135,7 @@ export function HeroSection({
         </p>
 
         {/* Centered CTA */}
-        <div className="mt-3.5 sm:mt-4 flex justify-center w-full">
+        <div className="mt-5 sm:mt-6 flex justify-center w-full">
           <WeddingButton
             asChild
             className="mx-auto"
