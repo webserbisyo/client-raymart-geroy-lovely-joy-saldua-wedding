@@ -89,8 +89,8 @@ export function HeroSection({
       {/* Gradient Overlay for Readability */}
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/75" />
 
-      {/* ZONE 1: TOP CANOPY (Elevated into Upper Foliage Red Box) */}
-      <header className="relative z-20 w-full max-w-md sm:max-w-lg md:max-w-2xl mx-auto flex flex-col items-center justify-center text-center select-none shrink-0">
+      {/* ZONE 1: TOP CANOPY (Elevated to Hug Navbar Bottom Line) */}
+      <header className="relative z-20 w-full max-w-md sm:max-w-lg md:max-w-2xl mx-auto flex flex-col items-center justify-center text-center select-none shrink-0 -translate-y-[18px] sm:-translate-y-2.5">
         <p className="wedding-hero-eyebrow font-serif not-italic font-normal text-white/95 leading-snug sm:leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] flex flex-col items-center">
           <span className="block whitespace-nowrap">You are wholeheartedly invited to</span>
           <span className="block whitespace-nowrap">the Wedding of</span>
