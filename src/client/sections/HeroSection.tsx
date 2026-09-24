@@ -79,7 +79,7 @@ export function HeroSection({
     <section
       id="hero"
       data-tone={surface}
-      className="wedding-section relative min-h-[100svh] flex flex-col justify-between items-center px-4 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-28 sm:pb-32 md:pb-14 overflow-hidden text-center select-none"
+      className="wedding-section relative min-h-[100svh] flex flex-col justify-between items-center px-4 pt-20 sm:pt-24 md:pt-20 lg:pt-20 pb-28 sm:pb-32 md:pb-14 overflow-hidden text-center select-none"
     >
       {/* Parallax Background */}
       <motion.div
@@ -96,7 +96,7 @@ export function HeroSection({
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/75" />
 
       {/* TOP ZONE: Eyebrow Over Heads */}
-      <div className="relative z-20 max-w-md sm:max-w-lg md:max-w-2xl mx-auto pt-4 sm:pt-4 md:pt-5">
+      <div className="relative z-20 max-w-md sm:max-w-lg md:max-w-2xl mx-auto pt-4 sm:pt-4 md:pt-1 lg:pt-1">
         <p className="font-serif not-italic font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 tracking-[0.16em] sm:tracking-[0.18em] leading-snug sm:leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] whitespace-pre-line">
           {invitationIntro}
         </p>
