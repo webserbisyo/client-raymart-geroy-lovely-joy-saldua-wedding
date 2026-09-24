@@ -69,21 +69,11 @@ export function HeroSection({
       ? "Nov 21 2026"
       : rawDate || "Nov 21 2026";
 
-  const invitationIntro =
-    coupleInfo?.shortHostMessage &&
-    coupleInfo.shortHostMessage !== "you're invited!"
-      ? coupleInfo.shortHostMessage.trim()
-      : "You are wholeheartedly invited to\nthe Wedding of";
-
-  const [introLine1, introLine2] = invitationIntro.includes("\n")
-    ? invitationIntro.split("\n")
-    : ["You are wholeheartedly invited to", "the Wedding of"];
-
   return (
     <section
       id="hero"
       data-tone={surface}
-      className="wedding-section relative min-h-[100svh] h-[100svh] flex flex-col justify-between items-center px-4 pt-[max(env(safe-area-inset-top,0px),5.0rem)] pb-[max(env(safe-area-inset-bottom,0px),1.75rem)] overflow-hidden text-center select-none"
+      className="wedding-section relative min-h-[100svh] h-[100svh] flex flex-col justify-between items-center px-4 pt-[max(env(safe-area-inset-top,0px),4.25rem)] pb-[max(env(safe-area-inset-bottom,0px),1.75rem)] overflow-hidden text-center select-none"
     >
       {/* Parallax Background */}
       <motion.div
@@ -99,19 +89,16 @@ export function HeroSection({
       {/* Gradient Overlay for Readability */}
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/75" />
 
-      {/* ZONE 1: TOP CANOPY (Eyebrow over Heads) */}
+      {/* ZONE 1: TOP CANOPY (Elevated into Upper Foliage Red Box) */}
       <header className="relative z-20 w-full max-w-md sm:max-w-lg md:max-w-2xl mx-auto flex flex-col items-center justify-center text-center select-none shrink-0">
         <p className="wedding-hero-eyebrow font-serif not-italic font-normal text-white/95 leading-snug sm:leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] flex flex-col items-center">
-          <span className="block whitespace-nowrap">{introLine1 || "You are wholeheartedly invited to"}</span>
-          <span className="block whitespace-nowrap">{introLine2 || "the Wedding of"}</span>
+          <span className="block whitespace-nowrap">You are wholeheartedly invited to</span>
+          <span className="block whitespace-nowrap">the Wedding of</span>
         </p>
       </header>
 
       {/* ZONE 2: MIDDLE FOCAL CORRIDOR (Protected Faces Window) */}
-      <div 
-        className="w-full flex-shrink-0 h-[24svh] min-h-[90px] max-h-[220px]" 
-        aria-hidden="true" 
-      />
+      <div className="w-full flex-1 min-h-[36px] max-h-[160px] sm:max-h-[200px]" aria-hidden="true" />
 
       {/* ZONE 3: LOWER LOCKUP (Torso / Crossed Arms "Red Box" + CTA) */}
       <div className="relative z-20 w-full max-w-3xl mx-auto flex flex-col items-center justify-end shrink-0 my-auto pb-1">
@@ -135,7 +122,7 @@ export function HeroSection({
         </h1>
 
         {/* Transparent Date Badge */}
-        <div className="my-1.5 sm:my-2 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
+        <div className="mt-3.5 sm:mt-4 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
           {dateText}
         </div>
 
@@ -148,7 +135,7 @@ export function HeroSection({
         </p>
 
         {/* Centered CTA */}
-        <div className="mt-3 sm:mt-4 flex justify-center w-full">
+        <div className="mt-3.5 sm:mt-4 flex justify-center w-full">
           <WeddingButton
             asChild
             className="mx-auto"
