@@ -109,12 +109,12 @@ export function HeroSection({
 
       {/* ZONE 2: MIDDLE FOCAL CORRIDOR (Protected Faces Window) */}
       <div 
-        className="w-full flex-1 min-h-[32px] sm:min-h-[48px] max-h-[180px] sm:max-h-[240px]" 
+        className="w-full flex-shrink-0 h-[24svh] min-h-[90px] max-h-[220px]" 
         aria-hidden="true" 
       />
 
       {/* ZONE 3: LOWER LOCKUP (Torso / Crossed Arms "Red Box" + CTA) */}
-      <div className="relative z-20 w-full max-w-3xl mx-auto flex flex-col items-center justify-end shrink-0 pb-2 sm:pb-3">
+      <div className="relative z-20 w-full max-w-3xl mx-auto flex flex-col items-center justify-end shrink-0 my-auto pb-1">
         {/* Editorial Names (Bodoni Moda) */}
         <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-0.5 select-none">
           <span className="wedding-hero-partner font-serif font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
