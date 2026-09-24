@@ -106,10 +106,10 @@ export function HeroSection({
       <div className="flex-1 min-h-[12vh] sm:min-h-[20vh] md:min-h-[28vh]" aria-hidden="true" />
 
       {/* LOWER ZONE: Names Lockup, Transparent Date Badge & Centered CTA */}
-      <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2">
+      <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2 -translate-y-4 sm:-translate-y-6 md:translate-y-0">
         {/* Editorial Names (Bodoni Moda) */}
         <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-1 select-none">
-          <span className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
+          <span className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
             {groomName}
           </span>
           {hasHeart ? (
@@ -121,7 +121,7 @@ export function HeroSection({
               &amp;
             </span>
           )}
-          <span className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
+          <span className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
             {brideName}
           </span>
         </h1>
