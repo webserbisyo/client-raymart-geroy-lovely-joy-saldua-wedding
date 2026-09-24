@@ -30,18 +30,22 @@ export function ContactSection({
 }: ContactSectionProps) {
   const resolvedBranding = branding ?? deriveCoupleBranding();
 
-  // Use props if available, otherwise fallback to the approved values
-  const email = contactSocials?.email || "official.musika.ph@gmail.com";
-  const phone = contactSocials?.contactNumber || "09776441419";
+  // Sanitize contact values (trim and treat empty or whitespace-only strings as absent)
+  const email = contactSocials?.email?.trim();
+  const phone = contactSocials?.contactNumber?.trim();
+
+  const hasEmail = Boolean(email && email.length > 0);
+  const hasPhone = Boolean(phone && phone.length > 0);
+  const hasContact = hasEmail || hasPhone;
 
   // Extract and trim URLs, treating empty or whitespace-only strings as missing
   const facebookUrl = contactSocials?.facebookUrl?.trim();
   const instagramUrl = contactSocials?.instagramUrl?.trim();
   const tikTokUrl = contactSocials?.tikTokUrl?.trim();
 
-  const hasFacebook = !!facebookUrl;
-  const hasInstagram = !!instagramUrl;
-  const hasTikTok = !!tikTokUrl;
+  const hasFacebook = Boolean(facebookUrl && facebookUrl.length > 0);
+  const hasInstagram = Boolean(instagramUrl && instagramUrl.length > 0);
+  const hasTikTok = Boolean(tikTokUrl && tikTokUrl.length > 0);
   const hasSocials = hasFacebook || hasInstagram || hasTikTok;
 
   return (
@@ -52,12 +56,22 @@ export function ContactSection({
     >
       <div className="max-w-5xl mx-auto relative z-10">
         <AnimatedContent>
-          {/* Dynamically balanced grid layout based on whether socials are present */}
+          {/* Dynamically balanced grid layout based on whether contact and socials are present */}
           <div
-            className={`grid grid-cols-1 ${hasSocials ? "md:grid-cols-3" : "md:grid-cols-2"} gap-10 md:gap-8 items-center`}
+            className={`grid grid-cols-1 ${
+              hasContact && hasSocials
+                ? "md:grid-cols-3"
+                : hasContact || hasSocials
+                ? "md:grid-cols-2"
+                : ""
+            } gap-10 md:gap-8 items-center`}
           >
             {/* Left Column: Couple Initials */}
-            <div className="flex flex-col items-center md:items-start select-none">
+            <div
+              className={`flex flex-col items-center ${
+                hasContact || hasSocials ? "md:items-start" : "md:items-center"
+              } select-none`}
+            >
               <ClientMonogram
                 variant="footer"
                 monogram={resolvedBranding.monogram}
@@ -65,34 +79,40 @@ export function ContactSection({
               />
             </div>
 
-            {/* Middle Column: Contact Details */}
-            <div className="flex flex-col gap-4 items-center md:items-start text-sm">
-              {/* Email Row */}
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/25 flex items-center justify-center text-[#E5C158] shrink-0">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <a
-                  href={`mailto:${email}`}
-                  className="text-[#FAF7F2] hover:text-[#E5C158] transition-colors font-medium text-base sm:text-lg break-all text-center md:text-left"
-                >
-                  {email}
-                </a>
-              </div>
+            {/* Middle Column: Contact Details (rendered only if at least one contact method exists) */}
+            {hasContact && (
+              <div className="flex flex-col gap-4 items-center md:items-start text-sm">
+                {/* Email Row */}
+                {hasEmail && (
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-white/10 border border-white/25 flex items-center justify-center text-[#E5C158] shrink-0">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <a
+                      href={`mailto:${email}`}
+                      className="text-[#FAF7F2] hover:text-[#E5C158] transition-colors font-medium text-base sm:text-lg break-all text-center md:text-left"
+                    >
+                      {email}
+                    </a>
+                  </div>
+                )}
 
-              {/* Phone Row */}
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/25 flex items-center justify-center text-[#E5C158] shrink-0">
-                  <Phone className="w-4 h-4" />
-                </div>
-                <a
-                  href={`tel:${phone}`}
-                  className="text-[#FAF7F2] hover:text-[#E5C158] transition-colors font-medium text-base sm:text-lg"
-                >
-                  {phone}
-                </a>
+                {/* Phone Row */}
+                {hasPhone && (
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-white/10 border border-white/25 flex items-center justify-center text-[#E5C158] shrink-0">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <a
+                      href={`tel:${phone}`}
+                      className="text-[#FAF7F2] hover:text-[#E5C158] transition-colors font-medium text-base sm:text-lg"
+                    >
+                      {phone}
+                    </a>
+                  </div>
+                )}
               </div>
-            </div>
+            )}
 
             {/* Right Column: Social Links (rendered only if at least one social link exists) */}
             {hasSocials && (
