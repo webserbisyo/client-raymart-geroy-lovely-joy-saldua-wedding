@@ -79,7 +79,7 @@ export function HeroSection({
     <section
       id="hero"
       data-tone={surface}
-      className="wedding-section relative min-h-[100svh] flex flex-col justify-between items-center px-4 pt-20 sm:pt-24 md:pt-20 lg:pt-20 pb-16 sm:pb-24 md:pb-14 overflow-hidden text-center select-none"
+      className="wedding-section relative min-h-[100svh] h-[100svh] flex flex-col justify-between items-center px-4 pt-[max(env(safe-area-inset-top,0px),4.75rem)] pb-[max(env(safe-area-inset-bottom,0px),1.75rem)] overflow-hidden text-center select-none"
     >
       {/* Parallax Background */}
       <motion.div
@@ -95,25 +95,28 @@ export function HeroSection({
       {/* Gradient Overlay for Readability */}
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/75" />
 
-      {/* TOP ZONE: Eyebrow Over Heads */}
-      <div className="relative z-20 max-w-md sm:max-w-lg md:max-w-2xl mx-auto pt-4 sm:pt-4 md:pt-1 lg:pt-1">
-        <p className="font-serif not-italic font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 tracking-[0.16em] sm:tracking-[0.18em] leading-snug sm:leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] whitespace-pre-line">
+      {/* ZONE 1: TOP CANOPY (Eyebrow over Heads) */}
+      <header className="relative z-20 w-full max-w-md sm:max-w-lg md:max-w-2xl mx-auto flex flex-col items-center justify-center shrink-0">
+        <p className="wedding-hero-eyebrow font-serif not-italic font-semibold text-white/95 tracking-[0.16em] sm:tracking-[0.18em] leading-snug sm:leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] text-balance whitespace-pre-line">
           {invitationIntro}
         </p>
-      </div>
+      </header>
 
-      {/* MIDDLE CORRIDOR: Protected 40vh Open Window (Couple's Faces) */}
-      <div className="flex-1 min-h-[12vh] sm:min-h-[20vh] md:min-h-[28vh]" aria-hidden="true" />
+      {/* ZONE 2: MIDDLE FOCAL CORRIDOR (Protected Faces Window) */}
+      <div 
+        className="w-full flex-shrink-0 h-[24svh] min-h-[90px] max-h-[220px]" 
+        aria-hidden="true" 
+      />
 
-      {/* LOWER ZONE: Names Lockup, Transparent Date Badge & Centered CTA */}
-      <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2 -translate-y-4 sm:-translate-y-6 md:translate-y-0">
+      {/* ZONE 3: LOWER LOCKUP (Torso / Crossed Arms "Red Box" + CTA) */}
+      <div className="relative z-20 w-full max-w-3xl mx-auto flex flex-col items-center justify-end shrink-0 my-auto pb-1">
         {/* Editorial Names (Bodoni Moda) */}
-        <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-1 select-none">
-          <span className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
+        <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-0.5 select-none">
+          <span className="wedding-hero-partner font-serif font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
             {groomName}
           </span>
           {hasHeart ? (
-            <span className="text-xl sm:text-2xl md:text-3xl text-red-400 my-1 drop-shadow-md select-none animate-pulse">
+            <span className="text-xl sm:text-2xl md:text-3xl text-red-400 my-0.5 drop-shadow-md select-none animate-pulse">
               ❤️
             </span>
           ) : (
@@ -121,17 +124,17 @@ export function HeroSection({
               &amp;
             </span>
           )}
-          <span className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
+          <span className="wedding-hero-partner font-serif font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
             {brideName}
           </span>
         </h1>
 
-        {/* Transparent Date Badge (Strictly NO black box fill) */}
-        <div className="my-2 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
+        {/* Transparent Date Badge */}
+        <div className="my-1.5 sm:my-2 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
           {dateText}
         </div>
 
-        {/* Test Sentinel Protection (Preserves AST contracts) */}
+        {/* Sentinel for AST Contracts (Keep Intact) */}
         <p
           className="wedding-hero-message-text"
           style={{ display: "none" }}
@@ -139,8 +142,8 @@ export function HeroSection({
           {coupleInfo?.shortHostMessage || "Invite you to celebrate"}
         </p>
 
-        {/* Single Centered CTA (OUR STORY strictly removed) */}
-        <div className="mt-4 flex justify-center w-full">
+        {/* Centered CTA */}
+        <div className="mt-3 sm:mt-4 flex justify-center w-full">
           <WeddingButton
             asChild
             className="mx-auto"

@@ -158,6 +158,9 @@
   --wedding-hero-overlay-top: rgba(35, 56, 45, 0.55);
   --wedding-hero-overlay-middle: rgb(23 49 61 / 38%);
   --wedding-hero-overlay-bottom: rgba(35, 56, 45, 0.65);
+  /* Fluid Hero Typography Tokens */
+  --wedding-hero-eyebrow-size: clamp(0.95rem, 1.2vw + 0.65rem, 1.35rem);
+  --wedding-hero-name-size: clamp(2.85rem, 5.5vw + 1.25rem, 5.75rem);
   --wedding-nav-background: rgba(220, 230, 224, 0.88);
   --wedding-nav-foreground: #1B2B22;
   --wedding-nav-muted: #34483B;
@@ -726,6 +729,15 @@ h1, h2, h3, .wedding-section-title {
     0 1px 4px rgb(0 0 0 / 80%);
 }
 
+.wedding-hero-eyebrow {
+  font-size: var(--wedding-hero-eyebrow-size);
+}
+
+.wedding-hero-name .wedding-hero-partner {
+  font-size: var(--wedding-hero-name-size);
+  line-height: 1.05;
+}
+
 [data-wedding-theme="blue-hour-romance"] .wedding-hero-message-text {
   font-family: var(--font-wedding-display);
   font-size: clamp(1.85rem, 3.5vw, 2.75rem);
@@ -841,6 +853,10 @@ h1, h2, h3, .wedding-section-title {
 }
 
 @media (max-height: 620px) {
+  [data-wedding-theme="blue-hour-romance"] {
+    --wedding-hero-name-size: clamp(2.15rem, 6.5vh, 3.25rem);
+  }
+
   [data-wedding-theme="blue-hour-romance"] .wedding-hero-content {
     transform: translateY(0);
   }
