@@ -111,7 +111,7 @@ export function ClientNav({
                   scrollToHash("#hero");
                 }
               }}
-              className="wedding-nav-monogram hover:opacity-80 transition-opacity flex items-center"
+              className="wedding-nav-monogram hover:opacity-80 transition-opacity flex items-center shrink-0"
               aria-label={homeLabel}
             >
               <ClientMonogram
