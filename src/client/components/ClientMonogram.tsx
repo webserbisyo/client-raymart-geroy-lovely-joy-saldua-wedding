@@ -20,8 +20,8 @@ export function ClientMonogram({
   const [firstInitial, secondInitial] = monogram ?? ["R", "J"];
   const sizeClass =
     variant === "footer"
-      ? "w-16 h-16 ring-1 ring-[#D4AF37]/40"
-      : "w-9 h-9 sm:w-10 sm:h-10 ring-1 ring-[#D4AF37]/30";
+      ? "w-20 h-20 sm:w-24 sm:h-24 ring-1 ring-[#D4AF37]/40"
+      : "w-12 h-12 sm:w-14 sm:h-14 ring-1 ring-[#D4AF37]/30";
 
   return (
     <span

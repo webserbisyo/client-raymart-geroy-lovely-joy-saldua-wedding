@@ -205,7 +205,7 @@ export function VenueSection({ venue, surface }: VenueSectionProps) {
                   </div>
                 </div>
 
-                {/* Row 2: Arrival / Landmark Note */}
+                {/* Row 2: Arrival Note */}
                 {venue.arrivalNote && (
                   <div className="flex gap-4 sm:gap-6 items-start p-3 -mx-3 rounded-2xl transition-colors hover:bg-[#FAF7F2]/60">
                     <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#FAF4E8] flex items-center justify-center border border-[#C5A059]/40 text-[#3D604C] shadow-sm">
@@ -213,7 +213,7 @@ export function VenueSection({ venue, surface }: VenueSectionProps) {
                     </div>
                     <div className="flex-1">
                       <h4 className="font-serif text-base font-semibold text-[#1B2B22]">
-                        Arrival / Landmark Note
+                        Arrival Note
                       </h4>
                       <p className="text-[#34483B] text-sm md:text-base mt-1.5 leading-relaxed font-medium">
                         {venue.arrivalNote}

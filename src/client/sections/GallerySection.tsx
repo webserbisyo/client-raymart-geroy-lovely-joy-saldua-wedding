@@ -21,6 +21,14 @@ import type { ClientGalleryViewModel } from "@/client/types/client-view-model";
 
 const GALLERY_PHOTOS = [
   {
+    id: "gallery-05",
+    src: "/template-assets/photos/gallery/gallery-05.webp",
+    alt: "Raymart leaning in to kiss Lovely Joy in a romantic golden garden portrait",
+    caption: "Pure Devotion",
+    aspectRatio: "0.67",
+    orientation: "portrait",
+  },
+  {
     id: "gallery-01",
     src: "/template-assets/photos/gallery/gallery-01.webp",
     alt: "Raymart Geroy and Lovely Joy Saldua by the historic stone wall",
@@ -49,14 +57,6 @@ const GALLERY_PHOTOS = [
     src: "/template-assets/photos/gallery/gallery-04.webp",
     alt: "Raymart and Lovely Joy under the stone archway",
     caption: "Under the Archway",
-    aspectRatio: "0.67",
-    orientation: "portrait",
-  },
-  {
-    id: "gallery-05",
-    src: "/template-assets/photos/gallery/gallery-05.webp",
-    alt: "Intimate candid portrait of Raymart and Lovely Joy",
-    caption: "Pure Devotion",
     aspectRatio: "0.67",
     orientation: "portrait",
   },

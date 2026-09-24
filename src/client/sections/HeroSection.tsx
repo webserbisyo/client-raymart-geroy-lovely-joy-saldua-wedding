@@ -96,8 +96,8 @@ export function HeroSection({
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/75" />
 
       {/* TOP ZONE: Eyebrow Over Heads */}
-      <div className="relative z-20 max-w-xs sm:max-w-md md:max-w-xl mx-auto pt-1 sm:pt-2">
-        <p className="font-serif italic text-xs sm:text-sm md:text-base lg:text-lg text-white/95 tracking-wider leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] whitespace-pre-line">
+      <div className="relative z-20 max-w-sm sm:max-w-md md:max-w-xl mx-auto pt-2 sm:pt-3">
+        <p className="font-serif not-italic font-semibold text-sm sm:text-base md:text-lg lg:text-xl text-white/95 tracking-wider leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] whitespace-pre-line">
           {invitationIntro}
         </p>
       </div>
@@ -109,7 +109,7 @@ export function HeroSection({
       <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2">
         {/* Editorial Names (Bodoni Moda) */}
         <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-1 select-none">
-          <span className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-wide text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+          <span className="font-serif text-5xl sm:text-6xl md:text-7xl font-semibold tracking-wide text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
             {groomName}
           </span>
           {hasHeart ? (
@@ -121,13 +121,13 @@ export function HeroSection({
               &amp;
             </span>
           )}
-          <span className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-wide text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+          <span className="font-serif text-5xl sm:text-6xl md:text-7xl font-semibold tracking-wide text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
             {brideName}
           </span>
         </h1>
 
         {/* Transparent Date Badge (Strictly NO black box fill) */}
-        <div className="my-3 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
+        <div className="my-2 inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-sm tracking-[0.25em] uppercase text-white/95 border-y border-white/35 backdrop-blur-[1px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] font-sans">
           {dateText}
         </div>
 
