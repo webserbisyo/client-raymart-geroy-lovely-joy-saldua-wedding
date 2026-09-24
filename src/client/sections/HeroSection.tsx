@@ -73,13 +73,17 @@ export function HeroSection({
     coupleInfo?.shortHostMessage &&
     coupleInfo.shortHostMessage !== "you're invited!"
       ? coupleInfo.shortHostMessage.trim()
-      : "You are wholeheartedly invited\nto the Wedding of";
+      : "You are wholeheartedly invited to\nthe Wedding of";
+
+  const [introLine1, introLine2] = invitationIntro.includes("\n")
+    ? invitationIntro.split("\n")
+    : ["You are wholeheartedly invited to", "the Wedding of"];
 
   return (
     <section
       id="hero"
       data-tone={surface}
-      className="wedding-section relative min-h-[100svh] h-[100svh] flex flex-col justify-between items-center px-4 pt-[max(env(safe-area-inset-top,0px),4.75rem)] pb-[max(env(safe-area-inset-bottom,0px),1.75rem)] overflow-hidden text-center select-none"
+      className="wedding-section relative min-h-[100svh] h-[100svh] flex flex-col justify-between items-center px-4 pt-[max(env(safe-area-inset-top,0px),5.0rem)] pb-[max(env(safe-area-inset-bottom,0px),1.75rem)] overflow-hidden text-center select-none"
     >
       {/* Parallax Background */}
       <motion.div
@@ -96,20 +100,21 @@ export function HeroSection({
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/75" />
 
       {/* ZONE 1: TOP CANOPY (Eyebrow over Heads) */}
-      <header className="relative z-20 w-full max-w-md sm:max-w-lg md:max-w-2xl mx-auto flex flex-col items-center justify-center shrink-0">
-        <p className="wedding-hero-eyebrow font-serif not-italic font-semibold text-white/95 tracking-[0.16em] sm:tracking-[0.18em] leading-snug sm:leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] text-balance whitespace-pre-line">
-          {invitationIntro}
+      <header className="relative z-20 w-full max-w-md sm:max-w-lg md:max-w-2xl mx-auto flex flex-col items-center justify-center text-center select-none shrink-0">
+        <p className="wedding-hero-eyebrow font-serif not-italic font-normal text-white/95 leading-snug sm:leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] flex flex-col items-center">
+          <span className="block whitespace-nowrap">{introLine1 || "You are wholeheartedly invited to"}</span>
+          <span className="block whitespace-nowrap">{introLine2 || "the Wedding of"}</span>
         </p>
       </header>
 
       {/* ZONE 2: MIDDLE FOCAL CORRIDOR (Protected Faces Window) */}
       <div 
-        className="w-full flex-shrink-0 h-[24svh] min-h-[90px] max-h-[220px]" 
+        className="w-full flex-1 min-h-[32px] sm:min-h-[48px] max-h-[180px] sm:max-h-[240px]" 
         aria-hidden="true" 
       />
 
       {/* ZONE 3: LOWER LOCKUP (Torso / Crossed Arms "Red Box" + CTA) */}
-      <div className="relative z-20 w-full max-w-3xl mx-auto flex flex-col items-center justify-end shrink-0 my-auto pb-1">
+      <div className="relative z-20 w-full max-w-3xl mx-auto flex flex-col items-center justify-end shrink-0 pb-2 sm:pb-3">
         {/* Editorial Names (Bodoni Moda) */}
         <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-0.5 select-none">
           <span className="wedding-hero-partner font-serif font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
