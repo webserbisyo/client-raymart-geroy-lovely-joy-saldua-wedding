@@ -79,7 +79,7 @@ export function HeroSection({
     <section
       id="hero"
       data-tone={surface}
-      className="wedding-section relative min-h-[100svh] flex flex-col justify-between items-center px-4 pt-16 sm:pt-20 md:pt-28 pb-12 overflow-hidden text-center select-none"
+      className="wedding-section relative min-h-[100svh] flex flex-col justify-between items-center px-4 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-28 sm:pb-32 md:pb-14 overflow-hidden text-center select-none"
     >
       {/* Parallax Background */}
       <motion.div
@@ -96,32 +96,32 @@ export function HeroSection({
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/75" />
 
       {/* TOP ZONE: Eyebrow Over Heads */}
-      <div className="relative z-20 max-w-sm sm:max-w-md md:max-w-xl mx-auto pt-2 sm:pt-3">
-        <p className="font-serif not-italic font-semibold text-sm sm:text-base md:text-lg lg:text-xl text-white/95 tracking-wider leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] whitespace-pre-line">
+      <div className="relative z-20 max-w-md sm:max-w-lg md:max-w-2xl mx-auto pt-4 sm:pt-4 md:pt-5">
+        <p className="font-serif not-italic font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 tracking-[0.16em] sm:tracking-[0.18em] leading-snug sm:leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] whitespace-pre-line">
           {invitationIntro}
         </p>
       </div>
 
       {/* MIDDLE CORRIDOR: Protected 40vh Open Window (Couple's Faces) */}
-      <div className="flex-1 min-h-[35vh] sm:min-h-[40vh]" aria-hidden="true" />
+      <div className="flex-1 min-h-[18vh] sm:min-h-[24vh] md:min-h-[32vh]" aria-hidden="true" />
 
       {/* LOWER ZONE: Names Lockup, Transparent Date Badge & Centered CTA */}
-      <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2">
+      <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2 -translate-y-8 sm:-translate-y-10 md:translate-y-0">
         {/* Editorial Names (Bodoni Moda) */}
         <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-1 select-none">
-          <span className="font-serif text-5xl sm:text-6xl md:text-7xl font-semibold tracking-wide text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+          <span className="font-serif text-6xl sm:text-7xl md:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
             {groomName}
           </span>
           {hasHeart ? (
-            <span className="text-xl sm:text-2xl text-red-400 my-1 drop-shadow-md select-none animate-pulse">
+            <span className="text-2xl sm:text-3xl text-red-400 my-1 drop-shadow-md select-none animate-pulse">
               ❤️
             </span>
           ) : (
-            <span className="font-serif italic text-2xl sm:text-3xl text-white/80 my-0.5">
+            <span className="font-serif italic text-3xl sm:text-4xl text-white/80 my-0.5">
               &amp;
             </span>
           )}
-          <span className="font-serif text-5xl sm:text-6xl md:text-7xl font-semibold tracking-wide text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+          <span className="font-serif text-6xl sm:text-7xl md:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
             {brideName}
           </span>
         </h1>
