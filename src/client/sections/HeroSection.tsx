@@ -79,7 +79,7 @@ export function HeroSection({
     <section
       id="hero"
       data-tone={surface}
-      className="wedding-section relative min-h-[100svh] flex flex-col justify-between items-center px-4 pt-20 sm:pt-24 md:pt-20 lg:pt-20 pb-28 sm:pb-32 md:pb-14 overflow-hidden text-center select-none"
+      className="wedding-section relative min-h-[100svh] flex flex-col justify-between items-center px-4 pt-20 sm:pt-24 md:pt-20 lg:pt-20 pb-16 sm:pb-24 md:pb-14 overflow-hidden text-center select-none"
     >
       {/* Parallax Background */}
       <motion.div
@@ -103,25 +103,25 @@ export function HeroSection({
       </div>
 
       {/* MIDDLE CORRIDOR: Protected 40vh Open Window (Couple's Faces) */}
-      <div className="flex-1 min-h-[18vh] sm:min-h-[24vh] md:min-h-[32vh]" aria-hidden="true" />
+      <div className="flex-1 min-h-[12vh] sm:min-h-[20vh] md:min-h-[28vh]" aria-hidden="true" />
 
       {/* LOWER ZONE: Names Lockup, Transparent Date Badge & Centered CTA */}
-      <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2 -translate-y-8 sm:-translate-y-10 md:translate-y-0">
+      <div className="relative z-20 max-w-3xl mx-auto w-full flex flex-col items-center pb-2">
         {/* Editorial Names (Bodoni Moda) */}
         <h1 className="wedding-display wedding-hero-name flex flex-col items-center justify-center text-center my-1 select-none">
-          <span className="font-serif text-6xl sm:text-7xl md:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
+          <span className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
             {groomName}
           </span>
           {hasHeart ? (
-            <span className="text-2xl sm:text-3xl text-red-400 my-1 drop-shadow-md select-none animate-pulse">
+            <span className="text-xl sm:text-2xl md:text-3xl text-red-400 my-1 drop-shadow-md select-none animate-pulse">
               ❤️
             </span>
           ) : (
-            <span className="font-serif italic text-3xl sm:text-4xl text-white/80 my-0.5">
+            <span className="font-serif italic text-2xl sm:text-3xl md:text-4xl text-white/80 my-0.5">
               &amp;
             </span>
           )}
-          <span className="font-serif text-6xl sm:text-7xl md:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
+          <span className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
             {brideName}
           </span>
         </h1>
